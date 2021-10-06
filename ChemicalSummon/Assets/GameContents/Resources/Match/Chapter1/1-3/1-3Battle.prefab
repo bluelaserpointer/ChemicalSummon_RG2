@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5001860527060386277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5001860527060386275}
+  - component: {fileID: 5001860527060386274}
+  m_Layer: 0
+  m_Name: 1-3Battle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5001860527060386275
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5001860527060386277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 879.4585, y: 510.4581, z: 110.047}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5001860527060386274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5001860527060386277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1728fdea69f884842a59d0b83beab0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name:
+    defaultString: 1-3
+    languageAndSentences: []
+  backGround: {fileID: 6406240795598663840, guid: 8ac51af0fb67cd14b8759990e83946ea,
+    type: 3}
+  bgmSets: {fileID: 11400000, guid: 2f6309d23cd0a4f4db89e92f50886c6c, type: 2}
+  enemySideCharacter: {fileID: 11400000, guid: a81c341e2dfdc5d45a8048f96255b94e, type: 2}
+  enemyDeck:
+    echelons:
+    - list:
+      - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
+        amount: 5
+      - type: {fileID: 11400000, guid: 97ca178e8f5373a4c9bc5a78b42e0d71, type: 2}
+        amount: 2
+      - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
+        amount: 3
+      amountAcception: 0
+    - list: []
+      amountAcception: 0
+    - list: []
+      amountAcception: 0
+  enemyReactionsPriority:
+    list:
+    - type: {fileID: 11400000, guid: 3805f5dd0ed56e24c963fd147faa2392, type: 2}
+      amount: 1000
+    - type: {fileID: 11400000, guid: 122e1cab5a904c143bb0d70bcc488287, type: 2}
+      amount: -1
+    - type: {fileID: 11400000, guid: fdf8cb3a493566a4a939097b8dd44620, type: 2}
+      amount: -1
+    amountAcception: 0
+  enemyAI: {fileID: 6555474248779233031, guid: c254310169522e34ca9f4e470b686fca, type: 3}
+  loots: []
+  unlockReactions: []

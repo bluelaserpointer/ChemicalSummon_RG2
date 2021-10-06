@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f26d62173eada74bacf6b3ac9ef09e2, type: 3}
+  m_Name: talk1
+  m_EditorClassIdentifier: 
+  speakings:
+  - character: {fileID: 11400000, guid: 9bf26b0a4f3c8014a9d63d6d101ef3a3, type: 2}
+    sentence:
+      defaultString: "\u6765\uFF0C\u7ED9\u6211\u770B\u770B\u4F60\u7684\u80FD\u529B"
+      languageAndSentences: []

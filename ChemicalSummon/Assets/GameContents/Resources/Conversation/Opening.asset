@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f26d62173eada74bacf6b3ac9ef09e2, type: 3}
+  m_Name: Opening
+  m_EditorClassIdentifier: 
+  speakings:
+  - character: {fileID: 11400000, guid: 9bf26b0a4f3c8014a9d63d6d101ef3a3, type: 2}
+    sentence:
+      defaultString: "\u611F\u8C22\u6E38\u73A9\u5316\u5B66\u53EC\u5524\uFF0C\u672C\u6E38\u620F\u4ECD\u5904\u4E8E\u5F00\u53D1\u9636\u6BB5\u3002"
+      languageAndSentences: []
+  - character: {fileID: 11400000, guid: 9bf26b0a4f3c8014a9d63d6d101ef3a3, type: 2}
+    sentence:
+      defaultString: "\u5373\u5C06\u542F\u52A8DEMO\u6218\u6597\u3002"
+      languageAndSentences: []

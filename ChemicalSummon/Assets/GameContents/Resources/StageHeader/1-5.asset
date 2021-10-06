@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546fe8691393fb44a83e134a7af8c212, type: 3}
+  m_Name: 1-5
+  m_EditorClassIdentifier: 
+  id: 1-5
+  difficulty: 10
+  name:
+    defaultString: 1-5
+    languageAndSentences:
+    - language: 0
+      sentence: "\u5927\u5E08\u4E4B\u6218"
+    - language: 2
+      sentence: "\u30DE\u30B9\u30BF\u30FC\u30D0\u30C8\u30EB"
+    - language: 1
+      sentence: MasterDuel
+  image: {fileID: 0}
+  description:
+    defaultString: ?missing?
+    languageAndSentences:
+    - language: 0
+      sentence: "\u5927\u5E08\u4E4B\u6218"
+    - language: 2
+      sentence: "\u30DE\u30B9\u30BF\u30FC\u30D0\u30C8\u30EB"
+    - language: 1
+      sentence: MasterDuel
+  stageEvent: {fileID: 0}

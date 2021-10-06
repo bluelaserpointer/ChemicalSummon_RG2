@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9324e2c8694621e498969bedde5c86bc, type: 3}
+  m_Name: FeCl3+3NaOH==Fe(OH)3+3NaCl
+  m_EditorClassIdentifier: 
+  description: FeCl3+3NaOH==Fe(OH)3+3NaCl
+  leftSubstances:
+    list:
+    - type: {fileID: 11400000, guid: 521b152b9ad2bbb45a1e979b8eba4479, type: 2}
+      amount: 1
+    - type: {fileID: 11400000, guid: d848fab6dbbbb5644bd0ee6083d28857, type: 2}
+      amount: 3
+    amountAcception: 0
+  rightSubstances:
+    list:
+    - type: {fileID: 11400000, guid: eb2d9914ab5e1fe41b032cd07c9853da, type: 2}
+      amount: 1
+    - type: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3, type: 2}
+      amount: 3
+    amountAcception: 0
+  catalysts:
+    list: []
+    amountAcception: 0
+  explosion: 0
+  electric: 0
+  heat: 0
+  heatRequire: 0
+  electricRequire: 0

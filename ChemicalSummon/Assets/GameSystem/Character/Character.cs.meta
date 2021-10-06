@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: f43b1ea945c19a14692ae5ff4893cc23
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - faceIcon: {fileID: 21300000, guid: 3237533375234054599bb3634b0d4e6c, type: 3}
+  - portrait: {fileID: 21300000, guid: cc400b53269282646b83ddb0bdba238c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

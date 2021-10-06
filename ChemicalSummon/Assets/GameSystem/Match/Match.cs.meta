@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1728fdea69f884842a59d0b83beab0bd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - backGround: {fileID: 6406240795598663840, guid: 8ac51af0fb67cd14b8759990e83946ea,
+      type: 3}
+  - bgmSets: {fileID: 11400000, guid: 2f6309d23cd0a4f4db89e92f50886c6c, type: 2}
+  - enemySideCharacter: {fileID: 11400000, guid: a81c341e2dfdc5d45a8048f96255b94e,
+      type: 2}
+  - enemyAI: {fileID: 6555474248779233031, guid: c254310169522e34ca9f4e470b686fca,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

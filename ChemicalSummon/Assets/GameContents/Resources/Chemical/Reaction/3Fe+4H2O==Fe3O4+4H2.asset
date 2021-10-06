@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9324e2c8694621e498969bedde5c86bc, type: 3}
+  m_Name: 3Fe+4H2O==Fe3O4+4H2
+  m_EditorClassIdentifier: 
+  description: 3Fe+4H2O==Fe3O4+4H2
+  leftSubstances:
+    list:
+    - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
+      amount: 3
+    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+      amount: 4
+    amountAcception: 0
+  rightSubstances:
+    list:
+    - type: {fileID: 11400000, guid: d4e5a815b167aad4ea34315744cb5025, type: 2}
+      amount: 1
+    - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
+      amount: 4
+    amountAcception: 0
+  catalysts:
+    list: []
+    amountAcception: 0
+  explosion: 0
+  electric: 0
+  heat: 0
+  heatRequire: 3
+  electricRequire: 0

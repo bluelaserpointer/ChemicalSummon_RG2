@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1429726825b5b41aba171290ab550d, type: 3}
+  m_Name: Al
+  m_EditorClassIdentifier: 
+  chemicalSymbol: Al
+  name:
+    defaultString: Al
+    languageAndSentences:
+    - language: 2
+      sentence: "\u30A2\u30EB\u30DF\u30CB\u30A6\u30E0"
+    - language: 1
+      sentence: Aluminum
+    - language: 0
+      sentence: "\u94DD"
+  elements:
+    list:
+    - type: {fileID: 11400000, guid: 152041f1eb13cc547bb3132c26b75b33, type: 2}
+      amount: 1
+    amountAcception: 0
+  image: {fileID: 21300000, guid: d9feab34bfce44f43a86340888df9eea, type: 3}
+  echelon: 1
+  atk: 7
+  meltingPoint: 100
+  boilingPoint: 0
+  isPhenomenon: 0
+  waterSoluble: 0
+  isOre: 0
+  abilities: []
+  description:
+    defaultString: 
+    languageAndSentences:
+    - language: 0
+      sentence: "\u94F6\u767D\u8272\u6D3B\u6CFC\u91D1\u5C5E\uFF0C\u5176\u5143\u7D20\u4E3A\u5730\u58F3\u4E2D\u542B\u91CF\u6700\u4E30\u5BCC\u7684\u91D1\u5C5E\u5143\u7D20\u3002\u4E0E\u90E8\u5206\u6C27\u5316\u91D1\u5C5E\u4F1A\u4EA7\u751F\u731B\u70C8\u7684\u53CD\u5E94\u3002"
+    - language: 2
+      sentence: "\u9280\u767D\u8272\u306E\u6D3B\u767A\u306A\u91D1\u5C5E\u3001\u305D\u306E\u5143\u7D20\u306F\u5730\u6BBB\u3067\u6700\u3082\u8C4A\u5BCC\u306B\u5B58\u5728\u3059\u308B\u91D1\u5C5E\u5143\u7D20\u3002\u4E00\u90E8\u306E\u91D1\u5C5E\u9178\u5316\u7269\u3068\u731B\u70C8\u306A\u53CD\u5FDC\u3092\u8D77\u3053\u3059\u3002"

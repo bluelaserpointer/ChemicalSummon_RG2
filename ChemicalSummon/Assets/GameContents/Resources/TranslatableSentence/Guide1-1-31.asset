@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f6bc1912b56ba48aa6189bf3c6e169, type: 3}
+  m_Name: Guide1-1-31
+  m_EditorClassIdentifier: 
+  sentence:
+    defaultString: Guide1-1-31
+    languageAndSentences:
+    - language: 0
+      sentence: "\u7206\u7834\u672F\u7ED9\u4E88\u5BF9\u9762\u6240\u6709\u7CBE\u7075\u4E00\u5B9A\u6570\u503C\u7684\u4F24\u5BB3\uFF0C\u4F24\u5BB3\u91CF\u7531\u53CD\u5E94\u5F0F\u6309\u94AE\u7684\u6A59\u8272\u7206\u70B8\u7269\u56FE\u6807\u663E\u793A\u3002"
+    - language: 2
+      sentence: "\u7206\u767A\u8853\u306F\u76F8\u624B\u5168\u3066\u306E\u30D5\u30A7\u30A2\u30EA\u30FC\u306B\u4E00\u5B9A\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002\u30C0\u30E1\u30FC\u30B8\u91CF\u306F\u53CD\u5FDC\u5F0F\u30DC\u30BF\u30F3\u306E\u30AA\u30EC\u30F3\u30B8\u8272\u306E\u7206\u767A\u7269\u30A2\u30A4\u30B3\u30F3\u306B\u8A18\u3055\u308C\u3066\u308B\u3088\u3002"

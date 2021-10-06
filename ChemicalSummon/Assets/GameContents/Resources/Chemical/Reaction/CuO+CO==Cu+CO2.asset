@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9324e2c8694621e498969bedde5c86bc, type: 3}
+  m_Name: CuO+CO==Cu+CO2
+  m_EditorClassIdentifier: 
+  description: CuO+CO==Cu+CO2
+  leftSubstances:
+    list:
+    - type: {fileID: 11400000, guid: bcc7f15f64fc5714cb0319c2494d4b19, type: 2}
+      amount: 1
+    - type: {fileID: 11400000, guid: f6678a5b55ff6c147b81a6e54894d625, type: 2}
+      amount: 1
+    amountAcception: 0
+  rightSubstances:
+    list:
+    - type: {fileID: 11400000, guid: f61dde7b3e287c34aa3548170196dc40, type: 2}
+      amount: 1
+    - type: {fileID: 11400000, guid: 9af7cb25806b85042a7e37e479848a27, type: 2}
+      amount: 1
+    amountAcception: 0
+  catalysts:
+    list: []
+    amountAcception: 0
+  explosion: 0
+  electric: 0
+  heat: 0
+  heatRequire: 2
+  electricRequire: 0
