@@ -24,20 +24,22 @@ public abstract class AbstractWorldEventObject : MonoBehaviour
     Vector3 popUpPosCorrect = new Vector3(0, 50, 0);
     public Collider EventCollider => eventCollider;
     public bool OccupyMovement { get; protected set; }
-    private void Start()
+    protected virtual void Start()
     {
         generatedPopUp = Instantiate(Resources.Load<GameObject>("PopUp"), WorldManager.MainCanvas.transform);
-        generatedPopUp.GetComponent<Button>().onClick.AddListener(() => { if(popUpCanvasGroup.alpha > 0) InvokeEvent(); });
         popUpCanvasGroup = generatedPopUp.GetComponentInChildren<CanvasGroup>();
+        generatedPopUp.GetComponent<Button>().onClick.AddListener(() => { if(popUpCanvasGroup.alpha > 0) InvokeEvent(); });
         popUpCanvasGroup.GetComponentInChildren<Text>().text = popUpSentence;
         popUpCanvasGroup.alpha = 0;
         generatedPopUp.gameObject.SetActive(false);
     }
-    private void Update()
+    protected virtual void Update()
     {
         generatedPopUp.transform.position = Camera.main.WorldToScreenPoint(transform.position) + popUpPosCorrect;
         if (Equals(WorldManager.Player.InInteractionColliderEventObject))
+        {
             popUpCanvasGroup.alpha = Mathf.MoveTowards(popUpCanvasGroup.alpha, 1, 16F * Time.deltaTime);
+        }
         else if (popUpCanvasGroup.alpha > 0)
             popUpCanvasGroup.alpha = Mathf.MoveTowards(popUpCanvasGroup.alpha, 0, 16F * Time.deltaTime);
         else

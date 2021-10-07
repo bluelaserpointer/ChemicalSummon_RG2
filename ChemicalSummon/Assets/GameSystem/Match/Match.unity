@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43726084, g: 0.75450844, b: 1.0290486, a: 1}
+  m_IndirectSpecularColor: {r: 0.43707487, g: 0.754304, b: 1.0289443, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3649,9 +3649,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alwaysUpdate: 0
-  scriptableObject: {fileID: 11400000, guid: 56637f1b68f48bb45aee9607cced54d9, type: 2}
+  scriptableObject: {fileID: 11400000, guid: 8d7887caceeada445a4fb5cfbe0726d4, type: 2}
   sentence:
-    defaultString: Defat
+    defaultString: Defeat
     languageAndSentences:
     - language: 0
       sentence: "\u8D25\u5317"
