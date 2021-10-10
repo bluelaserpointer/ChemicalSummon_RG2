@@ -29,6 +29,7 @@ public class Character : ScriptableObject
     public int initialHP;
     public Sprite faceIcon;
     public Sprite portrait;
+    public List<PlayableCharacterModel> models = new List<PlayableCharacterModel>();
     //data
     /// <summary>
     /// 角色名称

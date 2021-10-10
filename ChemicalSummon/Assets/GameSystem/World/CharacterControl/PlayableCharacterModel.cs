@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class PlayableCharacter : MonoBehaviour
+public class PlayableCharacterModel : MonoBehaviour
 {
     [SerializeField]
     Collider stepInCollider;

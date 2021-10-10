@@ -16,7 +16,7 @@ public class Npc : MonoBehaviour
     {
         if(lookAtPlayer)
         {
-            PlayableCharacter player = WorldManager.Player.TargetModel;
+            PlayableCharacterModel player = WorldManager.Player.Model;
             if(player != null)
             {
                 Vector3 playerVecXZ = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);

@@ -5,4 +5,13 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class World : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip bgm;
+    //[SerializeField]
+
+    public AudioClip BGM => bgm;
+    public void Init()
+    {
+        
+    }
 }

@@ -30,6 +30,10 @@ public class PlayerSave : MonoBehaviour
     [SerializeField]
     Canvas permanentCanvas;
     [SerializeField]
+    World currentWorld;
+    [SerializeField]
+    Vector3 currentCharacterPosition;
+    [SerializeField]
     StackedElementList<Item> itemStorage;
     [SerializeField]
     StackedElementList<Substance> substanceStorage;
@@ -38,7 +42,9 @@ public class PlayerSave : MonoBehaviour
     [SerializeField]
     Deck initialDeck;
     [SerializeField]
-    Character selectedCharacter;
+    Character currentCharacter;
+    [SerializeField]
+    int currentCharacterModelIndex;
     [SerializeField]
     List<Character> enabledCharacters;
     [SerializeField]
@@ -54,6 +60,22 @@ public class PlayerSave : MonoBehaviour
 
     //data
     public static Canvas PermanentCanvas => Instance.permanentCanvas;
+    public static World CurrentWorld
+    {
+        get => Instance.currentWorld;
+        set => Instance.currentWorld = value;
+    }
+    public static int CurrentCharacterModelIndex
+    {
+        get => Instance.currentCharacterModelIndex;
+        set => Instance.currentCharacterModelIndex = value;
+    }
+    public static Vector3 CurrentCharacterPosition
+    {
+        get => Instance.currentCharacterPosition;
+        set => Instance.currentCharacterPosition = value;
+    }
+    
     public static bool hasLastWorldPositionSave;
     public static Vector3 lastWorldPlayerPosition;
     public static Quaternion lastWorldPlayerRotation;
@@ -83,8 +105,8 @@ public class PlayerSave : MonoBehaviour
     /// 选定的游戏者
     /// </summary>
     public static Character SelectedCharacter {
-        set => Instance.selectedCharacter = value;
-        get => Instance.selectedCharacter;
+        set => Instance.currentCharacter = value;
+        get => Instance.currentCharacter;
     }
     /// <summary>
     /// 当前卡组
@@ -188,7 +210,7 @@ public class PlayerSave : MonoBehaviour
         if (ChemicalSummonManager.CurrentSceneIsWorld)
         {
             hasLastWorldPositionSave = true;
-            Transform playerTransform = WorldManager.Player.TargetModel.transform;
+            Transform playerTransform = WorldManager.Player.Model.transform;
             lastWorldPlayerPosition = playerTransform.position;
             lastWorldPlayerRotation = playerTransform.rotation;
         }

@@ -62,7 +62,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.72, z: 0}
---- !u!114 &724548028454421992
+--- !u!114 &4355524855309364529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3442634529423327594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cba89d17e7f5b647a9e59c9bbafbba6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d314442435968943965c4884668d3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stepInCollider: {fileID: 7194482912823496916}
@@ -130,7 +130,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1372609716213610, guid: 8fb76780e40bf1142ac84afa008dfa0c, type: 3}
       propertyPath: m_Name
-      value: Latifa V2 Prefab Variant
+      value: Latifa
       objectReference: {fileID: 0}
     - target: {fileID: 4207574260043124, guid: 8fb76780e40bf1142ac84afa008dfa0c, type: 3}
       propertyPath: m_RootOrder

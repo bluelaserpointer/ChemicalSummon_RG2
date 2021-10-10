@@ -173,6 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   permanentCanvas: {fileID: 4615180061886943108}
+  currentWorld: {fileID: 3235362643061183047, guid: 7739492ffeeb6274d948cc106273e856,
+    type: 3}
+  currentCharacterPosition: {x: 7.48, y: -7.08, z: -11.91}
   itemStorage:
     list:
     - type: {fileID: 59571194470741858, guid: b8b8dccc053580949910be8426a7a65a, type: 3}
@@ -211,7 +214,8 @@ MonoBehaviour:
       amountAcception: 0
     - list: []
       amountAcception: 0
-  selectedCharacter: {fileID: 11400000, guid: 9bf26b0a4f3c8014a9d63d6d101ef3a3, type: 2}
+  currentCharacter: {fileID: 11400000, guid: 00d6169fe0a61a34dafa92d806eebf97, type: 2}
+  currentCharacterModelIndex: 0
   enabledCharacters:
   - {fileID: 11400000, guid: 00d6169fe0a61a34dafa92d806eebf97, type: 2}
   - {fileID: 11400000, guid: 92922b91b8af5814f9d7732a4338b6ad, type: 2}

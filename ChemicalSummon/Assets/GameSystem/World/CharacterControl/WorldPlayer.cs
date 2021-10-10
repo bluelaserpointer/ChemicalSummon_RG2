@@ -4,49 +4,43 @@ using UnityEngine;
 
 public class WorldPlayer : MovementControl3D
 {
-    [SerializeField]
-    PlayableCharacter playerModel;
-    [SerializeField]
-    CanvasGroup popUpCanvas;
-
     //data
     SBA_TraceRotation rotater;
     enum ModelState { Idle, Walk, Run, Jump }
     string[] stateNames = {"idleTrigger", "walkTrigger", "runTrigger", "jumpTrigger" };
     ModelState currentState;
-    public PlayableCharacter TargetModel
-    {
-        get => playerModel;
-        set
-        {
-            if (value == null)
-            {
-                playerModel = null;
-                controller = null;
-                Animator = null;
-            }
-            else
-            {
-                playerModel = value;
-                controller = playerModel.GetComponent<CharacterController>();
-                Animator = playerModel.GetComponent<Animator>();
-                rotater = playerModel.GetComponent<SBA_TraceRotation>();
-            }
-        }
-    }
-    public Collider StepInCollider => TargetModel.StepInCollider;
-    public Collider InteractionCollider => TargetModel.InteractionCollider;
+    PlayableCharacterModel playerModel;
+    public PlayableCharacterModel Model => playerModel;
+    public Collider StepInCollider => Model.StepInCollider;
+    public Collider InteractionCollider => Model.InteractionCollider;
     public AbstractWorldEventObject InInteractionColliderEventObject { get; set; }
     public AbstractWorldEventObject OccupyingMovementEventObject { get; set; }
     public bool IsDoingInput { get; set; }
     public Animator Animator { get; protected set; }
-    // Start is called before the first frame update
-    void Start()
+
+    public PlayableCharacterModel SetModel(PlayableCharacterModel modelPrefab)
     {
-        TargetModel = playerModel; //force update
-        Animator.SetBool(stateNames[(int)(currentState = ModelState.Idle)], true);
+        if (modelPrefab == null)
+        {
+            playerModel = null;
+            controller = null;
+            Animator = null;
+            return null;
+        }
+        else
+        {
+            if (playerModel != null)
+            {
+                Destroy(playerModel);
+            }
+            playerModel = Instantiate(modelPrefab);
+            controller = playerModel.GetComponent<CharacterController>();
+            Animator = playerModel.GetComponent<Animator>();
+            Animator.SetBool(stateNames[(int)(currentState = ModelState.Idle)], true);
+            rotater = playerModel.GetComponent<SBA_TraceRotation>();
+            return playerModel;
+        }
     }
-    // Update is called once per frame
     void Update()
     {
         if (playerModel == null)

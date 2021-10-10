@@ -93,7 +93,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.72, z: 0}
---- !u!114 &4309079544751856543
+--- !u!114 &-9141237466071366467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6691787395520026418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cba89d17e7f5b647a9e59c9bbafbba6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d314442435968943965c4884668d3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stepInCollider: {fileID: 2748932862150479338}
@@ -116,7 +116,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1750625887683472, guid: 196405dd91626fd4c8aa9160f83204a2, type: 3}
       propertyPath: m_Name
-      value: Rin New Prefab Variant
+      value: Rin
       objectReference: {fileID: 0}
     - target: {fileID: 4453038053005094, guid: 196405dd91626fd4c8aa9160f83204a2, type: 3}
       propertyPath: m_RootOrder

@@ -25,7 +25,7 @@ public class PopupWhenPlayerClose : MonoBehaviour
     }
     void Update()
     {
-        PlayableCharacter player = WorldManager.Player.TargetModel;
+        PlayableCharacterModel player = WorldManager.Player.Model;
         if(Vector3.Distance(transform.position, player.transform.position) < 3)
         {
             IsDisplaying = true;
