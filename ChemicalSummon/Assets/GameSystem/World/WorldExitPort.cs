@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class WorldExitPort : AbstractWorldEventObject
 {
     [SerializeField]
@@ -20,9 +21,9 @@ public class WorldExitPort : AbstractWorldEventObject
     }
     private void OnValidate()
     {
-        if (transform.root.Equals(this) || dst == null)
+        if (transform.root.Equals(this))
             return;
-        string gameObjectName = ">>" + dst.gameObject.name;
+        string gameObjectName = ">>" + (dst == null ? "?" : dst.gameObject.name);
         if (idso != null)
             gameObjectName += " - " + idso.name;
         gameObject.name = gameObjectName;

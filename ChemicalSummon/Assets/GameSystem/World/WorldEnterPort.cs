@@ -7,7 +7,7 @@ using UnityEngine;
 public class WorldEnterPort : MonoBehaviour
 {
     [SerializeField]
-    List<World> cameFromWorlds;
+    List<World> cameFromWorlds = new List<World>();
     [SerializeField]
     WorldEnterPortIDSO idso; 
     public bool AcceptsCameFromWorld(World world)
