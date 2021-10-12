@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4370751, g: 0.75432146, b: 1.0289487, a: 1}
+  m_IndirectSpecularColor: {r: 0.43720907, g: 0.7544019, b: 1.028959, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1631,6 +1631,45 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &160053617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160053618}
+  - component: {fileID: 160053619}
+  m_Layer: 0
+  m_Name: SE Listener
+  m_TagString: SE Listener
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &160053618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160053617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 698698618}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &160053619
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160053617}
+  m_Enabled: 1
 --- !u!1 &160522822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,7 +2336,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 280938338}
-  - component: {fileID: 280938339}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -2322,19 +2360,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &280938339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 280938337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c50bdee9adfb3cc42b42d822e852f431, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bgm: {fileID: 0}
 --- !u!1 &286893769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3719,7 +3744,6 @@ GameObject:
   m_Component:
   - component: {fileID: 698698618}
   - component: {fileID: 698698620}
-  - component: {fileID: 698698619}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -3737,18 +3761,11 @@ Transform:
   m_LocalRotation: {x: 0.50976545, y: -0, z: -0, w: 0.8603135}
   m_LocalPosition: {x: 0.03929192, y: 7.635, z: -3.7100506}
   m_LocalScale: {x: 0.8695652, y: 0.8695652, z: 0.8695652}
-  m_Children: []
+  m_Children:
+  - {fileID: 160053618}
   m_Father: {fileID: 775636683}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 61.296, y: 0, z: 0}
---- !u!81 &698698619
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698698617}
-  m_Enabled: 1
 --- !u!20 &698698620
 Camera:
   m_ObjectHideFlags: 0

@@ -5,14 +5,25 @@ using UnityEngine;
 
 public static class TransformExtension
 {
-    public static Transform Find(this Transform childTransformList, Predicate<Transform> predicate)
+    public static Transform Find(this Transform parentTransform, Predicate<Transform> predicate)
     {
-        foreach (Transform childTransform in childTransformList)
+        foreach (Transform childTransform in parentTransform)
         {
             if (predicate.Invoke(childTransform))
                 return childTransform;
         }
         return null;
+    }
+    public static T FindComponentInChildren<T>(this Transform parentTransform, Predicate<T> predicate)
+    {
+
+        foreach (Transform childTransform in parentTransform)
+        {
+            T component = childTransform.GetComponent<T>();
+            if (component != null && predicate.Invoke(component))
+                return component;
+        }
+        return default(T);
     }
     public static void DestroyAllChildren(this Transform parent)
     {

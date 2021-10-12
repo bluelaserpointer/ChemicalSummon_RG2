@@ -5,7 +5,7 @@ using UnityEngine;
 public class WorldPlayer : MovementControl3D
 {
     //data
-    SBA_TraceRotation rotater;
+    public SBA_TraceRotation Rotater { get; protected set; }
     enum ModelState { Idle, Walk, Run, Jump }
     string[] stateNames = {"idleTrigger", "walkTrigger", "runTrigger", "jumpTrigger" };
     ModelState currentState;
@@ -37,7 +37,7 @@ public class WorldPlayer : MovementControl3D
             controller = playerModel.GetComponent<CharacterController>();
             Animator = playerModel.GetComponent<Animator>();
             Animator.SetBool(stateNames[(int)(currentState = ModelState.Idle)], true);
-            rotater = playerModel.GetComponent<SBA_TraceRotation>();
+            Rotater = playerModel.GetComponent<SBA_TraceRotation>();
             return playerModel;
         }
     }
@@ -45,7 +45,6 @@ public class WorldPlayer : MovementControl3D
     {
         if (playerModel == null)
             return;
-        transform.position = playerModel.transform.position + Vector3.up * controller.height;
         float xInput = Input.GetAxis("Horizontal"), yInput = Input.GetAxis("Vertical");
         if(OccupyingMovementEventObject != null)
         {
@@ -68,9 +67,9 @@ public class WorldPlayer : MovementControl3D
                 else
                 {
                     SetModelState(ModelState.Run);
-                    rotater.SetTarget(Quaternion.Euler(0, Mathf.Rad2Deg * Mathf.Atan2(xInput, yInput), 0));
-                    if (!rotater.IsBeforeReach)
-                        rotater.StartAnimation();
+                    Rotater.SetTarget(Quaternion.Euler(0, Mathf.Rad2Deg * Mathf.Atan2(xInput, yInput), 0));
+                    if (!Rotater.IsBeforeReach)
+                        Rotater.StartAnimation();
                 }
                 moveDirection *= speed;
                 if (Input.GetButton("Jump"))

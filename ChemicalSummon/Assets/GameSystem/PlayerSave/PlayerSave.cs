@@ -30,7 +30,7 @@ public class PlayerSave : MonoBehaviour
     [SerializeField]
     Canvas permanentCanvas;
     [SerializeField]
-    World currentWorld;
+    World currentWorldLink;
     [SerializeField]
     Vector3 currentCharacterPosition;
     [SerializeField]
@@ -60,11 +60,12 @@ public class PlayerSave : MonoBehaviour
 
     //data
     public static Canvas PermanentCanvas => Instance.permanentCanvas;
-    public static World CurrentWorld
+    public static World CurrentWorldLink
     {
-        get => Instance.currentWorld;
-        set => Instance.currentWorld = value;
+        get => Instance.currentWorldLink;
+        set => Instance.currentWorldLink = value;
     }
+    public static World CurrentWorld => WorldManager.World;
     public static int CurrentCharacterModelIndex
     {
         get => Instance.currentCharacterModelIndex;

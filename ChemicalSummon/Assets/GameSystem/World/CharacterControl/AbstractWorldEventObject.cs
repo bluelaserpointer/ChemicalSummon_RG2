@@ -29,7 +29,7 @@ public abstract class AbstractWorldEventObject : MonoBehaviour
         generatedPopUp = Instantiate(Resources.Load<GameObject>("PopUp"), WorldManager.MainCanvas.transform);
         popUpCanvasGroup = generatedPopUp.GetComponentInChildren<CanvasGroup>();
         generatedPopUp.GetComponent<Button>().onClick.AddListener(() => { if(popUpCanvasGroup.alpha > 0) InvokeEvent(); });
-        popUpCanvasGroup.GetComponentInChildren<Text>().text = popUpSentence;
+        popUpCanvasGroup.GetComponentInChildren<Text>().text = popUpSentence ?? "";
         popUpCanvasGroup.alpha = 0;
         generatedPopUp.gameObject.SetActive(false);
     }

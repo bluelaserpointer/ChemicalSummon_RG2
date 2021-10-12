@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   permanentCanvas: {fileID: 4615180061886943108}
-  currentWorld: {fileID: 3235362643061183047, guid: 7739492ffeeb6274d948cc106273e856,
+  currentWorldLink: {fileID: 3235362643061183047, guid: 7739492ffeeb6274d948cc106273e856,
     type: 3}
   currentCharacterPosition: {x: 7.48, y: -7.08, z: -11.91}
   itemStorage:

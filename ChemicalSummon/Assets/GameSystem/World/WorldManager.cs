@@ -48,14 +48,7 @@ public class WorldManager : ChemicalSummonManager
     {
         ManagerInit(Instance = this);
         worldPlayer.SetModel(PlayerSave.SelectedCharacter.models[PlayerSave.CurrentCharacterModelIndex]);
-        Player.Model.transform.position = PlayerSave.CurrentCharacterPosition;
-        playerCameraAnchor.position = Player.Model.transform.position;
-        GenerateWorld(PlayerSave.CurrentWorld);
-        if(audioSource.clip == null || !audioSource.clip.Equals(PlayerSave.CurrentWorld.BGM))
-        {
-            audioSource.clip = PlayerSave.CurrentWorld.BGM;
-            audioSource.Play();
-        }
+        EnterWorld(PlayerSave.CurrentWorldLink, Resources.Load<WorldEnterPortIDSO>("PortIDSO/DefaultPort"));
         ItemScreen.gameObject.SetActive(false);
         DeckScreen.gameObject.SetActive(false);
         ReactionScreen.gameObject.SetActive(false);
@@ -63,12 +56,6 @@ public class WorldManager : ChemicalSummonManager
         SettingScreen.gameObject.SetActive(false);
         //new reaction sign on the LeftTab
         newReactionSign.gameObject.SetActive(PlayerSave.NewDicoveredReactions.Count > 0);
-        //load last player position
-        if(PlayerSave.hasLastWorldPositionSave)
-        {
-            Player.Model.transform.position = PlayerSave.lastWorldPlayerPosition;
-            Player.Model.transform.rotation = PlayerSave.lastWorldPlayerRotation;
-        }
     }
     private void Update()
     {
@@ -79,10 +66,36 @@ public class WorldManager : ChemicalSummonManager
         if (clip != null)
             AudioSource.PlayClipAtPoint(clip, GameObject.FindGameObjectWithTag("SE Listener").transform.position);
     }
-    public void GenerateWorld(World world)
+    public World _EnterWorld(World world, WorldEnterPortIDSO enterPortIdso = null)
     {
-        if(generatedWorld != null)
-            Destroy(generatedWorld);
-        generatedWorld = Instantiate(PlayerSave.CurrentWorld, worldParentTf);
+        World previousWorld = PlayerSave.CurrentWorldLink;
+        if (generatedWorld != null)
+        {
+            Destroy(generatedWorld.gameObject);
+        }
+        generatedWorld = Instantiate(PlayerSave.CurrentWorldLink = world, Instance.worldParentTf);
+        WorldEnterPort enterPort = enterPortIdso == null ? generatedWorld.FindEnterPort(previousWorld) : generatedWorld.FindEnterPort(enterPortIdso);
+        if(enterPort == null)
+        {
+            Player.Model.transform.position = Vector3.zero;
+        }
+        else
+        {
+            Player.Model.transform.position = enterPort.transform.position;
+            Player.Model.transform.rotation = enterPort.transform.rotation;
+            Player.Rotater.StopAnimation();
+        }
+        playerCameraAnchor.position = Player.Model.transform.position;
+        Physics.SyncTransforms(); //CharacterControll doesnt see above change
+        if (audioSource.clip == null || !audioSource.clip.Equals(PlayerSave.CurrentWorldLink.BGM))
+        {
+            audioSource.clip = PlayerSave.CurrentWorldLink.BGM;
+            audioSource.Play();
+        }
+        return generatedWorld;
+    }
+    public static World EnterWorld(World world, WorldEnterPortIDSO enterPortIdso = null)
+    {
+        return Instance._EnterWorld(world, enterPortIdso);
     }
 }

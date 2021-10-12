@@ -57,6 +57,13 @@ public class SBA_TraceRotation : MonoBehaviour
         originalRotation = transform.rotation;
         IsBeforeReach = true;
     }
+    public void StopAnimation()
+    {
+        if (!IsBeforeReach)
+            return;
+        IsBeforeReach = false;
+        passedTime = timeLength;
+    }
     public void SkipAnimation()
     {
         if (!IsBeforeReach)
