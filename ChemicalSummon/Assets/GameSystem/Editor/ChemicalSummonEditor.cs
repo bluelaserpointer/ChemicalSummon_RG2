@@ -514,9 +514,9 @@ public static class ChemicalSummonEditor
             return 0;
         }
     }
-    private static StackedElementList<Substance> StrToSubstanceAndAmount(string str)
+    private static TypeAndCountList<Substance> StrToSubstanceAndAmount(string str)
     {
-        StackedElementList<Substance> substances = new StackedElementList<Substance>();
+        TypeAndCountList<Substance> substances = new TypeAndCountList<Substance>();
         if (str.Length == 0)
             return substances;
         bool readingAmountNumber = true;

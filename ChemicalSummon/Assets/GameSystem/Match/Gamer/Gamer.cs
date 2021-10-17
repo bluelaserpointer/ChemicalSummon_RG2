@@ -149,7 +149,7 @@ public abstract class Gamer : MonoBehaviour
     /// </summary>
     public UnityEvent OnHandCardsChanged => onHandCardsChanged;
     [HideInInspector]
-    public StackedElementList<Substance> exposedSubstances = new StackedElementList<Substance>();
+    public TypeAndCountList<Substance> exposedSubstances = new TypeAndCountList<Substance>();
     public void Init(Character character)
     {
         Character = character;
@@ -477,7 +477,7 @@ public abstract class Gamer : MonoBehaviour
         foreach (var pair in method.reaction.RightSubstances)
         {
             SubstanceCard newCard = SubstanceCard.GenerateSubstanceCard(pair.type);
-            newCard.InitCardAmount(pair.amount);
+            newCard.InitCardAmount(pair.count);
             exposedSubstances.Add(newCard.Substance);
             AddHandCard(newCard);
         }
@@ -571,6 +571,6 @@ public abstract class Gamer : MonoBehaviour
                 actionStack.Peek().Invoke();
         }
     }
-    public abstract void SelectCard(List<SubstanceCard> cards, int amount, Action<StackedElementList<SubstanceCard>> resultReceiver, Action cancelAction);
+    public abstract void SelectCard(List<SubstanceCard> cards, int amount, Action<TypeAndCountList<SubstanceCard>> resultReceiver, Action cancelAction);
     public abstract void SelectSlot(bool includeMyField, bool includeEnemyField, SubstanceCard card);
 }

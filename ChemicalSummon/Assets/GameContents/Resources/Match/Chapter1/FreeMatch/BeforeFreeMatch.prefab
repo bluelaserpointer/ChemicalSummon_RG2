@@ -754,14 +754,14 @@ MonoBehaviour:
     name: 
     echelons:
     - list: []
-      amountAcception: 0
+      denyNegativeCount: 1
     - list: []
-      amountAcception: 0
+      denyNegativeCount: 1
     - list: []
-      amountAcception: 0
+      denyNegativeCount: 1
   enemyReactionsPriority:
     list: []
-    amountAcception: 0
+    denyNegativeCount: 1
   enemyAI: {fileID: 6555474248779233031, guid: c254310169522e34ca9f4e470b686fca, type: 3}
   loots: []
   unlockReactions: []

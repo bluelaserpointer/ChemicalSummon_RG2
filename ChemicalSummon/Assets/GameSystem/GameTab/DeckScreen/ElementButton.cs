@@ -30,7 +30,7 @@ public class ElementButton : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     public void Init()
     {
         deckCardCount = 0;// PlayerSave.ActiveDeck.CountCard(substance);
-        storageCardCount = PlayerSave.SubstanceStorage.CountStack(substance);
+        storageCardCount = PlayerSave.SubstanceStorage.StackCount(substance);
         UpdateUI();
     }
     public void UpdateUI()

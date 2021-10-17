@@ -25,10 +25,10 @@ MonoBehaviour:
   elements:
     list:
     - type: {fileID: 11400000, guid: c0d0bee058945db48940bb40b3e80e06, type: 2}
-      amount: 2
+      count: 2
     - type: {fileID: 11400000, guid: 2a5b75dd53c9ba049b58cee4c08cd27e, type: 2}
-      amount: 1
-    amountAcception: 0
+      count: 1
+    denyNegativeCount: 1
   image: {fileID: 21300000, guid: 4c6ab9d2b1078da4b8d994ffb0a78d03, type: 3}
   echelon: 2
   atk: 0
@@ -45,3 +45,4 @@ MonoBehaviour:
       sentence: "\u65E0\u8272\u900F\u660E\u7684\u6DB2\u4F53\uFF0C\u4E00\u5207\u751F\u547D\u7684\u91CD\u8981\u7269\u8D28\u3002\u80FD\u6EB6\u89E3\u5F88\u591A\u7269\u8D28\u3002"
     - language: 2
       sentence: "\u7121\u8272\u900F\u660E\u306E\u6DB2\u4F53\u3001\u5168\u3066\u306E\u751F\u547D\u306E\u91CD\u8981\u7269\u8CEA\u3002\u3042\u3089\u3086\u308B\u7269\u8CEA\u3092\u6EB6\u89E3\u3059\u308B\u3002"
+  researchSteps: []

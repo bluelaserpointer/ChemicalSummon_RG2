@@ -32,12 +32,12 @@ public class CardPoolDisplay : MonoBehaviour
         }
     }
     public readonly List<SubstanceCard> cards = new List<SubstanceCard>();
-    public void Init(StackedElementList<Substance> substanceStacks)
+    public void Init(TypeAndCountList<Substance> substanceStacks)
     {
         Clear();
         foreach(var substanceStack in substanceStacks)
-            AddNewCard(substanceStack.type, substanceStack.amount);
-        CardAmount = substanceStacks.CountStack();
+            AddNewCard(substanceStack.type, substanceStack.count);
+        CardAmount = substanceStacks.TotalCount();
     }
     private void AddNewCard(Substance substance, int amount = 1)
     {

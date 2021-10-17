@@ -179,19 +179,19 @@ MonoBehaviour:
   itemStorage:
     list:
     - type: {fileID: 59571194470741858, guid: b8b8dccc053580949910be8426a7a65a, type: 3}
-      amount: 1
-    amountAcception: 0
+      count: 2
+    denyNegativeCount: 1
   substanceStorage:
     list:
     - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
-      amount: 4
+      count: 4
     - type: {fileID: 11400000, guid: 1985c22d2651fa148affbed385ebe7ad, type: 2}
-      amount: 4
+      count: 4
     - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
-      amount: 3
+      count: 3
     - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
-      amount: 4
-    amountAcception: 0
+      count: 4
+    denyNegativeCount: 1
   discoveredReactions:
   - {fileID: 11400000, guid: 6487f0bafa1875c4ab10266b4020d402, type: 2}
   - {fileID: 11400000, guid: 2d36dfa6859f87f49a208934d46219bc, type: 2}
@@ -202,18 +202,18 @@ MonoBehaviour:
     echelons:
     - list:
       - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
-        amount: 4
+        count: 4
       - type: {fileID: 11400000, guid: 1985c22d2651fa148affbed385ebe7ad, type: 2}
-        amount: 4
+        count: 4
       - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
-        amount: 3
+        count: 3
       - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
-        amount: 4
-      amountAcception: 0
+        count: 4
+      denyNegativeCount: 1
     - list: []
-      amountAcception: 0
+      denyNegativeCount: 1
     - list: []
-      amountAcception: 0
+      denyNegativeCount: 1
   currentCharacter: {fileID: 11400000, guid: 00d6169fe0a61a34dafa92d806eebf97, type: 2}
   currentCharacterModelIndex: 0
   enabledCharacters:

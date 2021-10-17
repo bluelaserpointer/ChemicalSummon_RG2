@@ -120,7 +120,7 @@ public class CardTransport
                 break;
         }
     }
-    public static void SelectCard(Gamer gamer, List<SubstanceCard> cards, Method method, int amount, Action<StackedElementList<SubstanceCard>> resultReceiver, Action cancelAction)
+    public static void SelectCard(Gamer gamer, List<SubstanceCard> cards, Method method, int amount, Action<TypeAndCountList<SubstanceCard>> resultReceiver, Action cancelAction)
     {
         if (method.Equals(Method.Select))
         {
@@ -128,7 +128,7 @@ public class CardTransport
         }
         else
         {
-            StackedElementList<SubstanceCard> selectedCards = new StackedElementList<SubstanceCard>();
+            TypeAndCountList<SubstanceCard> selectedCards = new TypeAndCountList<SubstanceCard>();
             int addedAmount = 0;
             switch (method)
             {
@@ -181,10 +181,10 @@ public class CardTransport
         {
             if(!isCopy && !src.Equals(Location.OffSite))
             {
-                selectedCards.ForEach(each => each.type.RemoveAmount(each.amount, SubstanceCard.DecreaseReason.Other));
+                selectedCards.ForEach(each => each.type.RemoveAmount(each.count, SubstanceCard.DecreaseReason.Other));
             }
             List<SubstanceCard> cards = new List<SubstanceCard>();
-            selectedCards.ForEach(selection => cards.Add(SubstanceCard.GenerateSubstanceCard(selection.type.Substance, selection.amount)));
+            selectedCards.ForEach(selection => cards.Add(SubstanceCard.GenerateSubstanceCard(selection.type.Substance, selection.count)));
             AddCard(gamer, dst, dstMethod, cards);
             if(afterAction != null)
                 afterAction.Invoke();

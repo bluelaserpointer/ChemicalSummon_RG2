@@ -34,9 +34,9 @@ public class PlayerSave : MonoBehaviour
     [SerializeField]
     Vector3 currentCharacterPosition;
     [SerializeField]
-    StackedElementList<Item> itemStorage;
+    TypeAndCountList<Item> itemStorage;
     [SerializeField]
-    StackedElementList<Substance> substanceStorage;
+    TypeAndCountList<Substance> substanceStorage;
     [SerializeField]
     List<Reaction> discoveredReactions;
     [SerializeField]
@@ -80,8 +80,8 @@ public class PlayerSave : MonoBehaviour
     public static bool hasLastWorldPositionSave;
     public static Vector3 lastWorldPlayerPosition;
     public static Quaternion lastWorldPlayerRotation;
-    public static StackedElementList<Item> ItemStorage => Instance.itemStorage;
-    public static StackedElementList<Substance> SubstanceStorage => Instance.substanceStorage;
+    public static TypeAndCountList<Item> ItemStorage => Instance.itemStorage;
+    public static TypeAndCountList<Substance> SubstanceStorage => Instance.substanceStorage;
     /// <summary>
     /// 可用的游戏者
     /// </summary>

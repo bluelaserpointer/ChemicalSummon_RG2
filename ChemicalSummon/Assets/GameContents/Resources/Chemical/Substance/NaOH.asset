@@ -23,12 +23,12 @@ MonoBehaviour:
   elements:
     list:
     - type: {fileID: 11400000, guid: 730a4e27a4949424abd76c3f19c4a958, type: 2}
-      amount: 1
+      count: 1
     - type: {fileID: 11400000, guid: 2a5b75dd53c9ba049b58cee4c08cd27e, type: 2}
-      amount: 1
+      count: 1
     - type: {fileID: 11400000, guid: c0d0bee058945db48940bb40b3e80e06, type: 2}
-      amount: 1
-    amountAcception: 0
+      count: 1
+    denyNegativeCount: 1
   image: {fileID: 21300000, guid: e3ab184d813b6e446b06adc9513d4446, type: 3}
   echelon: 2
   atk: 4
@@ -45,3 +45,4 @@ MonoBehaviour:
       sentence: "\u4E0D\u8981\u78B0\uFF01\u5B83\u7684\u8150\u8680\u6027\u6781\u5F3A\u3002\u4ECE\u5370\u67D3\uFF0C\u7EBA\u7EC7\uFF0C\u51B6\u91D1\uFF0C\u5230\u758F\u901A\u7BA1\u9053\uFF0C\u90FD\u662F\u5B83\u7684\u64C5\u957F\u5DE5\u4F5C\u3002"
     - language: 2
       sentence: "\u89E6\u308C\u306A\u3044\u3067\uFF01\u3053\u3044\u3064\u306F\u5F37\u8150\u8755\u6027\u3002\u67D3\u8272\u3001\u7EBA\u7EC7\u3001\u51B6\u91D1\u304B\u3089\u3001\u30D1\u30A4\u30D7\u8A70\u307E\u308A\u306E\u89E3\u6D88\u307E\u3067\u3001\u69D8\u3005\u306A\u5834\u9762\u306B\u5F79\u7ACB\u3064\u3002"
+  researchSteps: []

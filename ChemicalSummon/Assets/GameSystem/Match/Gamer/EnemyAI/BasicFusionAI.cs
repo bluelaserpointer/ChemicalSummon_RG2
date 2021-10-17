@@ -11,7 +11,7 @@ public class BasicFusionAI : NoFusionAI
         SubstanceCard topATKCard = Enemy.Field.TopATKCard;
         foreach (Reaction.ReactionMethod method in Enemy.FindAvailiableReactions())
         {
-            int priority = Enemy.ReactionsPriority.CountStack(method.reaction);
+            int priority = Enemy.ReactionsPriority.StackCount(method.reaction);
             if (topATKCard != null && method.consumingCards.ContainsKey(topATKCard)) //hate decrese of top ATK
             {
                 priority -= 100;
@@ -117,7 +117,7 @@ public class BasicFusionAI : NoFusionAI
             { //if our top ATK is higher than the player, should not do counter fusion that includes the highest ATK card
                 continue;
             }
-            int priority = Enemy.ReactionsPriority.CountStack(method.reaction);
+            int priority = Enemy.ReactionsPriority.StackCount(method.reaction);
             if (priority > maxPriority)
             {
                 maxPriority = priority;

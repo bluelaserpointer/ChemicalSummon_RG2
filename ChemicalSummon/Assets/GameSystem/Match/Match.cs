@@ -19,7 +19,7 @@ public class Match : MonoBehaviour
     [SerializeField]
     protected Deck enemyDeck;
     [SerializeField]
-    protected StackedElementList<Reaction> enemyReactionsPriority;
+    protected TypeAndCountList<Reaction> enemyReactionsPriority;
     [SerializeField]
     EnemyAI enemyAI;
     [SerializeField]
@@ -50,7 +50,7 @@ public class Match : MonoBehaviour
     /// <summary>
     /// 敌方习得反应式
     /// </summary>
-    public StackedElementList<Reaction> EnemyReactionsPriority => enemyReactionsPriority;
+    public TypeAndCountList<Reaction> EnemyReactionsPriority => enemyReactionsPriority;
     public EnemyAI EnemyAI => enemyAI;
     public AudioClip PickRandomBGM() {
         return bgmSets == null ? null : bgmSets.PickRandom();

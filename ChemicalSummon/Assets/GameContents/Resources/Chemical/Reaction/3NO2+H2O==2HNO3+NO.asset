@@ -16,22 +16,23 @@ MonoBehaviour:
   leftSubstances:
     list:
     - type: {fileID: 11400000, guid: 3222925365eab8d40846156dfa6a03db, type: 2}
-      amount: 3
+      count: 3
     - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      amount: 1
-    amountAcception: 0
+      count: 1
+    denyNegativeCount: 1
   rightSubstances:
     list:
     - type: {fileID: 11400000, guid: 8e95aadf4b9f1de40bbfe11e849d9b8f, type: 2}
-      amount: 2
+      count: 2
     - type: {fileID: 11400000, guid: 89dc9b20e9912264e88178ed054d397e, type: 2}
-      amount: 1
-    amountAcception: 0
+      count: 1
+    denyNegativeCount: 1
   catalysts:
     list: []
-    amountAcception: 0
+    denyNegativeCount: 1
   explosion: 0
   electric: 0
   heat: 0
   heatRequire: 0
   electricRequire: 0
+  researchSteps: []

@@ -32,12 +32,12 @@ public abstract class EnemyAI : MonoBehaviour
             bool condition = true;
             bool addedAttacker = false;
             Dictionary<SubstanceCard, int> consumingCards = new Dictionary<SubstanceCard, int>();
-            StackedElementList<Substance> lackedSubstances = new StackedElementList<Substance>();
+            TypeAndCountList<Substance> lackedSubstances = new TypeAndCountList<Substance>();
             int lackCardCount = 0;
             foreach (var pair in reaction.LeftSubstances)
             {
                 Substance requiredSubstance = pair.type;
-                int requiredAmount = pair.amount;
+                int requiredAmount = pair.count;
                 foreach (SubstanceCard card in consumableCards)
                 {
                     if (card.Substance.Equals(requiredSubstance))
@@ -76,7 +76,7 @@ public abstract class EnemyAI : MonoBehaviour
                     Substance substance = each.type;
                     if(!substance.IsPureElement)
                     {
-                        int exposedCount = Player.exposedSubstances.CountStack(substance);
+                        int exposedCount = Player.exposedSubstances.StackCount(substance);
                         if (exposedCount > 0)
                         {
                             float subPossibility = 1;

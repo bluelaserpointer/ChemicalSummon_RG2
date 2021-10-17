@@ -10,19 +10,19 @@ public class Deck
     public Deck()
     {
         for (int i = 0; i < echelons.Length; ++i)
-            echelons[i] = new StackedElementList<Substance>();
+            echelons[i] = new TypeAndCountList<Substance>();
     }
     public Deck(Deck sampleDeck)
     {
         for(int i = 0; i < echelons.Length; ++i)
         {
-            echelons[i] = new StackedElementList<Substance>(sampleDeck.echelons[i]);
+            echelons[i] = new TypeAndCountList<Substance>(sampleDeck.echelons[i]);
         }
     }
     public string name;
     [SerializeField]
-    StackedElementList<Substance>[] echelons = new StackedElementList<Substance>[3];
-    public StackedElementList<Substance>[] Echelons => echelons;
+    TypeAndCountList<Substance>[] echelons = new TypeAndCountList<Substance>[3];
+    public TypeAndCountList<Substance>[] Echelons => echelons;
     public bool IsEmpty => CardCount == 0;
     public int CardCount {
         get
@@ -30,7 +30,7 @@ public class Deck
             int sum = 0;
             foreach(var list in echelons)
             {
-                sum += list.CountStack();
+                sum += list.TotalCount();
             }
             return sum;
         }

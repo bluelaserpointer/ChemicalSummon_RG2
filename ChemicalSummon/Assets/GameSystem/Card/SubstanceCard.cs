@@ -85,15 +85,8 @@ public class SubstanceCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         get => cardAmount;
         protected set {
             cardAmount = value;
-            if (value != 1 && (IsCursorPointing || !ChemicalSummonManager.CurrentSceneIsMatch || Slot == null))
-            {
-                amountText.transform.parent.gameObject.SetActive(true);
-                amountText.text = cardAmount.ToString();
-            }
-            else
-            {
-                amountText.transform.parent.gameObject.SetActive(false);
-            }
+            amountText.text = cardAmount.ToString();
+            amountText.transform.parent.gameObject.SetActive(value != 1);
             attackText.targetValue = ATK;
             if (Slot != null)
                 Slot.Field.onCardsChanged.Invoke();
@@ -320,7 +313,7 @@ public class SubstanceCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
         return list;
     }
-    public static List<SubstanceCard> GenerateSubstanceCard(StackedElementList<Substance> substanceStacks, bool stackCard = false)
+    public static List<SubstanceCard> GenerateSubstanceCard(TypeAndCountList<Substance> substanceStacks, bool stackCard = false)
     {
         if (baseSubstanceCard == null)
         {
@@ -333,14 +326,14 @@ public class SubstanceCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             foreach (var substanceStack in substanceStacks)
             {
-                list.Add(GenerateSubstanceCard(substanceStack.type, substanceStack.amount));
+                list.Add(GenerateSubstanceCard(substanceStack.type, substanceStack.count));
             }
         }
         else
         {
             foreach (var substanceStack in substanceStacks)
             {
-                for (int i = 0; i < substanceStack.amount; ++i)
+                for (int i = 0; i < substanceStack.count; ++i)
                 {
                     list.Add(GenerateSubstanceCard(substanceStack.type));
                 }
@@ -373,14 +366,7 @@ public class SubstanceCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void RemoveAmount(int amount, DecreaseReason decreaseReason = DecreaseReason.Other)
     {
         int decreasedAmount;
-        if (CardAmount > amount)
-        {
-            CardAmount -= (decreasedAmount = amount);
-        }
-        else
-        {
-            CardAmount -= (decreasedAmount = CardAmount);
-        }
+        CardAmount -= (decreasedAmount = (CardAmount < amount ? CardAmount : amount));
         if(ChemicalSummonManager.CurrentSceneIsMatch)
         {
             switch (decreaseReason)
@@ -457,19 +443,10 @@ public class SubstanceCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         IsCursorPointing = true;
-        if (CardAmount != 1)
-        {
-            amountText.transform.parent.gameObject.SetActive(true);
-            amountText.text = cardAmount.ToString();
-        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         IsCursorPointing = false;
-        if (Slot != null)
-        {
-            amountText.transform.parent.gameObject.SetActive(false);
-        }
     }
 }

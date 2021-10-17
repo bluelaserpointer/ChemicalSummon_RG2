@@ -21,10 +21,10 @@ MonoBehaviour:
   elements:
     list:
     - type: {fileID: 11400000, guid: 4335256ff8bbcb546bf8942fa07dc3a7, type: 2}
-      amount: 1
+      count: 1
     - type: {fileID: 11400000, guid: 2a5b75dd53c9ba049b58cee4c08cd27e, type: 2}
-      amount: 3
-    amountAcception: 0
+      count: 3
+    denyNegativeCount: 1
   image: {fileID: 0}
   echelon: 2
   atk: 0
@@ -37,3 +37,4 @@ MonoBehaviour:
   description:
     defaultString: 
     languageAndSentences: []
+  researchSteps: []

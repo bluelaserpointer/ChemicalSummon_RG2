@@ -19,12 +19,12 @@ MonoBehaviour:
   elements:
     list:
     - type: {fileID: 11400000, guid: c0d0bee058945db48940bb40b3e80e06, type: 2}
-      amount: 1
+      count: 1
     - type: {fileID: 11400000, guid: 8cd186345f1efe749aa6d765c6a9d1b5, type: 2}
-      amount: 1
+      count: 1
     - type: {fileID: 11400000, guid: 2a5b75dd53c9ba049b58cee4c08cd27e, type: 2}
-      amount: 1
-    amountAcception: 0
+      count: 1
+    denyNegativeCount: 1
   image: {fileID: 21300000, guid: e6f12a1d98da4e3439f828cbfe49ab6b, type: 3}
   echelon: 3
   atk: 0
@@ -37,3 +37,4 @@ MonoBehaviour:
   description:
     defaultString: 
     languageAndSentences: []
+  researchSteps: []

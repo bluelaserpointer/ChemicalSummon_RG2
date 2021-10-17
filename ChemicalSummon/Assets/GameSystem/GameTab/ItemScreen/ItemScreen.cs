@@ -21,7 +21,7 @@ public class ItemScreen : MonoBehaviour
         foreach(var each in PlayerSave.ItemStorage)
         {
             ItemButton itemButton = Instantiate(itemButtonPrefab, itemParentTf);
-            itemButton.SetItem(each.type, each.amount);
+            itemButton.SetItem(each.type, each.count);
         }
         WorldManager.ItemScreen.ItemInfoDisplay.SetItem(null);
     }

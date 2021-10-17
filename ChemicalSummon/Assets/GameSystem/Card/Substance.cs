@@ -17,7 +17,7 @@ public class Substance : ChemicalObject
     /// <summary>
     /// 组成元素
     /// </summary>
-    public StackedElementList<Element> elements = new StackedElementList<Element>();
+    public TypeAndCountList<Element> elements = new TypeAndCountList<Element>();
     /// <summary>
     /// 三态卡牌图片
     /// </summary>
@@ -72,7 +72,7 @@ public class Substance : ChemicalObject
     /// <summary>
     /// 是否由单元素组成(能成为卡组牌的条件)
     /// </summary>
-    public bool IsPureElement => elements.CountType() == 1;
+    public bool IsPureElement => elements.TypeCount() == 1;
     /// <summary>
     /// 水溶
     /// </summary>

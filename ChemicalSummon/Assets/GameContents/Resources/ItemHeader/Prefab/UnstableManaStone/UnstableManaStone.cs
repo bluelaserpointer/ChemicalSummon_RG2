@@ -26,7 +26,7 @@ public class UnstableManaStone : Item
 
     public override void Use()
     {
-        StackedElementList<Substance> results = new StackedElementList<Substance>();
+        TypeAndCountList<Substance> results = new TypeAndCountList<Substance>();
         for (int i = 0; i < lootAmount; ++i)
         {
             Substance loot = pool.GetRandomElement();

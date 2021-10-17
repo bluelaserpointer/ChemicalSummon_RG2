@@ -22,7 +22,7 @@ public class CardStorageScreen : MonoBehaviour, IPointerDownHandler
         {
             GameObject anchorObject = new GameObject(subtanceStack.type.chemicalSymbol + " anchor", typeof(RectTransform));
             anchorObject.transform.SetParent(cardListTransform); //anchor protects card scale from grid layout arranging
-            SubstanceCard card = SubstanceCard.GenerateSubstanceCard(subtanceStack.type, subtanceStack.amount);
+            SubstanceCard card = SubstanceCard.GenerateSubstanceCard(subtanceStack.type, subtanceStack.count);
             card.transform.SetParent(anchorObject.transform);
             card.SetDraggable(false);
             card.transform.localScale = cardScale * Vector3.one;

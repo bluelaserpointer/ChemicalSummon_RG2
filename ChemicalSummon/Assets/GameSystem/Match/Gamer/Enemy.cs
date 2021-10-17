@@ -18,7 +18,7 @@ public class Enemy : Gamer
     public EnemyAI AI => MatchManager.Match.EnemyAI;
     public override TurnType FusionTurn => TurnType.EnemyFusionTurn;
     public override TurnType AttackTurn => TurnType.EnemyAttackTurn;
-    public StackedElementList<Reaction> ReactionsPriority => MatchManager.Match.EnemyReactionsPriority;
+    public TypeAndCountList<Reaction> ReactionsPriority => MatchManager.Match.EnemyReactionsPriority;
     public override List<Reaction> LearnedReactions => ReactionsPriority.Types;
     public override void FusionTurnStart()
     {
@@ -57,7 +57,7 @@ public class Enemy : Gamer
         DoStackedAction();
     }
 
-    public override void SelectCard(List<SubstanceCard> cards, int amount, Action<StackedElementList<SubstanceCard>> resultReceiver, Action cancelAction)
+    public override void SelectCard(List<SubstanceCard> cards, int amount, Action<TypeAndCountList<SubstanceCard>> resultReceiver, Action cancelAction)
     {
         throw new NotImplementedException();
     }

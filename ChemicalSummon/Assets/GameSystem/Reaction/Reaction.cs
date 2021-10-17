@@ -12,15 +12,15 @@ public class Reaction : ScriptableObject
 {
     public string description;
 
-    public StackedElementList<Substance> leftSubstances = new StackedElementList<Substance>();
-    public StackedElementList<Substance> rightSubstances = new StackedElementList<Substance>();
-    public StackedElementList<Substance> catalysts = new StackedElementList<Substance>();
+    public TypeAndCountList<Substance> leftSubstances = new TypeAndCountList<Substance>();
+    public TypeAndCountList<Substance> rightSubstances = new TypeAndCountList<Substance>();
+    public TypeAndCountList<Substance> catalysts = new TypeAndCountList<Substance>();
 
     public int explosion, electric, heat, heatRequire, electricRequire;
     public List<ResearchStep> researchSteps = new List<ResearchStep>();
 
-    public StackedElementList<Substance> LeftSubstances => leftSubstances;
-    public StackedElementList<Substance> RightSubstances => rightSubstances;
+    public TypeAndCountList<Substance> LeftSubstances => leftSubstances;
+    public TypeAndCountList<Substance> RightSubstances => rightSubstances;
     public bool IsRequiredSubstance(Substance substance)
     {
         return GetRequiredAmount(substance) > 0;
@@ -34,7 +34,7 @@ public class Reaction : ScriptableObject
         {
             if(pair.type.Equals(substance))
             {
-                return pair.amount;
+                return pair.count;
             }
         }
         return 0;
@@ -45,7 +45,7 @@ public class Reaction : ScriptableObject
         {
             if (pair.type.Equals(substance))
             {
-                return pair.amount;
+                return pair.count;
             }
         }
         return 0;
@@ -81,7 +81,7 @@ public class Reaction : ScriptableObject
         foreach (var pair in reaction.LeftSubstances)
         {
             Substance requiredSubstance = pair.type;
-            int requiredAmount = pair.amount;
+            int requiredAmount = pair.count;
             foreach (SubstanceCard card in consumableCards)
             {
                 if (card.Substance.Equals(requiredSubstance))

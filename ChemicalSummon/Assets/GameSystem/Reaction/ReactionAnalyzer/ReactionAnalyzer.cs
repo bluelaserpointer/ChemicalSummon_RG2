@@ -34,14 +34,14 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
     {
         foreach(var eachCard in PlayerSave.SubstanceStorage)
         {
-            playerStorage.AddCard(eachCard.type, eachCard.amount);
+            playerStorage.AddCard(eachCard.type, eachCard.count);
         }
         OnCardsChange();
     }
     public void OnCardsChange()
     {
         displayingValidReaction = null;
-        StackedElementList<Substance> puttedSubstances = new StackedElementList<Substance>();
+        TypeAndCountList<Substance> puttedSubstances = new TypeAndCountList<Substance>();
         string puttedSubstancesStr = "";
         foreach(CardSlot slot in slots)
         {
@@ -66,20 +66,20 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
         int nearestAmountDist = int.MaxValue;
         foreach(Reaction reaction in AllReactions)
         {
-            StackedElementList<Substance> eachLeftSubstances = reaction.LeftSubstances;
-            if (eachLeftSubstances.CountType() == puttedSubstances.CountType())
+            TypeAndCountList<Substance> eachLeftSubstances = reaction.LeftSubstances;
+            if (eachLeftSubstances.TypeCount() == puttedSubstances.TypeCount())
             {
                 bool nearCond = true;
                 int amountDist = 0;
                 foreach(var substanceStack in eachLeftSubstances)
                 {
-                    int putAmount = puttedSubstances.CountStack(substanceStack.type);
+                    int putAmount = puttedSubstances.StackCount(substanceStack.type);
                     if (putAmount == 0)
                     {
                         nearCond = false;
                         break;
                     }
-                    amountDist += Mathf.Abs(substanceStack.amount - putAmount);
+                    amountDist += Mathf.Abs(substanceStack.count - putAmount);
                 }
                 if (!nearCond)
                     continue;

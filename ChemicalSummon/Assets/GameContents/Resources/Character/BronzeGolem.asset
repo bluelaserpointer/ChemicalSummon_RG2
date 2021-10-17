@@ -95,3 +95,4 @@ MonoBehaviour:
   initialHP: 65
   faceIcon: {fileID: 21300000, guid: c78db95f72938d4419c9543350704dc6, type: 3}
   portrait: {fileID: 21300000, guid: 53b84a49246b50840bf88d02361c901e, type: 3}
+  models: []

@@ -32,13 +32,13 @@ public class ReactionInfoDisplay : MonoBehaviour
         {
             SubstanceCard card = Instantiate(substanceCardPrefab, leftSubstanceListTf);
             card.Substance = each.type;
-            card.InitCardAmount(each.amount);
+            card.InitCardAmount(each.count);
         }
         foreach (var each in reaction.rightSubstances)
         {
             SubstanceCard card = Instantiate(substanceCardPrefab, rightSubstanceListTf);
             card.Substance = each.type;
-            card.InitCardAmount(each.amount);
+            card.InitCardAmount(each.count);
         }
         if(reaction.electric > 0)
         {

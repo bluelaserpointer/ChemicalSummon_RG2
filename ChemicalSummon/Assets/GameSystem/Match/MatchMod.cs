@@ -57,9 +57,9 @@ public class MatchMod : MonoBehaviour
 
     [Header("HandCard")]
     [SerializeField]
-    StackedElementList<Substance> enemyHandCards;
+    TypeAndCountList<Substance> enemyHandCards;
     [SerializeField]
-    StackedElementList<Substance> playerHandCards;
+    TypeAndCountList<Substance> playerHandCards;
 
     private Enemy Enemy => MatchManager.Enemy;
     private Player Player => MatchManager.Player;
@@ -106,11 +106,11 @@ public class MatchMod : MonoBehaviour
             Player.deck = new Deck();
         }
         enemyHandCards.ForEach(stackedSubstance => {
-            for (int i = 0; i < stackedSubstance.amount; ++i)
+            for (int i = 0; i < stackedSubstance.count; ++i)
                 Enemy.AddHandCard(stackedSubstance.type);
         });
         playerHandCards.ForEach(stackedSubstance => {
-            for (int i = 0; i < stackedSubstance.amount; ++i)
+            for (int i = 0; i < stackedSubstance.count; ++i)
                 Player.AddHandCard(stackedSubstance.type);
         });
     }

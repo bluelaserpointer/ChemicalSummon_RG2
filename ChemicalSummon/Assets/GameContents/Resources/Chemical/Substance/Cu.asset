@@ -25,8 +25,8 @@ MonoBehaviour:
   elements:
     list:
     - type: {fileID: 11400000, guid: 74bbd45abe7bfe943b6b4e0528bc32fa, type: 2}
-      amount: 1
-    amountAcception: 0
+      count: 1
+    denyNegativeCount: 1
   image: {fileID: 21300000, guid: 8e78780dadc5da64f9f3d48f8c0e5d18, type: 3}
   echelon: 1
   atk: 6
@@ -45,3 +45,4 @@ MonoBehaviour:
       sentence: "\u67D4\u8F6F\uFF0C\u7EA2\u6A59\u8272\u7684\u91D1\u5C5E\uFF0C\u62E5\u6709\u826F\u597D\u7684\u5BFC\u7535\u6027\u4E0E\u5BFC\u70ED\u6027\u3002"
     - language: 2
       sentence: "\u67D4\u3089\u304B\u3044\u8D64\u8336\u8272\u306E\u91D1\u5C5E\u3001\u9AD8\u3044\u5C0E\u96FB\u6027\u3068\u71B1\u4F1D\u5C0E\u7387\u3092\u6301\u3064\u3002"
+  researchSteps: []

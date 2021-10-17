@@ -26,7 +26,7 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
     DeckButton selectingDeckButton;
     Deck SelectingDeck => selectingDeckButton?.deck;
     EchelonDisplay echelonOnEdit;
-    StackedElementList<Substance> leftCardsInStorage;
+    TypeAndCountList<Substance> leftCardsInStorage;
     public static CardInfoDisplay CardInfoDisplay => WorldManager.DeckScreen.cardInfoDisplay;
     private void Start()
     {
@@ -82,14 +82,11 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
             eachDeckButton.Lit(eachDeckButton.Equals(deckButton));
         }
         int echelonIndex = 0;
-        leftCardsInStorage = new StackedElementList<Substance>(PlayerSave.SubstanceStorage);
-        bool hasEnoughCard = true;
+        leftCardsInStorage = new TypeAndCountList<Substance>(PlayerSave.SubstanceStorage);
         foreach (var echelonCards in deckButton.deck.Echelons)
         {
             echelons[echelonIndex++].CardPool.Init(echelonCards);
-            bool cond = leftCardsInStorage.RemoveAll(echelonCards);
-            if (hasEnoughCard)
-                hasEnoughCard = cond;
+            leftCardsInStorage.RemoveAll(echelonCards);
         }
         //TODO: display if player has enough cards to build this echelon
         storageCardPool.gameObject.SetActive(false);
@@ -125,8 +122,8 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
             {
                 foreach(var substanceStack in SelectingDeck.Echelons[echelonOnEdit.ArrayIndex])
                 {
-                    leftCardsInStorage.Add(substanceStack.type, substanceStack.amount);
-                    storageCardPool.AddCard(substanceStack.type, substanceStack.amount);
+                    leftCardsInStorage.Add(substanceStack.type, substanceStack.count);
+                    storageCardPool.AddCard(substanceStack.type, substanceStack.count);
                 }
                 echelonOnEdit.CardPool.Clear();
                 SelectingDeck.Echelons[echelonOnEdit.ArrayIndex].Clear();
@@ -168,7 +165,7 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
                 if (!each.Equals(echelon))
                     each.gameObject.SetActive(false);
             }
-            StackedElementList<Substance> addableSubstances = new StackedElementList<Substance>();
+            TypeAndCountList<Substance> addableSubstances = new TypeAndCountList<Substance>();
             foreach(var substanceStack in leftCardsInStorage)
             {
                 if(substanceStack.type.echelon <= echelon.NameIndex)
@@ -177,7 +174,7 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
                 }
             }
             storageCardPool.gameObject.SetActive(true);
-            storageCardPool.capacity = PlayerSave.SubstanceStorage.CountStack();
+            storageCardPool.capacity = PlayerSave.SubstanceStorage.TotalCount();
             storageCardPool.Init(addableSubstances);
         }
         else

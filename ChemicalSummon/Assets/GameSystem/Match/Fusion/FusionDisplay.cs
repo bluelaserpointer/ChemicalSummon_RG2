@@ -47,12 +47,12 @@ public class FusionDisplay : MonoBehaviour
         materialCardParent.DestroyAllChildren();
         productCardParent.DestroyAllChildren();
         //material
-        int cardAmount = reaction.leftSubstances.CountStack();
+        int cardAmount = reaction.leftSubstances.TotalCount();
         int iteration = 0;
         foreach (var stackedElement in reaction.leftSubstances)
         {
             Substance substance = stackedElement.type;
-            for (int i = 0; i < stackedElement.amount; ++i)
+            for (int i = 0; i < stackedElement.count; ++i)
             {
                 float angle = ++iteration * Mathf.PI * 2 / cardAmount;
                 Transform anchor = Instantiate(fusionDisplayCardSlot, anchorParent).transform;
@@ -67,7 +67,7 @@ public class FusionDisplay : MonoBehaviour
         foreach (var stackedElement in reaction.rightSubstances)
         {
             SubstanceCard card = SubstanceCard.GenerateSubstanceCard(stackedElement.type);
-            card.InitCardAmount(stackedElement.amount);
+            card.InitCardAmount(stackedElement.count);
             card.transform.SetParent(productCardParent);
         }
         //specialDamageIcon

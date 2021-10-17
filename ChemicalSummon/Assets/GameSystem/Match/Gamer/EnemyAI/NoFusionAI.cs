@@ -37,12 +37,12 @@ public class NoFusionAI : EnemyAI
     }
     public virtual void UpdateSubstancesTotalATK(int step)
     {
-        StackedElementList<Substance> aboutToSummonSubstancesTotalATK = new StackedElementList<Substance>();
+        TypeAndCountList<Substance> aboutToSummonSubstancesTotalATK = new TypeAndCountList<Substance>();
         foreach (SubstanceCard card in HandCards)
         {
             aboutToSummonSubstancesTotalATK.Add(card.Substance, card.ATK);
         }
-        aboutToSummonSubstancesTotalATK.SortByStackAmount(false);
+        aboutToSummonSubstancesTotalATK.SortByTypeCount(false);
         aboutToSummonSubstances.Clear();
         foreach (var stack in aboutToSummonSubstancesTotalATK)
             aboutToSummonSubstances.Enqueue(stack.type);
