@@ -68,11 +68,11 @@ MonoBehaviour:
   enemyReactionsPriority:
     list:
     - type: {fileID: 11400000, guid: 3805f5dd0ed56e24c963fd147faa2392, type: 2}
-      count: 0
+      count: 1000
     - type: {fileID: 11400000, guid: 122e1cab5a904c143bb0d70bcc488287, type: 2}
-      count: 0
+      count: 50
     - type: {fileID: 11400000, guid: fdf8cb3a493566a4a939097b8dd44620, type: 2}
-      count: 0
+      count: 50
     denyNegativeCount: 1
   enemyAI: {fileID: 6555474248779233031, guid: c254310169522e34ca9f4e470b686fca, type: 3}
   loots: []
