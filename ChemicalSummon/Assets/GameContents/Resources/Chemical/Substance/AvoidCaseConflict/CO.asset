@@ -25,7 +25,7 @@ MonoBehaviour:
     - type: {fileID: 11400000, guid: 2a5b75dd53c9ba049b58cee4c08cd27e, type: 2}
       count: 1
     denyNegativeCount: 1
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: c390a08d1e5276d4eafc9787f8dea291, type: 3}
   echelon: 2
   atk: 0
   meltingPoint: 0

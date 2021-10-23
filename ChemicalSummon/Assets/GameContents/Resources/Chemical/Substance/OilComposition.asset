@@ -10,27 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef1429726825b5b41aba171290ab550d, type: 3}
-  m_Name: Zn
+  m_Name: OilComposition
   m_EditorClassIdentifier: 
-  chemicalSymbol: Zn
+  chemicalSymbol: OilComposition
   name:
-    defaultString: Zn
+    defaultString: OilComposition
     languageAndSentences:
-    - language: 2
-      sentence: "\u4E9C\u925B"
     - language: 0
-      sentence: "\u950C"
+      sentence: "\u6CB9\u6DF7\u5408\u7269"
+    - language: 2
+      sentence: "\u6CB9\u6DF7\u5408\u7269"
   elements:
-    list:
-    - type: {fileID: 11400000, guid: 42722e3017c2b5e4f8c71f4ecf1faba7, type: 2}
-      count: 1
+    list: []
     denyNegativeCount: 1
-  image: {fileID: 21300000, guid: 5008da6f71ff4be48a5ae9ad87d6443c, type: 3}
-  echelon: 2
-  atk: 7
-  meltingPoint: 100
+  image: {fileID: 0}
+  echelon: 1
+  atk: 0
+  meltingPoint: 1000
   boilingPoint: 0
-  isPhenomenon: 0
+  isPhenomenon: 1
   waterSoluble: 0
   isOre: 0
   abilities: []

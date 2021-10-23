@@ -54,26 +54,24 @@ MonoBehaviour:
     name: 
     echelons:
     - list:
-      - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
-        count: 7
+      - type: {fileID: 11400000, guid: bcc7f15f64fc5714cb0319c2494d4b19, type: 2}
+        count: 6
       - type: {fileID: 11400000, guid: 97ca178e8f5373a4c9bc5a78b42e0d71, type: 2}
-        count: 2
+        count: 4
       - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
-        count: 3
+        count: 2
       denyNegativeCount: 1
     - list: []
       denyNegativeCount: 1
     - list: []
       denyNegativeCount: 1
-  enemyReactionsPriority:
-    list:
-    - type: {fileID: 11400000, guid: 3805f5dd0ed56e24c963fd147faa2392, type: 2}
-      count: 1000
-    - type: {fileID: 11400000, guid: 122e1cab5a904c143bb0d70bcc488287, type: 2}
-      count: 50
-    - type: {fileID: 11400000, guid: fdf8cb3a493566a4a939097b8dd44620, type: 2}
-      count: 50
-    denyNegativeCount: 1
+  enhanceReactions:
+  - {fileID: 11400000, guid: 889358df628eac94fbee673c539e7f0f, type: 2}
+  - {fileID: 11400000, guid: 88a409c52ccc4af4486fc6101ed886a5, type: 2}
+  counterReactions:
+  - {fileID: 11400000, guid: fdf8cb3a493566a4a939097b8dd44620, type: 2}
+  - {fileID: 11400000, guid: 122e1cab5a904c143bb0d70bcc488287, type: 2}
+  concernCounters: []
   enemyAI: {fileID: 6555474248779233031, guid: c254310169522e34ca9f4e470b686fca, type: 3}
   loots: []
   unlockReactions: []

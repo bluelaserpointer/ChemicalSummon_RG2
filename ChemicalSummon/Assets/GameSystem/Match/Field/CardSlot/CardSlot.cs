@@ -31,16 +31,11 @@ public class CardSlot : ObjectSlot
     public virtual void OnAlignmentEnd(Transform childTransform) { }
     public void SlotSet(SubstanceCard card, UnityAction afterAction = null)
     {
-        if(afterAction == null)
-            base.SlotSet(card.gameObject);
-        else
-        {
-            if (!AllowSlotSet(card.gameObject))
-                return;
-            oldParent = card.transform.parent;
-            card.transform.SetParent(ArrangeParent);
-            DoAlignment(card.transform, afterAction);
-            onSet.Invoke();
-        }
+        if (!AllowSlotSet(card.gameObject))
+            return;
+        oldParent = card.transform.parent;
+        card.transform.SetParent(ArrangeParent);
+        DoAlignment(card.transform, afterAction);
+        onSet.Invoke();
     }
 }

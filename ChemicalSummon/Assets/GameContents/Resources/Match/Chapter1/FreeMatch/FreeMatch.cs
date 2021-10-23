@@ -13,14 +13,14 @@ public class FreeMatch : Match
     {
         foreach(var each in selectReactionWindow.SelectedButtons)
         {
-            enemyReactionsPriority.Set(each.Reaction, 200);
+            enhanceReactions.Add(each.Reaction);
         }
     }
     public void OnSetEnemyCounterReactions(SelectReactionWindow selectReactionWindow)
     {
         foreach (var each in selectReactionWindow.SelectedButtons)
         {
-            enemyReactionsPriority.Set(each.Reaction, 50);
+            counterReactions.Add(each.Reaction);
         }
     }
 }

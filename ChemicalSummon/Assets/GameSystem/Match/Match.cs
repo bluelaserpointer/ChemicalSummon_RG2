@@ -18,8 +18,9 @@ public class Match : MonoBehaviour
     protected Character enemySideCharacter;
     [SerializeField]
     protected Deck enemyDeck;
-    [SerializeField]
-    protected TypeAndCountList<Reaction> enemyReactionsPriority;
+    public List<Reaction> enhanceReactions;
+    public List<Reaction> counterReactions;
+    public List<Reaction> concernCounters;
     [SerializeField]
     EnemyAI enemyAI;
     [SerializeField]
@@ -47,11 +48,12 @@ public class Match : MonoBehaviour
     /// 敌方卡组
     /// </summary>
     public Deck EnemyDeck => enemyDeck;
-    /// <summary>
-    /// 敌方习得反应式
-    /// </summary>
-    public TypeAndCountList<Reaction> EnemyReactionsPriority => enemyReactionsPriority;
     public EnemyAI EnemyAI => enemyAI;
+    public List<Reaction> GetEnemyAllReactions() {
+        List<Reaction> list = new List<Reaction>(enhanceReactions);
+        list.AddRange(counterReactions);
+        return list;
+    }
     public AudioClip PickRandomBGM() {
         return bgmSets == null ? null : bgmSets.PickRandom();
     }

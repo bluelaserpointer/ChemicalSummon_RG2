@@ -28,8 +28,8 @@ MonoBehaviour:
       count: 1
     denyNegativeCount: 1
   image: {fileID: 21300000, guid: 8e78780dadc5da64f9f3d48f8c0e5d18, type: 3}
-  echelon: 1
-  atk: 6
+  echelon: 2
+  atk: 8
   meltingPoint: 100
   boilingPoint: 0
   isPhenomenon: 0

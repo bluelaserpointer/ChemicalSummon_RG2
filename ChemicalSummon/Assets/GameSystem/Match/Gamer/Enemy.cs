@@ -18,8 +18,13 @@ public class Enemy : Gamer
     public EnemyAI AI => MatchManager.Match.EnemyAI;
     public override TurnType FusionTurn => TurnType.EnemyFusionTurn;
     public override TurnType AttackTurn => TurnType.EnemyAttackTurn;
-    public TypeAndCountList<Reaction> ReactionsPriority => MatchManager.Match.EnemyReactionsPriority;
-    public override List<Reaction> LearnedReactions => ReactionsPriority.Types;
+    List<Reaction> learnedReactions = new List<Reaction>();
+    public override List<Reaction> LearnedReactions => learnedReactions;
+    protected override void AfterGamerInit()
+    {
+        learnedReactions.Clear();
+        learnedReactions = MatchManager.Match.GetEnemyAllReactions();
+    }
     public override void FusionTurnStart()
     {
         base.FusionTurnStart(); //card draw

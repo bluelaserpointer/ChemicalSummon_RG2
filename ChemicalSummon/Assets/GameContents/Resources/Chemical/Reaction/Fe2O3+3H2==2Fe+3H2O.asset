@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9324e2c8694621e498969bedde5c86bc, type: 3}
-  m_Name: 8Al+3Fe3O4==9Fe+4Al2O3
+  m_Name: Fe2O3+3H2==2Fe+3H2O
   m_EditorClassIdentifier: 
-  description: 8Al+3Fe3O4==9Fe+4Al2O3
+  description: Fe2O3+3H2==2Fe+3H2O
   leftSubstances:
     list:
-    - type: {fileID: 11400000, guid: fec21780cd1312e4b9fa3963ce7e3683, type: 2}
-      count: 8
-    - type: {fileID: 11400000, guid: d4e5a815b167aad4ea34315744cb5025, type: 2}
+    - type: {fileID: 11400000, guid: a5379677c5bfe664f8b412d44336b0f9, type: 2}
+      count: 1
+    - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
       count: 3
     denyNegativeCount: 1
   rightSubstances:
     list:
     - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
-      count: 9
-    - type: {fileID: 11400000, guid: c68a65cb4463d154d893976467edbe10, type: 2}
-      count: 4
+      count: 2
+    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+      count: 3
     denyNegativeCount: 1
   catalysts:
     list: []
     denyNegativeCount: 1
-  explosion: 30
+  explosion: 0
   electric: 0
-  heat: 6
-  heatRequire: 0
+  heat: 0
+  heatRequire: 2
   electricRequire: 0
   researchSteps: []

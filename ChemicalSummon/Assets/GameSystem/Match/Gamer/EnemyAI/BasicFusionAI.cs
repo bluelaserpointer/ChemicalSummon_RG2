@@ -9,16 +9,22 @@ public class BasicFusionAI : NoFusionAI
         int maxPriority = 0;
         Reaction.ReactionMethod candidateMethod = default;
         SubstanceCard topATKCard = Enemy.Field.TopATKCard;
-        foreach (Reaction.ReactionMethod method in Enemy.FindAvailiableReactions())
+       
+        foreach (Reaction.ReactionMethod method in Enemy.FindAvailiableReactions(EnhanceReactions))
         {
-            int priority = Enemy.ReactionsPriority.StackCount(method.reaction);
-            if (topATKCard != null && method.consumingCards.ContainsKey(topATKCard)) //hate decrese of top ATK
+            //print("can process " + method.reaction.name);
+            if (topATKCard != null && method.consumingCards.ContainsKey(topATKCard)) //hate using top ATK
             {
-                priority -= 100;
+                //TODO: more smart way to decide
+                if (Random.Range(0F, 1F) > 0.2F)
+                {
+                    maxPriority = 1;
+                    candidateMethod = method;
+                }
             }
-            if (priority > maxPriority)
+            else
             {
-                maxPriority = priority;
+                maxPriority = 1;
                 candidateMethod = method;
             }
         }
@@ -79,7 +85,7 @@ public class BasicFusionAI : NoFusionAI
                 if (slot.IsEmpty || slot.Card.DenideAttack || attackedSlot.Contains(slot) || slot.Card.ATK < highestATK)
                     continue;
                 //guess counter risk
-                float counterRisk = GuessCounterPossibility(slot.Card);
+                float counterRisk = GuessCounterPossibility(ConcernCounters, slot.Card);
                 if (counterRisk == 1 || Random.Range(0, 1) < counterRisk)
                     continue;
                 attackedSlot.Add(slot);
@@ -111,16 +117,25 @@ public class BasicFusionAI : NoFusionAI
         int playerStrongestATK = MatchManager.Player.Field.TopATK;
         int maxPriority = 0;
         Reaction.ReactionMethod candidateMethod = default;
-        foreach (Reaction.ReactionMethod method in Enemy.FindAvailiableReactions(attacker))
+        //TODO: improve counter tactics
+        foreach (Reaction.ReactionMethod method in Enemy.FindAvailiableReactions(EnhanceReactions, attacker))
         {
             if (enemyStrongestATK > playerStrongestATK && method.consumingCards.ContainsKey(enemyStrongestCard))
             { //if our top ATK is higher than the player, should not do counter fusion that includes the highest ATK card
                 continue;
             }
-            int priority = Enemy.ReactionsPriority.StackCount(method.reaction);
-            if (priority > maxPriority)
+            maxPriority = 1;
+            candidateMethod = method;
+        }
+        if (maxPriority == 0)
+        {
+            foreach (Reaction.ReactionMethod method in Enemy.FindAvailiableReactions(CounterReactions, attacker))
             {
-                maxPriority = priority;
+                if (enemyStrongestATK > playerStrongestATK && method.consumingCards.ContainsKey(enemyStrongestCard))
+                { //if our top ATK is higher than the player, should not do counter fusion that includes the highest ATK card
+                    continue;
+                }
+                maxPriority = 1;
                 candidateMethod = method;
             }
         }

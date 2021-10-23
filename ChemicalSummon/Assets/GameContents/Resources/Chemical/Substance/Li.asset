@@ -26,7 +26,7 @@ MonoBehaviour:
       count: 1
     denyNegativeCount: 1
   image: {fileID: 21300000, guid: 860c1dc0cc9272742aebae5dfc082e26, type: 3}
-  echelon: 1
+  echelon: 2
   atk: 5
   meltingPoint: 100
   boilingPoint: 0

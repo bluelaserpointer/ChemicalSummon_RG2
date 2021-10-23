@@ -30,7 +30,7 @@ MonoBehaviour:
   catalysts:
     list: []
     denyNegativeCount: 1
-  explosion: 35
+  explosion: 25
   electric: 0
   heat: 4
   heatRequire: 0

@@ -10,6 +10,9 @@ public abstract class EnemyAI : MonoBehaviour
     public Player Player => MatchManager.Player;
     public Field Field => Enemy.Field;
     public List<SubstanceCard> HandCards => Enemy.HandCards;
+    protected List<Reaction> EnhanceReactions => MatchManager.Match.enhanceReactions;
+    protected List<Reaction> CounterReactions => MatchManager.Match.counterReactions;
+    protected List<Reaction> ConcernCounters => MatchManager.Match.concernCounters;
     public abstract void FusionTurnStart();
     public abstract void AttackTurnStart();
     public abstract void ContinueAttack();
@@ -18,14 +21,14 @@ public abstract class EnemyAI : MonoBehaviour
     /// 玩家反击融合的概率(不精确)
     /// </summary>
     /// <returns></returns>
-    protected float GuessCounterPossibility(SubstanceCard attacker)
+    protected float GuessCounterPossibility(List<Reaction> concernReactions, SubstanceCard attacker)
     {
         List<SubstanceCard> consumableCards = new List<SubstanceCard>();
         consumableCards.AddRange(Player.Field.Cards);
         consumableCards.Insert(0, attacker);
         float maxPossiblity = 0;
         int opponentHandCardCount = Player.HandCardCount;
-        foreach (Reaction reaction in Player.LearnedReactions)
+        foreach (Reaction reaction in concernReactions)
         {
             if (reaction.heatRequire > Player.HeatGem || reaction.electricRequire > Player.ElectricGem)
                 continue;

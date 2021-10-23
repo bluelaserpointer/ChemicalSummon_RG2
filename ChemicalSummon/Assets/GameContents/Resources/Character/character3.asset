@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43b1ea945c19a14692ae5ff4893cc23, type: 3}
   m_Name: character3
   m_EditorClassIdentifier: 
+  speaks: []
   name:
     defaultString: character3
     languageAndSentences: []
-  initialHP: 20
+  initialHP: 100
   faceIcon: {fileID: 21300000, guid: a5a4ad4c9dcaa1e4f97edf7b59a00318, type: 3}
+  portrait: {fileID: 0}
+  models: []

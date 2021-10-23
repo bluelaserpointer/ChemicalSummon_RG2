@@ -47,8 +47,13 @@ public class WorldManager : ChemicalSummonManager
     private void Awake()
     {
         ManagerInit(Instance = this);
-        worldPlayer.SetModel(PlayerSave.SelectedCharacter.models[PlayerSave.CurrentCharacterModelIndex]);
-        EnterWorld(PlayerSave.CurrentWorldLink, Resources.Load<WorldEnterPortIDSO>("PortIDSO/DefaultPort"));
+        if(PlayerSave.SelectedCharacter.models.Count <= PlayerSave.CurrentCharacterModelIndex)
+        {
+            Debug.LogWarning("Current character doesn't have models for index " + PlayerSave.CurrentCharacterModelIndex);
+        }
+        else
+            worldPlayer.SetModel(PlayerSave.SelectedCharacter.models[PlayerSave.CurrentCharacterModelIndex]);
+        EnterWorld(PlayerSave.CurrentWorldLink, Resources.Load<WorldEnterPortIDSO>("PortIDSO/DefaultPort")); 
         ItemScreen.gameObject.SetActive(false);
         DeckScreen.gameObject.SetActive(false);
         ReactionScreen.gameObject.SetActive(false);

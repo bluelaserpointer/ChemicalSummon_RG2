@@ -161,6 +161,10 @@ public abstract class Gamer : MonoBehaviour
         faceImage.sprite = character.FaceIcon;
         gamerNameText.text = character.Name;
         statusPanels.SetData(this);
+        AfterGamerInit();
+    }
+    protected virtual void AfterGamerInit()
+    {
     }
     public void InitHP(int value)
     {
@@ -397,6 +401,8 @@ public abstract class Gamer : MonoBehaviour
         }
         OnFusionTurnStart.Invoke();
         DrawCard(); //抽牌
+        DrawCard(); //抽牌
+        DrawCard(); //抽牌
     }
     /// <summary>
     /// 融合回合结束
@@ -447,7 +453,7 @@ public abstract class Gamer : MonoBehaviour
             }
         }
     }
-    public List<Reaction.ReactionMethod> FindAvailiableReactions(SubstanceCard attacker = null)
+    public List<Reaction.ReactionMethod> FindAvailiableReactions(List<Reaction> reactions, SubstanceCard attacker = null)
     {
         List<SubstanceCard> consumableCards = GetConsumableCards();
         //in counterMode, only counter fusions are avaliable
@@ -456,7 +462,7 @@ public abstract class Gamer : MonoBehaviour
             consumableCards.Insert(0, attacker);
         }
         List<Reaction.ReactionMethod> results = new List<Reaction.ReactionMethod>();
-        foreach (Reaction reaction in LearnedReactions)
+        foreach (Reaction reaction in reactions)
         {
             Reaction.ReactionMethod method;
             if(Reaction.GenerateReactionMethod(reaction, this, consumableCards, attacker, out method))

@@ -43,7 +43,7 @@ public class FusionPanelButton : MonoBehaviour
         //in counterMode, only counter fusions are avaliable
         SubstanceCard currentAttacker = MatchManager.Player.CurrentAttacker;
         bool counterMode = MatchManager.CurrentTurnType.Equals(TurnType.EnemyAttackTurn) && currentAttacker != null;
-        List<Reaction.ReactionMethod> reactionMethods = MatchManager.Player.FindAvailiableReactions(currentAttacker);
+        List<Reaction.ReactionMethod> reactionMethods = MatchManager.Player.FindAvailiableReactions(MatchManager.Player.LearnedReactions, currentAttacker);
         List<FusionButton> fusionButtons = new List<FusionButton>();
         foreach (var method in reactionMethods)
         {

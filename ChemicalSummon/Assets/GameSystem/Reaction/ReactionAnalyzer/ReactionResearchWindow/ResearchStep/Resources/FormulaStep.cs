@@ -28,7 +28,7 @@ public class FormulaStep : ResearchStep
         elecRqText.text = Reaction.electricRequire.ToString();
         expText.text = Reaction.explosion.ToString();
         heatText.text = Reaction.heat.ToString();
-        elecText.text = Reaction.electricRequire.ToString();
+        elecText.text = Reaction.electric.ToString();
         nextStepButton.gameObject.SetActive(true);
     }
 }

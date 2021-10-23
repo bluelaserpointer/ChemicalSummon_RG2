@@ -6834,9 +6834,9 @@ MonoBehaviour:
       denyNegativeCount: 1
     - list: []
       denyNegativeCount: 1
-  enemyReactionsPriority:
-    list: []
-    denyNegativeCount: 1
+  enhanceReactions: []
+  counterReactions: []
+  concernCounters: []
   enemyAI: {fileID: 5412413822665093656, guid: 16a4075ca91eba94783b19a8d55706c6, type: 3}
   loots: []
   unlockReactions: []
