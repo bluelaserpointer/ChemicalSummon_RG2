@@ -70,15 +70,19 @@ public class ObjectSlot : MonoBehaviour
     {
         return true;
     }
-
-    public virtual void SlotTopClear()
+    public virtual Transform DisbandTop()
     {
-        SlotClear(GetTop());
+        Transform topTf = GetTop();
+        return Disband(topTf) ? topTf : null;
     }
-    public virtual void SlotClear(Transform childTf)
+    public void DestroyTop()
     {
-        if (!AllowSlotClear() || !childTf.IsChildOf(ArrangeParent))
-            return;
+        Destroy(DisbandTop()?.gameObject);
+    }
+    public virtual bool Disband(Transform childTf)
+    {
+        if (childTf == null || !childTf.IsChildOf(ArrangeParent) || !AllowSlotClear())
+            return false;
         if (returnToOriginalParentWhenDisband)
         {
             if(oldParent == null)
@@ -105,6 +109,7 @@ public class ObjectSlot : MonoBehaviour
             childTf.localScale = oldLocalScale;
         }
         onClear.Invoke();
+        return true;
     }
 
     public bool IsEmpty => ArrangeParent.childCount == 0;

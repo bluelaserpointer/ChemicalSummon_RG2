@@ -4,26 +4,25 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
-public class WorldExitPort : AbstractWorldEventObject
+public class WorldExitPort : StepInListener
 {
     [SerializeField]
-    World dst;
+    WorldHeader dst;
     [SerializeField]
     WorldEnterPortIDSO idso;
 
-    public override void Submit()
+    private void Awake()
     {
-    }
-
-    protected override void DoEvent()
-    {
-        WorldManager.EnterWorld(dst, idso);
+        OnStepIn.AddListener(() =>
+        {
+            WorldManager.EnterWorld(dst, idso);
+        });
     }
     private void OnValidate()
     {
         if (transform.root.Equals(this))
             return;
-        string gameObjectName = ">>" + (dst == null ? "?" : dst.gameObject.name);
+        string gameObjectName = ">>" + (dst == null ? "?" : dst.World.name);
         if (idso != null)
             gameObjectName += " - " + idso.name;
         gameObject.name = gameObjectName;

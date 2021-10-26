@@ -13,13 +13,13 @@ public class World : MonoBehaviour
     Transform enterPortsParent;
 
     public AudioClip BGM => bgm;
-    public WorldEnterPort FindEnterPort(World lastWorld)
+    public WorldEnterPort FindEnterPort(WorldHeader lastWorldHeader)
     {
-        WorldEnterPort port = enterPortsParent.FindComponentInChildren<WorldEnterPort>(port => port.AcceptsCameFromWorld(lastWorld));
+        WorldEnterPort port = enterPortsParent.FindComponentInChildren<WorldEnterPort>(port => port.AcceptsCameFromWorld(lastWorldHeader));
         if(port == null)
         {
             Debug.LogWarning("\"" + name + "\" does not accepts " + 
-                (lastWorld == null ? "initial join" : ("came from another world \"" + lastWorld.name + "\"")));
+                (lastWorldHeader == null ? "initial join" : ("came from another world \"" + lastWorldHeader.World.gameObject.name + "\"")));
         }
         return port;
     }

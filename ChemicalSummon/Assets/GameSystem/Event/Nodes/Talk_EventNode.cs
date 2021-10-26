@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
@@ -13,7 +10,7 @@ public class Talk_EventNode : EventNode
     TranslatableSentenceSO sentenceSO;
     [SerializeField]
     TranslatableSentence sentence;
-    
+
     public Character Character => character;
     public string Sentence => sentence.ToString();
 
@@ -21,11 +18,7 @@ public class Talk_EventNode : EventNode
 
     public override void Reach()
     {
-        if(!ConversationWindow.IsOpen)
-        {
-            ConversationWindow.Open();
-        }
-        ConversationWindow.ActiveTalk = this;
+        ConversationWindow.SetTalk(this);
     }
 
     public override void OnDataEdit()

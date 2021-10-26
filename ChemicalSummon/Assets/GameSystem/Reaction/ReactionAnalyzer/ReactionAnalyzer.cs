@@ -20,6 +20,8 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
     [SerializeField]
     CardPoolDisplay playerStorage;
     [SerializeField]
+    Button fusionButton, researchButton;
+    [SerializeField]
     ReactionResearchWindow reactionResearchWindow;
 
     List<Reaction> allReactions;
@@ -29,10 +31,16 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
             return allReactions ?? (allReactions = Reaction.GetAll());
         }
     }
-    Reaction displayingValidReaction;
-    private void Start()
+    Reaction displayingReaction;
+    public void OnEnable()
     {
-        foreach(var eachCard in PlayerSave.SubstanceStorage)
+        Init();
+    }
+    private void Init()
+    {
+        slots.ForEach(slot => slot.DestroyTop());
+        playerStorage.Clear();
+        foreach (var eachCard in PlayerSave.SubstanceStorage)
         {
             playerStorage.AddCard(eachCard.type, eachCard.count);
         }
@@ -40,7 +48,7 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
     }
     public void OnCardsChange()
     {
-        displayingValidReaction = null;
+        displayingReaction = null;
         TypeAndCountList<Substance> puttedSubstances = new TypeAndCountList<Substance>();
         string puttedSubstancesStr = "";
         foreach(CardSlot slot in slots)
@@ -66,7 +74,7 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
         int nearestAmountDist = int.MaxValue;
         foreach(Reaction reaction in AllReactions)
         {
-            TypeAndCountList<Substance> eachLeftSubstances = reaction.LeftSubstances;
+            TypeAndCountList<Substance> eachLeftSubstances = reaction.leftSubstances;
             if (eachLeftSubstances.TypeCount() == puttedSubstances.TypeCount())
             {
                 bool nearCond = true;
@@ -95,18 +103,22 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
         }
         //print("putted: " + puttedSubstancesStr + ", nearestAmountDist: " + nearestAmountDist);
         nearEqReactionAmountText.text = discoveredNearEqReactionCount + "/" + nearEqReactionCount;
+        fusionButton.interactable = researchButton.interactable = false;
         if (nearestAmountDist == 0)
         {
+            displayingReaction = nearestEqReaction;
             if (PlayerSave.DiscoveredReactions.Contains(nearestEqReaction))
             {
                 messageText.text = ChemicalSummonManager.LoadSentence("AlreadyHadReaction");
                 magicCircleImage.color = magicCircleAlreadyHadColor;
+                fusionButton.interactable = true;
+                reactionText.text = displayingReaction.name;
             }
             else
             {
                 messageText.text = ChemicalSummonManager.LoadSentence("NewReactionFound");
                 magicCircleImage.color = magiCircleDiscoverNewColor;
-                displayingValidReaction = nearestEqReaction;
+                researchButton.interactable = true;
             }
         }
         else if (nearEqReactionCount > 0) {
@@ -156,7 +168,7 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
                     card.RemoveAmount(1);
                     if(card.IsDisposing)
                     {
-                        slot.SlotTopClear();
+                        slot.DisbandTop();
                     }
                     OnCardsChange();
                     return;
@@ -199,8 +211,12 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
     }
     public void ResearchReaction()
     {
-        if (displayingValidReaction == null)
-            return;
-        reactionResearchWindow.Init(displayingValidReaction);
+        reactionResearchWindow.Init(displayingReaction);
+    }
+    public void FusionReaction()
+    {
+        PlayerSave.SubstanceStorage.RemoveAll(displayingReaction.leftSubstances);
+        PlayerSave.SubstanceStorage.AddAll(displayingReaction.rightSubstances);
+        Init();
     }
 }

@@ -25,6 +25,6 @@ public class SetBackground_EventNode : EventNode
     public override void Reach()
     {
         ConversationWindow.SetBackground(backgroundSprite);
-        PlayerSave.ProgressActiveEvent();
+        ProgressEvent();
     }
 }

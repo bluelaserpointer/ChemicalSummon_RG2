@@ -30,7 +30,7 @@ MonoBehaviour:
     denyNegativeCount: 1
   explosion: 0
   electric: 0
-  heat: 0
-  heatRequire: 0
+  heat: 2
+  heatRequire: 1
   electricRequire: 0
   researchSteps: []

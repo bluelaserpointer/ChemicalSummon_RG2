@@ -8,7 +8,7 @@ public class TranslatedText : MonoBehaviour
     [SerializeField]
     bool alwaysUpdate;
     [SerializeField]
-    TranslatableSentenceSO scriptableObject;
+    TranslatableSentenceSO so_sentence;
     [SerializeField]
     TranslatableSentence sentence;
 
@@ -17,11 +17,17 @@ public class TranslatedText : MonoBehaviour
     {
         UpdateText();
     }
+    public void SetText(TranslatableSentence sentence)
+    {
+        so_sentence = null;
+        this.sentence = sentence;
+        UpdateText();
+    }
     void OnValidate()
     {
-        if (scriptableObject != null)
+        if (so_sentence != null)
         {
-            sentence = new TranslatableSentence(scriptableObject.sentence);
+            sentence = new TranslatableSentence(so_sentence.sentence);
         }
         else if (sentence == null)
             return;

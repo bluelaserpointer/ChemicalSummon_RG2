@@ -144,13 +144,13 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
     public void OnRenameDeckLabelChange()
     {
         if(deckRenameInputField.isFocused)
-            WorldManager.Player.IsDoingInput = true;
+            WorldManager.Player.LockMovement = true;
     }
     public void RenameDeck()
     {
         EndDeleteDeckRecheck();
         selectingDeckButton.GetComponentInChildren<Text>().text = SelectingDeck.name = deckRenameInputField.text;
-        WorldManager.Player.IsDoingInput = false;
+        WorldManager.Player.LockMovement = false;
     }
     public void EditEchelon(EchelonDisplay echelon)
     {

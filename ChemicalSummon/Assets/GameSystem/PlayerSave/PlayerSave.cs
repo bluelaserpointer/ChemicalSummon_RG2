@@ -30,7 +30,7 @@ public class PlayerSave : MonoBehaviour
     [SerializeField]
     Canvas permanentCanvas;
     [SerializeField]
-    World currentWorldLink;
+    WorldHeader currentWorldHeader;
     [SerializeField]
     Vector3 currentCharacterPosition;
     [SerializeField]
@@ -60,10 +60,10 @@ public class PlayerSave : MonoBehaviour
 
     //data
     public static Canvas PermanentCanvas => Instance.permanentCanvas;
-    public static World CurrentWorldLink
+    public static WorldHeader CurrentWorldHeader
     {
-        get => Instance.currentWorldLink;
-        set => Instance.currentWorldLink = value;
+        get => Instance.currentWorldHeader;
+        set => Instance.currentWorldHeader = value;
     }
     public static World CurrentWorld => WorldManager.World;
     public static int CurrentCharacterModelIndex
@@ -137,11 +137,20 @@ public class PlayerSave : MonoBehaviour
     /// 当前战斗
     /// </summary>
     public static Match ActiveMatch => Instance.activeMatch;
+    public List<Event> aliveEvents = new List<Event>();
+    /// <summary>
+    /// 活动事件
+    /// </summary>
+    public static List<Event> AliveEvents => Instance.aliveEvents;
     Event activeEvent;
     /// <summary>
-    /// 激活的事件
+    /// 占用当前会话窗的事件
     /// </summary>
-    public static Event ActiveEvent => Instance.activeEvent;
+    public static Event ActiveEvent
+    {
+        get => Instance.activeEvent;
+        set => Instance.activeEvent = value;
+    }
     public void InitSaveData()
     {
         hasLastWorldPositionSave = false;
@@ -217,14 +226,10 @@ public class PlayerSave : MonoBehaviour
         }
         SceneManager.LoadScene("Match");
     }
-    public static Event StartEvent(Event newEvent) {
-        Instance.activeEvent = Instantiate(newEvent, PermanentCanvas.transform);
-        ActiveEvent.Progress();
-        return ActiveEvent;
-    }
-    public static void ProgressActiveEvent()
-    {
-        if (ActiveEvent != null)
-            ActiveEvent.Progress();
+    public static Event StartEvent(Event eventPrefab) {
+        Event newEvent = Instantiate(eventPrefab, PermanentCanvas.transform);
+        Instance.aliveEvents.Add(newEvent);
+        newEvent.Progress();
+        return newEvent;
     }
 }

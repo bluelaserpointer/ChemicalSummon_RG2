@@ -28,7 +28,7 @@ public class DrawPileDisplay : CardSlot
     }
     public void SlotClear(SubstanceCard card)
     {
-        base.SlotClear(card.transform);
+        base.Disband(card.transform);
     }
 
     public override void OnAlignmentEnd(Transform childTransform)

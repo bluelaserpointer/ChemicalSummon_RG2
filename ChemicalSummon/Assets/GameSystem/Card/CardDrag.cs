@@ -60,7 +60,7 @@ public class CardDrag : Draggable
                                 continue;
                             if (CurrentSlot != null) //move from another slot
                             {
-                                CurrentSlot.SlotTopClear();
+                                CurrentSlot.DisbandTop();
                             }
                             else //move from handcard
                             {
@@ -88,7 +88,7 @@ public class CardDrag : Draggable
             {
                 if (disbandable)
                 {
-                    CurrentSlot.SlotTopClear();
+                    CurrentSlot.DisbandTop();
                     MatchManager.Player.AddHandCard(substanceCard);
                 }
             }

@@ -18,9 +18,6 @@ public class Reaction : ScriptableObject
 
     public int explosion, electric, heat, heatRequire, electricRequire;
     public List<ResearchStep> researchSteps = new List<ResearchStep>();
-
-    public TypeAndCountList<Substance> LeftSubstances => leftSubstances;
-    public TypeAndCountList<Substance> RightSubstances => rightSubstances;
     public bool IsRequiredSubstance(Substance substance)
     {
         return GetRequiredAmount(substance) > 0;
@@ -30,25 +27,11 @@ public class Reaction : ScriptableObject
         return GetProducingSubstance(substance) > 0;
     }
     public int GetRequiredAmount(Substance substance) {
-        foreach(var pair in LeftSubstances)
-        {
-            if(pair.type.Equals(substance))
-            {
-                return pair.count;
-            }
-        }
-        return 0;
+        return leftSubstances.StackCount(substance);
     }
     public int GetProducingSubstance(Substance substance)
     {
-        foreach (var pair in RightSubstances)
-        {
-            if (pair.type.Equals(substance))
-            {
-                return pair.count;
-            }
-        }
-        return 0;
+        return rightSubstances.StackCount(substance);
     }
     public static Reaction GetByName(string name)
     {
@@ -78,7 +61,7 @@ public class Reaction : ScriptableObject
         bool condition = true;
         bool addedAttacker = false;
         Dictionary<SubstanceCard, int> consumingCards = new Dictionary<SubstanceCard, int>();
-        foreach (var pair in reaction.LeftSubstances)
+        foreach (var pair in reaction.leftSubstances)
         {
             Substance requiredSubstance = pair.type;
             int requiredAmount = pair.count;

@@ -13,9 +13,8 @@ public class WorldPlayer : MovementControl3D
     public PlayableCharacterModel Model => playerModel;
     public Collider StepInCollider => Model.StepInCollider;
     public Collider InteractionCollider => Model.InteractionCollider;
-    public AbstractWorldEventObject InInteractionColliderEventObject { get; set; }
-    public AbstractWorldEventObject OccupyingMovementEventObject { get; set; }
-    public bool IsDoingInput { get; set; }
+    public InteractionListener AboutToInteractionObject { get; set; }
+    public bool LockMovement { get; set; }
     public Animator Animator { get; protected set; }
 
     public PlayableCharacterModel SetModel(PlayableCharacterModel modelPrefab)
@@ -46,16 +45,12 @@ public class WorldPlayer : MovementControl3D
         if (playerModel == null)
             return;
         float xInput = Input.GetAxis("Horizontal"), yInput = Input.GetAxis("Vertical");
-        if(OccupyingMovementEventObject != null)
+        if(LockMovement)
         {
             moveDirection = Vector3.zero;
             SetModelState(ModelState.Idle);
-            if (Input.GetButtonDown("Submit"))
-            {
-                OccupyingMovementEventObject.Submit();
-            }
         }
-        else if (!IsDoingInput)
+        else
         {
             if (controller.isGrounded)
             {
@@ -81,8 +76,8 @@ public class WorldPlayer : MovementControl3D
             }
             if (Input.GetButtonDown("Submit"))
             {
-                if (InInteractionColliderEventObject != null)
-                    InInteractionColliderEventObject.InvokeEvent();
+                if (AboutToInteractionObject != null)
+                    AboutToInteractionObject.Interaction();
             }
         }
         moveDirection.y -= gravity * Time.deltaTime;

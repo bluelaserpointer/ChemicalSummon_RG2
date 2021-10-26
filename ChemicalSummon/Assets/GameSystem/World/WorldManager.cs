@@ -32,6 +32,8 @@ public class WorldManager : ChemicalSummonManager
     SettingScreen settingScreen;
     [SerializeField]
     Image newReactionSign;
+    [SerializeField]
+    Transform popUpTransform;
 
     World generatedWorld;
     public static World World => Instance.generatedWorld;
@@ -42,7 +44,7 @@ public class WorldManager : ChemicalSummonManager
     public static CharacterScreen CharacterScreen => Instance.characterScreen;
     public static SettingScreen SettingScreen => Instance.settingScreen;
     public static Image NewReactionSign => Instance.newReactionSign;
-
+    public static Transform PopUpTransform => Instance.popUpTransform;
 
     private void Awake()
     {
@@ -53,7 +55,7 @@ public class WorldManager : ChemicalSummonManager
         }
         else
             worldPlayer.SetModel(PlayerSave.SelectedCharacter.models[PlayerSave.CurrentCharacterModelIndex]);
-        EnterWorld(PlayerSave.CurrentWorldLink, Resources.Load<WorldEnterPortIDSO>("PortIDSO/DefaultPort")); 
+        EnterWorld(PlayerSave.CurrentWorldHeader, Resources.Load<WorldEnterPortIDSO>("PortIDSO/DefaultPort")); 
         ItemScreen.gameObject.SetActive(false);
         DeckScreen.gameObject.SetActive(false);
         ReactionScreen.gameObject.SetActive(false);
@@ -71,15 +73,16 @@ public class WorldManager : ChemicalSummonManager
         if (clip != null)
             AudioSource.PlayClipAtPoint(clip, GameObject.FindGameObjectWithTag("SE Listener").transform.position);
     }
-    public World _EnterWorld(World world, WorldEnterPortIDSO enterPortIdso = null)
+    public World _EnterWorld(WorldHeader worldHeader, WorldEnterPortIDSO enterPortIdso = null)
     {
-        World previousWorld = PlayerSave.CurrentWorldLink;
+        WorldHeader previousWorldHeader = PlayerSave.CurrentWorldHeader;
         if (generatedWorld != null)
         {
             Destroy(generatedWorld.gameObject);
         }
-        generatedWorld = Instantiate(PlayerSave.CurrentWorldLink = world, Instance.worldParentTf);
-        WorldEnterPort enterPort = enterPortIdso == null ? generatedWorld.FindEnterPort(previousWorld) : generatedWorld.FindEnterPort(enterPortIdso);
+        popUpTransform.DestroyAllChildren();
+        generatedWorld = Instantiate((PlayerSave.CurrentWorldHeader = worldHeader).World, Instance.worldParentTf);
+        WorldEnterPort enterPort = enterPortIdso == null ? generatedWorld.FindEnterPort(previousWorldHeader) : generatedWorld.FindEnterPort(enterPortIdso);
         if(enterPort == null)
         {
             Player.Model.transform.position = Vector3.zero;
@@ -92,15 +95,15 @@ public class WorldManager : ChemicalSummonManager
         }
         playerCameraAnchor.position = Player.Model.transform.position;
         Physics.SyncTransforms(); //CharacterControll doesnt see above change
-        if (audioSource.clip == null || !audioSource.clip.Equals(PlayerSave.CurrentWorldLink.BGM))
+        if (audioSource.clip == null || !audioSource.clip.Equals(PlayerSave.CurrentWorld.BGM))
         {
-            audioSource.clip = PlayerSave.CurrentWorldLink.BGM;
+            audioSource.clip = PlayerSave.CurrentWorld.BGM;
             audioSource.Play();
         }
         return generatedWorld;
     }
-    public static World EnterWorld(World world, WorldEnterPortIDSO enterPortIdso = null)
+    public static World EnterWorld(WorldHeader worldHeader, WorldEnterPortIDSO enterPortIdso = null)
     {
-        return Instance._EnterWorld(world, enterPortIdso);
+        return Instance._EnterWorld(worldHeader, enterPortIdso);
     }
 }

@@ -51,5 +51,6 @@ public class Event : MonoBehaviour
     {
         onEventFinish.Invoke();
         ConversationWindow.Close();
+        PlayerSave.AliveEvents.Remove(this);
     }
 }

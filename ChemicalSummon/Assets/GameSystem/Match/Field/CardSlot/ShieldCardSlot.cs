@@ -160,7 +160,7 @@ public class ShieldCardSlot : CardSlot, IAttackable
         if (IsEmpty || Card.IsPhenomenon)
             return false;
         SubstanceCard card = Card;
-        SlotTopClear();
+        DisbandTop();
         Gamer.AddHandCard(card);
         return true;
     }

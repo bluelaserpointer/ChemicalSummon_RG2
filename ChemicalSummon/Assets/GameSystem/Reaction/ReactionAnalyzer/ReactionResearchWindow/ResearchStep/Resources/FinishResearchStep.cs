@@ -17,7 +17,7 @@ public class FinishResearchStep : ResearchStep
         PlayerSave.AddDiscoveredReaction(Reaction);
         WorldManager.ReactionScreen.Init();
         bool hasNewSubstance = false;
-        foreach (var substanceStack in Reaction.RightSubstances)
+        foreach (var substanceStack in Reaction.rightSubstances)
         {
             Substance substance = substanceStack.type;
             if (PlayerSave.DiscoveredSubstances.Contains(substance))

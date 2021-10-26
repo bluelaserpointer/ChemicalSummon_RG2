@@ -59,9 +59,6 @@ MonoBehaviour:
   speakerPortrait: {fileID: 862756267290800763}
   speakerNameText: {fileID: 862756269091229255}
   speakingText: {fileID: 862756267534154042}
-  OnConversationFinish:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!222 &862756267282843742
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -145,8 +142,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8958360715705474449}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ProgressActiveEvent
+        m_TargetAssemblyTypeName: ConversationWindow, Assembly-CSharp
+        m_MethodName: Submit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

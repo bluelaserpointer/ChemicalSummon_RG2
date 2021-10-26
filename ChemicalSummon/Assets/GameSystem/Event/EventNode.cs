@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
 /// 事件节点
 /// </summary>
+[DisallowMultipleComponent]
 public abstract class EventNode : MonoBehaviour
 {
     //data
@@ -38,8 +37,10 @@ public abstract class EventNode : MonoBehaviour
     }
     public virtual void OnDataEdit()
     {
+        /* TODO: visualize EventNodes by other place
         Text sentenceText = GetComponentInChildren<Text>();
         sentenceText.text = name;
         HideDescriptionText(true);
+        */
     }
 }

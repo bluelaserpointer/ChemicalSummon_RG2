@@ -82,7 +82,7 @@ public class CardPoolDisplay : MonoBehaviour
     public void OnSearchFieldChange()
     {
         if(ChemicalSummonManager.CurrentSceneIsWorld)
-            WorldManager.Player.IsDoingInput = true;
+            WorldManager.Player.LockMovement = true;
         if(searchInputField.text.Length == 0)
         {
             cards.ForEach(card => card.transform.parent.gameObject.SetActive(true));
@@ -97,6 +97,6 @@ public class CardPoolDisplay : MonoBehaviour
     public void OnEndSearchFieldEdit()
     {
         if (ChemicalSummonManager.CurrentSceneIsWorld)
-            WorldManager.Player.IsDoingInput = false;
+            WorldManager.Player.LockMovement = false;
     }
 }

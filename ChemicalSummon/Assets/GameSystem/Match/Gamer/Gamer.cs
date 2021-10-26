@@ -480,7 +480,7 @@ public abstract class Gamer : MonoBehaviour
         }
         //AddHandCard has updatability but also has animation time so we need update at this time
         MatchManager.FusionPanel.UpdateList();
-        foreach (var pair in method.reaction.RightSubstances)
+        foreach (var pair in method.reaction.rightSubstances)
         {
             SubstanceCard newCard = SubstanceCard.GenerateSubstanceCard(pair.type);
             newCard.InitCardAmount(pair.count);

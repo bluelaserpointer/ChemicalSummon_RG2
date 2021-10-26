@@ -37,7 +37,7 @@ public abstract class EnemyAI : MonoBehaviour
             Dictionary<SubstanceCard, int> consumingCards = new Dictionary<SubstanceCard, int>();
             TypeAndCountList<Substance> lackedSubstances = new TypeAndCountList<Substance>();
             int lackCardCount = 0;
-            foreach (var pair in reaction.LeftSubstances)
+            foreach (var pair in reaction.leftSubstances)
             {
                 Substance requiredSubstance = pair.type;
                 int requiredAmount = pair.count;

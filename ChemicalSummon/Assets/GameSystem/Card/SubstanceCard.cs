@@ -347,7 +347,7 @@ public class SubstanceCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void Dispose()
     {
         if (Slot != null)
-            Slot.SlotTopClear();
+            Slot.DisbandTop();
         else if (InGamerHandCards)
             gamer.RemoveHandCard(this);
         else if (InGamerDrawPile)

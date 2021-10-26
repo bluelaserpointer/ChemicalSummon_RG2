@@ -12,4 +12,8 @@ public class TranslatableSentenceSO : ScriptableObject
     {
         return sentenceSO.sentence.ToString();
     }
+    public static implicit operator TranslatableSentence(TranslatableSentenceSO sentenceSO)
+    {
+        return sentenceSO.sentence;
+    }
 }
