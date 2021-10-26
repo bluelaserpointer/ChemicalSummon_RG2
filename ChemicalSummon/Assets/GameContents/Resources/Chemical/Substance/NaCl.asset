@@ -24,9 +24,9 @@ MonoBehaviour:
       count: 1
     denyNegativeCount: 1
   image: {fileID: 21300000, guid: 61ffa01e3b4f26f4987c014713d5993e, type: 3}
-  echelon: 3
-  atk: 0
-  meltingPoint: 0
+  echelon: 1
+  atk: 3
+  meltingPoint: 100
   boilingPoint: 0
   isPhenomenon: 0
   waterSoluble: 0

@@ -470,7 +470,7 @@ public abstract class Gamer : MonoBehaviour
         }
         return results;
     }
-    public virtual void DoReaction(Reaction.ReactionMethod method)
+    public virtual void DoFusion(Reaction.ReactionMethod method)
     {
         onFusionExecute.Invoke(method);
         MatchManager.MatchLogDisplay.AddFusionLog(this, method.reaction);

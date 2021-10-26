@@ -60,7 +60,7 @@ public class FusionPanelButton : MonoBehaviour
                         atNewTimeConsumableCards.Insert(0, currentAttacker);
                     Reaction.ReactionMethod method;
                     if(Reaction.GenerateReactionMethod(reaction, MatchManager.Player, atNewTimeConsumableCards, currentAttacker, out method))
-                        MatchManager.Player.DoReaction(method);
+                        MatchManager.Player.DoFusion(method);
                     //counter fusion
                     if (counterMode)
                     {

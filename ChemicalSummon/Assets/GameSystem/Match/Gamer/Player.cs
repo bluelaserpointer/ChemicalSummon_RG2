@@ -125,4 +125,9 @@ public class Player : Gamer
     {
         throw new NotImplementedException();
     }
+    public override void DoFusion(Reaction.ReactionMethod method)
+    {
+        base.DoFusion(method);
+        MatchManager.CardInfoDisplay.SetSubstance(method.reaction.rightSubstances.list[0].type);
+    }
 }

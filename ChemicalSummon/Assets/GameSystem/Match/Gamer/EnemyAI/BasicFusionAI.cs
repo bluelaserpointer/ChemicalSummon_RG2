@@ -32,7 +32,7 @@ public class BasicFusionAI : NoFusionAI
         {
             Enemy.AddEnemyAction(() =>
             {
-                Enemy.DoReaction(candidateMethod);
+                Enemy.DoFusion(candidateMethod);
                 OnFusionTurnLoop(step); //recalculate next fusion
             });
             return;
@@ -143,7 +143,7 @@ public class BasicFusionAI : NoFusionAI
         {
             Enemy.AddEnemyAction(() =>
             {
-                Enemy.DoReaction(candidateMethod);
+                Enemy.DoFusion(candidateMethod);
             });
             return;
         }
