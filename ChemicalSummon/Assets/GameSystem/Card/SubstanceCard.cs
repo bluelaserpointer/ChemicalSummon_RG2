@@ -63,8 +63,9 @@ public class SubstanceCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             BoilingPoint = substance.BoilingPoint;
             mol = substance.GetMol();
             cardImage.sprite = Image;
+            descriptionText.text = substance.Description;
             InitCardAmount(1);
-            echelonText.text = Echelon.ToString();
+            echelonText.text = "Rank-" + Echelon.ToString();
             if(Echelon < 1 || Echelon > 3)
             {
                 Debug.LogWarning(Symbol + " invalid echelon: " + Echelon);
@@ -73,7 +74,6 @@ public class SubstanceCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             {
                 echelonLabel.color = echelonColors[Echelon - 1];
             }
-            descriptionText.text = Substance.description;
         }
     }
     int cardAmount;

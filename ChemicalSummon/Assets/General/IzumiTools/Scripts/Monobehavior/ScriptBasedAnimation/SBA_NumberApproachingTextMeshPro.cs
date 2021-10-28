@@ -10,6 +10,8 @@ public class SBA_NumberApproachingTextMeshPro : MonoBehaviour
     public float step = 0.25F;
     public float updateSpan = 0.05F;
     public Color incresingColor = Color.green, decresingColor = Color.red, normalColor = Color.white;
+    [Header("prefix/suffix")]
+    public string prefix, suffix;
 
     //data
     TextMeshProUGUI text;
@@ -25,19 +27,12 @@ public class SBA_NumberApproachingTextMeshPro : MonoBehaviour
     public void UpdateText()
     {
         int displayValue = Convert.ToInt32(Text.text);
-        if (displayValue < targetValue)
-        {
-            Text.color = incresingColor;
-            Text.text = SBA_NumberApproachingText.Approach(displayValue, targetValue, step).ToString();
-        }
-        else if (displayValue > targetValue)
-        {
-            Text.color = decresingColor;
-            Text.text = SBA_NumberApproachingText.Approach(displayValue, targetValue, step).ToString();
-        }
+        if (displayValue == targetValue)
+            Text.color = normalColor;
         else
         {
-            Text.color = normalColor;
+            Text.color = displayValue < targetValue ? incresingColor : decresingColor;
+            Text.text = prefix + SBA_NumberApproachingText.Approach(displayValue, targetValue, step).ToString() + suffix;
         }
     }
     public void SetValueImmediate(int value)
