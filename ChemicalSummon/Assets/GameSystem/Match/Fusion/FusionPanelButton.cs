@@ -50,6 +50,7 @@ public class FusionPanelButton : MonoBehaviour
             Reaction reaction = method.reaction;
             FusionButton fusionButton = Instantiate(prefabFusionButton);
             fusionButton.SetReaction(reaction, counterMode);
+            //activate fusion
             fusionButton.Button.onClick.AddListener(() => {
                 MatchManager.FusionDisplay.StartReactionAnimation(() =>
                 {
@@ -68,6 +69,9 @@ public class FusionPanelButton : MonoBehaviour
                     }
                 });
             });
+            //check energy requirements
+            fusionButton.Button.interactable = MatchManager.Player.EnoughEnergyToDo(reaction);
+            //TODO: describe which energy resources are unsatisfied.
             fusionButtons.Add(fusionButton);
         }
         fusionButtonListSlider.GetComponent<ReactionListDisplay>().InitList(fusionButtons);

@@ -470,6 +470,10 @@ public abstract class Gamer : MonoBehaviour
         }
         return results;
     }
+    public bool EnoughEnergyToDo(Reaction reaction)
+    {
+        return HeatGem >= reaction.heatRequire && ElectricGem >= reaction.electricRequire;
+    }
     public virtual void DoFusion(Reaction.ReactionMethod method)
     {
         onFusionExecute.Invoke(method);

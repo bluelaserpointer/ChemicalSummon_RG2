@@ -53,7 +53,7 @@ public class Reaction : ScriptableObject
     }
     public static bool GenerateReactionMethod(Reaction reaction, Gamer gamer, List<SubstanceCard> consumableCards, SubstanceCard attacker, out ReactionMethod method)
     {
-        if (reaction.heatRequire > gamer.HeatGem || reaction.electricRequire > gamer.ElectricGem || attacker != null && !consumableCards.Contains(attacker))
+        if (attacker != null && !consumableCards.Contains(attacker))
         {
             method = default(ReactionMethod);
             return false;
