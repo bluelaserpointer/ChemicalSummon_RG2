@@ -9,7 +9,7 @@ public abstract class EnemyAI : MonoBehaviour
     public Enemy Enemy => MatchManager.Enemy;
     public Player Player => MatchManager.Player;
     public Field Field => Enemy.Field;
-    public List<SubstanceCard> HandCards => Enemy.HandCards;
+    public List<Card> HandCards => Enemy.HandCards;
     protected List<Reaction> EnhanceReactions => MatchManager.Match.enhanceReactions;
     protected List<Reaction> CounterReactions => MatchManager.Match.counterReactions;
     protected List<Reaction> ConcernCounters => MatchManager.Match.concernCounters;
@@ -88,7 +88,7 @@ public abstract class EnemyAI : MonoBehaviour
                             {
                                 subPossibility *= (playerTotalCards - exposedCount - i) / (playerTotalCards - i);
                             }
-                            print(substance.chemicalSymbol + " chance: " + (1 - subPossibility) + " of total " + playerTotalCards);
+                            print(substance.formula + " chance: " + (1 - subPossibility) + " of total " + playerTotalCards);
                             possiblity *= 1 - subPossibility;
                         }
                         else

@@ -6,13 +6,13 @@ using UnityEngine;
 public class FairySpot : StepInListener
 {
     [SerializeField]
-    Substance substance;
+    CardHeader cardHeader;
     [SerializeField]
     float generateSpanSec = 600;
     [SerializeField]
     ParticleSystem avaliableEffect, rootEffect;
 
-    SubstanceCard generatedCard;
+    Card generatedCard;
     float passedTime;
     public bool IsRootable { get; protected set; }
     private void Awake()
@@ -28,7 +28,7 @@ public class FairySpot : StepInListener
         UITraceWorldObject cardPopUp = new GameObject("CardPopUp", typeof(UITraceWorldObject)).GetComponent<UITraceWorldObject>();
         cardPopUp.transform.SetParent(WorldManager.PopUpTransform);
         cardPopUp.target = transform;
-        generatedCard = SubstanceCard.GenerateSubstanceCard(substance);
+        generatedCard = cardHeader.GenerateCard();
         generatedCard.transform.SetParent(cardPopUp.transform);
         generatedCard.GetComponent<CanvasGroup>().alpha = 0.2F;
         passedTime = generateSpanSec;
@@ -49,7 +49,7 @@ public class FairySpot : StepInListener
     }
     public void RootFairy()
     {
-        PlayerSave.SubstanceStorage.Add(substance);
+        PlayerSave.CardStorage.Add(cardHeader);
         IsRootable = false;
         generatedCard.GetComponent<CanvasGroup>().alpha = 0.2F;
         avaliableEffect.Stop();
@@ -59,9 +59,9 @@ public class FairySpot : StepInListener
     {
         if (transform.root.Equals(transform))
             return;
-        if(substance == null)
+        if(cardHeader == null)
             gameObject.name = "FairySpot";
         else
-            gameObject.name = substance.chemicalSymbol + "_FairySpot";
+            gameObject.name = cardHeader.name + "_FairySpot";
     }
 }

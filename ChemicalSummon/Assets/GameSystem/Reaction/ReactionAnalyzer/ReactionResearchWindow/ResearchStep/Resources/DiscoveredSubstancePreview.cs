@@ -15,7 +15,7 @@ public class DiscoveredSubstancePreview : MonoBehaviour
     {
         cardImage.sprite = substance.image;
         nameText.text = substance.name;
-        symbolText.text = substance.chemicalSymbol;
+        symbolText.text = substance.formula;
         displayCard.SetDraggable(false);
         displayCard.Substance = substance;
         displayCard.InitCardAmount(1);

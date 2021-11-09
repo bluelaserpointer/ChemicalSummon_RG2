@@ -13,7 +13,7 @@ public class Player : Gamer
     public override TurnType FusionTurn => TurnType.MyFusionTurn;
     public override TurnType AttackTurn => TurnType.MyAttackTurn;
     public override List<Reaction> LearnedReactions => PlayerSave.DiscoveredReactions;
-    public override void AddHandCard(SubstanceCard substanceCard, bool playSE = true)
+    public override void AddHandCard(Card substanceCard, bool playSE = true)
     {
         if (!substanceCard.location.Equals(CardTransport.Location.MyField) && !substanceCard.location.Equals(CardTransport.Location.MyHandCard))
             MatchManager.StartDrawCardAnimation(substanceCard);
@@ -23,7 +23,7 @@ public class Player : Gamer
     public override void SetStackHandCardMode(bool cond)
     {
         base.SetStackHandCardMode(cond);
-        switchStackHandCardText.text = ChemicalSummonManager.LoadSentence(cond ? "DestackHandCard" : "StackHandCard");
+        switchStackHandCardText.text = General.LoadSentence(cond ? "DestackHandCard" : "StackHandCard");
     }
     public override void FusionTurnStart()
     {
@@ -40,9 +40,9 @@ public class Player : Gamer
         base.AttackTurnStart();
         foreach(ShieldCardSlot slot in Field.Slots)
         {
-            if (slot.IsEmpty || slot.Card.DenideAttack)
+            if (slot.IsEmpty || slot.MainCard.DenideAttack)
                 continue;
-            SubstanceCard card = slot.Card;
+            SubstanceCard card = slot.MainCard;
             slot.ShowAttackButton(() =>
             {
                 MatchManager.MatchLogDisplay.AddDeclareAttackLog(card);
@@ -63,9 +63,9 @@ public class Player : Gamer
         CurrentAttacker = attacker;
         foreach (ShieldCardSlot slot in Field.Slots)
         {
-            if (slot.IsEmpty || slot.Card.DenideAttack)
+            if (slot.IsEmpty || slot.MainCard.DenideAttack)
                 continue;
-            SubstanceCard card = slot.Card;
+            SubstanceCard card = slot.MainCard;
             slot.ShowAttackButton(() =>
             {
                 attacker.Battle(card);
@@ -115,19 +115,19 @@ public class Player : Gamer
         return true;
     }
 
-    public override void SelectCard(List<SubstanceCard> cards, int amount, Action<TypeAndCountList<SubstanceCard>> resultReceiver, Action cancelAction)
+    public override void SelectCard(List<Card> cards, int amount, Action<TypeAndCountList<Card>> resultReceiver, Action cancelAction)
     {
         MatchManager.CardSelectPanel.InitList(amount, resultReceiver, cancelAction);
         cards.ForEach(card => MatchManager.CardSelectPanel.AddSelection(card));
     }
 
-    public override void SelectSlot(bool includeMyField, bool includeEnemyField, SubstanceCard card)
+    public override void SelectSlot(bool includeMyField, bool includeEnemyField, Card card)
     {
         throw new NotImplementedException();
     }
     public override void DoFusion(Reaction.ReactionMethod method)
     {
         base.DoFusion(method);
-        MatchManager.CardInfoDisplay.SetSubstance(method.reaction.rightSubstances.list[0].type);
+        MatchManager.CardPreview.SetCardHeader(method.reaction.rightSubstances.list[0].type);
     }
 }

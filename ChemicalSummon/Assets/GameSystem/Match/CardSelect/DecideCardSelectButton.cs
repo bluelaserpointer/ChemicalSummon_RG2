@@ -20,7 +20,7 @@ public class DecideCardSelectButton : MonoBehaviour
     [SerializeField]
     AudioClip clickSE;
 
-    Action<TypeAndCountList<SubstanceCard>> resultReceiver;
+    Action<TypeAndCountList<Card>> resultReceiver;
     Action cancelAction;
     int requiredAmountMin, requiredAmountMax;
     int selectedAmount;
@@ -31,7 +31,7 @@ public class DecideCardSelectButton : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    public void InitList(int requiredAmountMin, int requiredAmountMax, Action<TypeAndCountList<SubstanceCard>> resultReceiver, Action cancelAction)
+    public void InitList(int requiredAmountMin, int requiredAmountMax, Action<TypeAndCountList<Card>> resultReceiver, Action cancelAction)
     {
         gameObject.SetActive(true);
         this.requiredAmountMin = requiredAmountMin;
@@ -49,7 +49,7 @@ public class DecideCardSelectButton : MonoBehaviour
             requiredRangeStr = requiredAmountMin + "~" + requiredAmountMax;
         selectGuideText.text = selectGuideSentence.ToString().Replace("$amount", requiredRangeStr);
     }
-    public void InitList(int requiredAmount, Action<TypeAndCountList<SubstanceCard>> resultReceiver, Action cancelAction)
+    public void InitList(int requiredAmount, Action<TypeAndCountList<Card>> resultReceiver, Action cancelAction)
     {
         InitList(requiredAmount, requiredAmount, resultReceiver, cancelAction);
     }
@@ -60,7 +60,7 @@ public class DecideCardSelectButton : MonoBehaviour
             cancelAction.Invoke();
         gameObject.SetActive(false);
     }
-    public void AddSelection(SubstanceCard card)
+    public void AddSelection(Card card)
     {
         CardSelectButton button = Instantiate(cardSelectButtonPrefab, selectListTransform);
         button.Set(card);
@@ -91,7 +91,7 @@ public class DecideCardSelectButton : MonoBehaviour
         MatchManager.PlaySE(clickSE);
         if(requiredAmountMin <= selectedAmount && selectedAmount <= requiredAmountMax)
         {
-            TypeAndCountList<SubstanceCard> cardConsumes = new TypeAndCountList<SubstanceCard>();
+            TypeAndCountList<Card> cardConsumes = new TypeAndCountList<Card>();
             foreach(var button in lastSelections)
             {
                 cardConsumes.Add(button.Card);

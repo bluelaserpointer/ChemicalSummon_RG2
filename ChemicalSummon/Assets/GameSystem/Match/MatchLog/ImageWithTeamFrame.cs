@@ -16,7 +16,7 @@ public class ImageWithTeamFrame : MonoBehaviour
     [SerializeField]
     Sprite plusSprite, minusSprite;
 
-    public void SetCard(SubstanceCard card, bool hideCardImage = false)
+    public void SetCard(Card card, bool hideCardImage = false)
     {
         frameImage.color = card.IsMySide ? mySideColor : enemySideColor;
         contentsImage.sprite = hideCardImage ? cardReverseSprite : card.Image;

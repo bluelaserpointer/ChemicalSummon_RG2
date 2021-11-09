@@ -51,9 +51,9 @@ public class Enemy : Gamer
         {
             if (slot.IsEmpty)
                 return 0.1F;
-            if (slot.Card.IsPhenomenon || slot.Card.MeltingPoint > burnDamage * 1000)
+            if (slot.MainCard.MeltingPoint > burnDamage * 1000)
                 return 0;
-            return slot.Card.ATK; //burn the card as high ATK as possible
+            return slot.MainCard.ATK; //burn the card as high ATK as possible
         }).Key;
         if(slot != null)
         {
@@ -62,12 +62,12 @@ public class Enemy : Gamer
         DoStackedAction();
     }
 
-    public override void SelectCard(List<SubstanceCard> cards, int amount, Action<TypeAndCountList<SubstanceCard>> resultReceiver, Action cancelAction)
+    public override void SelectCard(List<Card> cards, int amount, Action<TypeAndCountList<Card>> resultReceiver, Action cancelAction)
     {
         throw new NotImplementedException();
     }
 
-    public override void SelectSlot(bool includeMyField, bool includeEnemyField, SubstanceCard card)
+    public override void SelectSlot(bool includeMyField, bool includeEnemyField, Card card)
     {
         throw new NotImplementedException();
     }

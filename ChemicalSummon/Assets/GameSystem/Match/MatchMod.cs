@@ -80,29 +80,29 @@ public class MatchMod : MonoBehaviour
         if (setEnemyHP) Enemy.InitHP(enemyHP);
         if (setPlayerHP) Player.InitHP(playerHP);
         if (enemySlot1 != null)
-            Enemy.Field.Slots[0].SlotSet(SubstanceCard.GenerateSubstanceCard(enemySlot1));
+            Enemy.Field.Slots[0].SetMainCard(enemySlot1.GenerateSubstanceCard());
         if (enemySlot2 != null)
-            Enemy.Field.Slots[1].SlotSet(SubstanceCard.GenerateSubstanceCard(enemySlot2));
+            Enemy.Field.Slots[1].SetMainCard(enemySlot2.GenerateSubstanceCard());
         if (enemySlot3 != null)
-            Enemy.Field.Slots[2].SlotSet(SubstanceCard.GenerateSubstanceCard(enemySlot3));
+            Enemy.Field.Slots[2].SetMainCard(enemySlot3.GenerateSubstanceCard());
         if (playerSlot1 != null)
-            Player.Field.Slots[0].SlotSet(SubstanceCard.GenerateSubstanceCard(playerSlot1));
+            Player.Field.Slots[0].SetMainCard(playerSlot1.GenerateSubstanceCard());
         if (playerSlot2 != null)
-            Player.Field.Slots[1].SlotSet(SubstanceCard.GenerateSubstanceCard(playerSlot2));
+            Player.Field.Slots[1].SetMainCard(playerSlot2.GenerateSubstanceCard());
         if (playerSlot3 != null)
-            Player.Field.Slots[2].SlotSet(SubstanceCard.GenerateSubstanceCard(playerSlot3));
+            Player.Field.Slots[2].SetMainCard(playerSlot3.GenerateSubstanceCard());
         if (setPlayerDeck)
         {
             Player.deck = playerDeck;
         }
         if (enemyDrawPile.Count > 0)
         {
-            Enemy.ContinuousAddDrawPile(SubstanceCard.GenerateSubstanceCard(enemyDrawPile));
+            Enemy.ContinuousAddDrawPile(Card.GenerateCards(enemyDrawPile));
             Enemy.deck = new Deck();
         }
         if (playerDrawPile.Count > 0)
         {
-            Player.ContinuousAddDrawPile(SubstanceCard.GenerateSubstanceCard(playerDrawPile));
+            Player.ContinuousAddDrawPile(Card.GenerateCards(playerDrawPile));
             Player.deck = new Deck();
         }
         enemyHandCards.ForEach(stackedSubstance => {

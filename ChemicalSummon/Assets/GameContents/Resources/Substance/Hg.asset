@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1429726825b5b41aba171290ab550d, type: 3}
+  m_Name: Hg
+  m_EditorClassIdentifier: 
+  name:
+    defaultString: Hg
+    languageAndSentences:
+    - language: 0
+      sentence: "\u6C5E"
+    - language: 2
+      sentence: "\u6C34\u9280"
+  description:
+    defaultString: 
+    languageAndSentences: []
+  rank: 1
+  abilityPrefab: {fileID: 0}
+  formula: Hg
+  elements:
+    list:
+    - type: {fileID: 11400000, guid: ee027129f46dc024f993f0d56b93943b, type: 2}
+      count: 1
+    denyNegativeCount: 1
+  image: {fileID: 21300000, guid: 045b0124662e4b847afee4d6a2fc7fad, type: 3}
+  atk: 0
+  meltingPoint: 0
+  boilingPoint: 0
+  isPhenomenon: 0
+  isWhat: 0
+  waterSoluble: 0
+  isOre: 0
+  researchSteps: []

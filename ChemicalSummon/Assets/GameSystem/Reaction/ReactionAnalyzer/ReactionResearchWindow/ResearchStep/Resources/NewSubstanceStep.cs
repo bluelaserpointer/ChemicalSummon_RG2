@@ -17,7 +17,7 @@ public class NewSubstanceStep : ResearchStep
 
     public override void OnReach()
     {
-        messageText.text = ChemicalSummonManager.LoadSentence("Analyzing") + ": " + substance.chemicalSymbol;
+        messageText.text = General.LoadSentence("Analyzing") + ": " + substance.formula;
         Invoke("ShowAnalyzedData", 1);
         nextStepButton.gameObject.SetActive(false);
     }
@@ -26,7 +26,7 @@ public class NewSubstanceStep : ResearchStep
         nameText.text = substance.name;
         threeStateText.text = Substance.ThreeStateToString(substance.GetStateInTempreture(27));
         atkText.text = substance.atk.ToString();
-        echelonPhaseText.text = substance.echelon.ToString();
+        echelonPhaseText.text = substance.rank.ToString();
         cardImage.sprite = substance.image;
         nextStepButton.gameObject.SetActive(true);
     }

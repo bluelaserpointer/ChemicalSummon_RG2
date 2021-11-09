@@ -73,7 +73,7 @@ public class BasicFusionAI : NoFusionAI
         {
             slot.HideAttackButton();
             if (!slot.IsEmpty)
-                slot.Card.SetAlpha(1F);
+                slot.MainCard.SetAlpha(1F);
         }
         if (MatchManager.IsMatchFinish)
         {
@@ -84,10 +84,10 @@ public class BasicFusionAI : NoFusionAI
         {
             foreach (ShieldCardSlot slot in slots)
             {
-                if (slot.IsEmpty || slot.Card.DenideAttack || attackedSlot.Contains(slot) || slot.Card.ATK < highestATK)
+                if (slot.IsEmpty || slot.MainCard.DenideAttack || attackedSlot.Contains(slot) || slot.MainCard.ATK < highestATK)
                     continue;
                 //guess counter risk
-                float counterRisk = GuessCounterPossibility(ConcernCounters, slot.Card);
+                float counterRisk = GuessCounterPossibility(ConcernCounters, slot.MainCard);
                 if (counterRisk == 1 || Random.Range(0, 1) < counterRisk)
                     continue;
                 attackedSlot.Add(slot);
@@ -95,10 +95,10 @@ public class BasicFusionAI : NoFusionAI
                 foreach (ShieldCardSlot notAttackingSlot in slots)
                 {
                     if (!notAttackingSlot.Equals(slot) && !notAttackingSlot.IsEmpty)
-                        notAttackingSlot.Card.SetAlpha(0.5F);
+                        notAttackingSlot.MainCard.SetAlpha(0.5F);
                 }
-                MatchManager.MatchLogDisplay.AddDeclareAttackLog(slot.Card);
-                Player.Defense(slot.Card);
+                MatchManager.MatchLogDisplay.AddDeclareAttackLog(slot.MainCard);
+                Player.Defense(slot.MainCard);
                 return;
             }
             //no more slot can attack

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9324e2c8694621e498969bedde5c86bc, type: 3}
+  m_Name: 4P+5O2==2P2O5
+  m_EditorClassIdentifier: 
+  formula: 4P+5O2==2P2O5
+  leftSubstances:
+    list:
+    - type: {fileID: 11400000, guid: 3177c8f381b352642afd4d3ad9a98e70, type: 2}
+      count: 4
+    - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
+      count: 5
+    denyNegativeCount: 1
+  rightSubstances:
+    list:
+    - type: {fileID: 11400000, guid: b9698b603a4d5e74ebac413702ae36d6, type: 2}
+      count: 2
+    denyNegativeCount: 1
+  catalysts:
+    list: []
+    denyNegativeCount: 1
+  explosion: 0
+  electric: 0
+  heat: 0
+  heatRequire: 0
+  electricRequire: 0
+  researchSteps: []

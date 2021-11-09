@@ -30,7 +30,7 @@ public class ElementButton : MonoBehaviour, IPointerClickHandler, IPointerEnterH
     public void Init()
     {
         deckCardCount = 0;// PlayerSave.ActiveDeck.CountCard(substance);
-        storageCardCount = PlayerSave.SubstanceStorage.StackCount(substance);
+        storageCardCount = PlayerSave.CardStorage.StackCount(substance);
         UpdateUI();
     }
     public void UpdateUI()
@@ -70,7 +70,7 @@ public class ElementButton : MonoBehaviour, IPointerClickHandler, IPointerEnterH
         if (substance != null)
         {
             elementImage.sprite = substance.Image;
-            elementText.text = substance.chemicalSymbol;
+            elementText.text = substance.formula;
         }
         else
         {

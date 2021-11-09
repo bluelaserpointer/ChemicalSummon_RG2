@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3252614793098742861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2000296965723369558}
+  - component: {fileID: 77516471834923735}
+  m_Layer: 5
+  m_Name: LapCard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2000296965723369558
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252614793098742861}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7072583302706243998}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 101.1}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &77516471834923735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3252614793098742861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782abd700c940ea42a190c84a43233c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrangeParent: {fileID: 2000296965723369558}
+  returnToOriginalParentWhenDisband: 1
+  doArrangeRotation: 1
+  arrangeLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  returnToOriginalRotationWhenDisband: 0
+  doArrangeScale: 1
+  arrangeLocalScale: {x: 1, y: 1}
+  returnToOriginalScaleWhenDisband: 0
+  onSet:
+    m_PersistentCalls:
+      m_Calls: []
+  onClear:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6056101504574063558
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +94,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7072583302706243998}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -136,8 +198,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2000296965723369558}
   - {fileID: 5197685735926117891}
-  - {fileID: 8521194190154393944}
+  - {fileID: 3900510333551060460}
   - {fileID: 6754043143375286685}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -159,20 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeab65e998e0cf640bb5b1e6a3fe1928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrangeParent: {fileID: 8521194190154393944}
-  returnToOriginalParentWhenDisband: 1
-  doArrangeRotation: 1
-  arrangeLocalRotation: {x: 0, y: 0, z: 0}
-  returnToOriginalRotationWhenDisband: 1
-  doArrangeScale: 1
-  arrangeLocalScale: {x: 1, y: 1}
-  returnToOriginalScaleWhenDisband: 1
-  onSet:
-    m_PersistentCalls:
-      m_Calls: []
-  onClear:
-    m_PersistentCalls:
-      m_Calls: []
+  mainCardSlot: {fileID: 3510247568617803531}
+  lapCardSlot: {fileID: 77516471834923735}
   field: {fileID: 0}
   attackButton: {fileID: 425703931532401653}
   sBA_Bump: {fileID: 6042678622715886481}
@@ -234,7 +285,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &7997420211840162832
+--- !u!1 &8485830126453082224
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,42 +293,60 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8521194190154393944}
-  - component: {fileID: 8388555928129966637}
+  - component: {fileID: 3900510333551060460}
+  - component: {fileID: 3510247568617803531}
   m_Layer: 5
-  m_Name: Card
+  m_Name: MainCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8521194190154393944
+--- !u!224 &3900510333551060460
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7997420211840162832}
+  m_GameObject: {fileID: 8485830126453082224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7072583302706243998}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8388555928129966637
-CanvasRenderer:
+--- !u!114 &3510247568617803531
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7997420211840162832}
-  m_CullTransparentMesh: 0
+  m_GameObject: {fileID: 8485830126453082224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782abd700c940ea42a190c84a43233c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrangeParent: {fileID: 3900510333551060460}
+  returnToOriginalParentWhenDisband: 1
+  doArrangeRotation: 1
+  arrangeLocalRotation: {x: 0, y: 0, z: 0, w: 0}
+  returnToOriginalRotationWhenDisband: 0
+  doArrangeScale: 1
+  arrangeLocalScale: {x: 1, y: 1}
+  returnToOriginalScaleWhenDisband: 0
+  onSet:
+    m_PersistentCalls:
+      m_Calls: []
+  onClear:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &3195377315245016783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,7 +382,7 @@ PrefabInstance:
     - target: {fileID: 8206522557886543698, guid: 0ddc49cf84578ba41ac215603459e095,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8206522557886543698, guid: 0ddc49cf84578ba41ac215603459e095,
         type: 3}

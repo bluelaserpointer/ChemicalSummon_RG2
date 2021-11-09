@@ -14,7 +14,7 @@ public class DrawLog : MonoBehaviour
     Sprite cardReverseSprite;
     [SerializeField]
     Color mySideColor, enemySideColor;
-    public void Set(Gamer gamer, SubstanceCard card)
+    public void Set(Gamer gamer, Card card)
     {
         if(gamer.IsMySide)
         {
@@ -26,7 +26,7 @@ public class DrawLog : MonoBehaviour
             cardImageFrame.color = enemySideColor;
             cardImage.sprite = cardReverseSprite;
         }
-        logText.text = ChemicalSummonManager.LoadSentence("PlayerActionLog_Draw").ToString()
+        logText.text = General.LoadSentence("PlayerActionLog_Draw").ToString()
             .Replace("$card", card.IsMySide ? card.name : "");
     }
 }

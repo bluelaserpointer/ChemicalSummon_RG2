@@ -10,7 +10,7 @@ public enum DamageType { Explosion, Heat, Electronic, None }
 [CreateAssetMenu(fileName = "NewReaction", menuName = "Chemical/Reaction")]
 public class Reaction : ScriptableObject
 {
-    public string description;
+    public string formula;
 
     public TypeAndCountList<Substance> leftSubstances = new TypeAndCountList<Substance>();
     public TypeAndCountList<Substance> rightSubstances = new TypeAndCountList<Substance>();
@@ -33,25 +33,25 @@ public class Reaction : ScriptableObject
     {
         return rightSubstances.StackCount(substance);
     }
-    public static Reaction GetByName(string name)
+    public static Reaction LoadFromResources(string name)
     {
-        return Resources.Load<Reaction>("Chemical/Reaction/" + name);
+        return Resources.Load<Reaction>(General.ResourcePath.Reaction + name);
     }
     public static List<Reaction> GetAll()
     {
-        return new List<Reaction>(Resources.LoadAll<Reaction>("Chemical/Reaction"));
+        return new List<Reaction>(Resources.LoadAll<Reaction>(General.ResourcePath.Reaction));
     }
     public struct ReactionMethod
     {
         public Reaction reaction;
-        public Dictionary<SubstanceCard, int> consumingCards;
-        public ReactionMethod(Reaction reaction, Dictionary<SubstanceCard, int> consumingCards)
+        public Dictionary<Card, int> consumingCards;
+        public ReactionMethod(Reaction reaction, Dictionary<Card, int> consumingCards)
         {
             this.reaction = reaction;
             this.consumingCards = consumingCards;
         }
     }
-    public static bool GenerateReactionMethod(Reaction reaction, Gamer gamer, List<SubstanceCard> consumableCards, SubstanceCard attacker, out ReactionMethod method)
+    public static bool GenerateReactionMethod(Reaction reaction, Gamer gamer, List<Card> consumableCards, SubstanceCard attacker, out ReactionMethod method)
     {
         if (attacker != null && !consumableCards.Contains(attacker))
         {
@@ -60,14 +60,17 @@ public class Reaction : ScriptableObject
         }
         bool condition = true;
         bool addedAttacker = false;
-        Dictionary<SubstanceCard, int> consumingCards = new Dictionary<SubstanceCard, int>();
+        Dictionary<Card, int> consumingCards = new Dictionary<Card, int>();
         foreach (var pair in reaction.leftSubstances)
         {
             Substance requiredSubstance = pair.type;
             int requiredAmount = pair.count;
-            foreach (SubstanceCard card in consumableCards)
+            foreach (Card card in consumableCards)
             {
-                if (card.Substance.Equals(requiredSubstance))
+                SubstanceCard substanceCard = card as SubstanceCard;
+                if (substanceCard == null)
+                    continue; //TODO: magic card consuming
+                if (substanceCard.Substance.Equals(requiredSubstance))
                 {
                     if (attacker != null && !addedAttacker && card.Equals(attacker))
                     {

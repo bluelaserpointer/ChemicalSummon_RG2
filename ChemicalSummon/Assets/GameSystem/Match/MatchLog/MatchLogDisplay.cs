@@ -26,7 +26,7 @@ public class MatchLogDisplay : MonoBehaviour
     {
         Instantiate(turnLogPrefab, scrollViewContent).Set(turn, turnTypeStr);
     }
-    public void AddDrawLog(Gamer gamer, SubstanceCard card)
+    public void AddDrawLog(Gamer gamer, Card card)
     {
         Instantiate(drawLogPrefab, scrollViewContent).Set(gamer, card);
     }
@@ -50,7 +50,7 @@ public class MatchLogDisplay : MonoBehaviour
     {
         Instantiate(hpLogPrefab, scrollViewContent).Set(gamer, hpChange);
     }
-    public void AddCardReturnDeckLog(SubstanceCard card, int amount)
+    public void AddCardReturnDeckLog(Card card, int amount)
     {
         Instantiate(cardReturnDeckLogPrefab, scrollViewContent).Set(card, amount);
     }

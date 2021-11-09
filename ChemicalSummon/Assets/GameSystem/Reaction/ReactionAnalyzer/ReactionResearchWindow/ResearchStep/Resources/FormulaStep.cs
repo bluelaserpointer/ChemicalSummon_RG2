@@ -16,14 +16,14 @@ public class FormulaStep : ResearchStep
 
     public override void OnReach()
     {
-        messageText.text = ChemicalSummonManager.LoadSentence("Analyzing");
+        messageText.text = General.LoadSentence("Analyzing");
         Invoke("ShowAnalyzedData", 1);
         nextStepButton.gameObject.SetActive(false);
     }
     private void ShowAnalyzedData()
     {
         messageText.text = "";
-        formulaText.text = Reaction.description;
+        formulaText.text = Reaction.formula;
         heatRqText.text = Reaction.heatRequire.ToString();
         elecRqText.text = Reaction.electricRequire.ToString();
         expText.text = Reaction.explosion.ToString();

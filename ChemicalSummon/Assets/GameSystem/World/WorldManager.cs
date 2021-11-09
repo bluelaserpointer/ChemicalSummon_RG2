@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class WorldManager : ChemicalSummonManager
+public class WorldManager : General
 {
     public static WorldManager Instance { get; protected set; }
 

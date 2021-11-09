@@ -19,7 +19,7 @@ public class CheckField_EventNode : EventNode
         get
         {
             string listStr = "";
-            fieldContainsList.ForEach(substance => listStr += " " + substance.chemicalSymbol);
+            fieldContainsList.ForEach(substance => listStr += " " + substance.formula);
             return (checkPlayerField ? "player" : "enemy") + " field has " + (checkSomeOfThemExists ? "one" : "all") + " of:" + listStr;
         }
     }

@@ -34,13 +34,13 @@ public class ConversationWindow : MonoBehaviour
     /// </summary>
     public static Talk_EventNode CurrentTalk { get; protected set; }
     //static data
-    public static ConversationWindow BaseConversation => Resources.Load<ConversationWindow>("BaseConversation");
+    public static ConversationWindow BaseConversation => Resources.Load<ConversationWindow>("ConversationPrefab/BaseConversation");
 
     public static void Open()
     {
         if (IsOpen)
             return;
-        Instantiate(BaseConversation, ChemicalSummonManager.MainCanvas.transform);
+        Instantiate(BaseConversation, General.MainCanvas.transform);
         SetBackground(null);
     }
     public static void SetTalk(Talk_EventNode talk)

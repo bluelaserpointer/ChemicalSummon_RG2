@@ -23,7 +23,7 @@ public class HandCardsDisplay : HandCardsArrange
         }
         foreach (GameObject cardObj in cards)
         {
-            SubstanceCard card = cardObj.GetComponent<SubstanceCard>();
+            Card card = cardObj.GetComponent<Card>();
             card.transform.SetSiblingIndex(occpupiedIndexes.Dequeue());
             card.TracePosition(myPos + transform.right * radius * Mathf.Cos(angle) + transform.up * radius * Mathf.Sin(angle));
             card.TraceRotation(Quaternion.Euler(myAngle + new Vector3(card.IsMySide ? 0 : 180, 0, card.IsMySide ? rotate : -rotate)));

@@ -92,7 +92,7 @@ public class TypeAndCountList<T> : IEnumerable<TypeAndCountList<T>.TypeAndCount>
     {
         return Add(typeAndCount.type, typeAndCount.count);
     }
-    public void AddAll(TypeAndCountList<T> anotherList)
+    public void AddAll<T2>(TypeAndCountList<T2> anotherList) where T2 : T
     {
         anotherList.ForEach(each => Add(each.type, each.count));
     }
@@ -100,11 +100,11 @@ public class TypeAndCountList<T> : IEnumerable<TypeAndCountList<T>.TypeAndCount>
     {
         return Add(type, -count);
     }
-    public TypeAndCount Remove(TypeAndCount typeAndCount)
+    public TypeAndCount Remove<T2>(TypeAndCountList<T2>.TypeAndCount typeAndCount) where T2 : T
     {
         return Remove(typeAndCount.type, typeAndCount.count);
     }
-    public void RemoveAll(TypeAndCountList<T> anotherList)
+    public void RemoveAll<T2>(TypeAndCountList<T2> anotherList) where T2 : T
     {
         foreach(var typeAndCount in anotherList)
         {

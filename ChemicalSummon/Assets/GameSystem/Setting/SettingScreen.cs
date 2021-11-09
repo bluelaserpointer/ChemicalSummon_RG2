@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class SettingScreen : ChemicalSummonManager
+public class SettingScreen : General
 {
     [SerializeField]
     Transform thingsInTitle, thingsInWorld, thingsInMatch;
@@ -55,7 +55,7 @@ public class SettingScreen : ChemicalSummonManager
                 languageText.text = "日本語";
                 break;
         }
-        ChemicalSummonManager.UpdateAllSentence();
+        General.UpdateAllSentence();
     }
     public void NextLanguage()
     {
@@ -89,7 +89,7 @@ public class SettingScreen : ChemicalSummonManager
     {
         foreach (Substance each in Substance.GetAll())
         {
-            PlayerSave.SubstanceStorage.Add(each);
+            PlayerSave.CardStorage.Add(each);
         }
         WorldManager.DeckScreen.Init();
     }

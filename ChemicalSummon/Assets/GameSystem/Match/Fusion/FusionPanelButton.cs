@@ -56,7 +56,7 @@ public class FusionPanelButton : MonoBehaviour
                 {
                     lastReaction = reaction;
                     //must recheck because player cards may union/distribute in handcards/fields
-                    List<SubstanceCard> atNewTimeConsumableCards = MatchManager.Player.GetConsumableCards();
+                    List<Card> atNewTimeConsumableCards = MatchManager.Player.GetConsumableCards();
                     if (currentAttacker != null)
                         atNewTimeConsumableCards.Insert(0, currentAttacker);
                     Reaction.ReactionMethod method;

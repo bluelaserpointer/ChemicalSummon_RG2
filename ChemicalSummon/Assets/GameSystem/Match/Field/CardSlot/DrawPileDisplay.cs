@@ -26,12 +26,8 @@ public class DrawPileDisplay : CardSlot
         amountText.text = count.ToString();
         shadow.enabled = count > 0;
     }
-    public void SlotClear(SubstanceCard card)
+    public void SlotClear(Card card)
     {
         base.Disband(card.transform);
-    }
-
-    public override void OnAlignmentEnd(Transform childTransform)
-    {
     }
 }

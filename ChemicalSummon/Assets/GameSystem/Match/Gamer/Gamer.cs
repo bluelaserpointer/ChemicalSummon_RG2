@@ -51,16 +51,16 @@ public abstract class Gamer : MonoBehaviour
     /// 战斗前卡组(静态卡组)
     /// </summary>
     public Deck deck;
-    List<SubstanceCard> drawPile = new List<SubstanceCard>();
+    List<Card> drawPile = new List<Card>();
     /// <summary>
     /// 战斗内卡组(动态卡组)
     /// </summary>
-    public List<SubstanceCard> DrawPile => drawPile;
-    List<SubstanceCard> handCards = new List<SubstanceCard>();
+    public List<Card> DrawPile => drawPile;
+    List<Card> handCards = new List<Card>();
     /// <summary>
     /// 手牌
     /// </summary>
-    public List<SubstanceCard> HandCards => handCards;
+    public List<Card> HandCards => handCards;
     /// <summary>
     /// 手牌叠加模式
     /// </summary>
@@ -172,7 +172,7 @@ public abstract class Gamer : MonoBehaviour
     }
     public void InstallEchelon(int echelonNameIndex, UnityAction afterAction = null)
     {
-        ContinuousAddDrawPile(SubstanceCard.GenerateSubstanceCard(deck.Echelons[echelonNameIndex - 1]), CardTransport.Method.Bottom,
+        ContinuousAddDrawPile(Card.GenerateCards(deck.Echelons[echelonNameIndex - 1]), CardTransport.Method.Bottom,
             () => { ShuffleDrawPile(); afterAction?.Invoke(); });
     }
     public void ShuffleDrawPile()
@@ -183,14 +183,14 @@ public abstract class Gamer : MonoBehaviour
     {
         if (DrawPile.Count > 0)
         {
-            SubstanceCard card = RemoveDrawPileTop();
+            Card card = RemoveDrawPileTop();
             MatchManager.MatchLogDisplay.AddDrawLog(this, card);
             AddHandCard(card);
             return true;
         }
         return false;
     }
-    public void AddDrawPile(SubstanceCard card, CardTransport.Method method = CardTransport.Method.Bottom, UnityAction afterAction = null)
+    public void AddDrawPile(Card card, CardTransport.Method method = CardTransport.Method.Bottom, UnityAction afterAction = null)
     {
         if (card.location.Equals(CardTransport.Location.OffSite))
         {
@@ -209,12 +209,12 @@ public abstract class Gamer : MonoBehaviour
                 drawPileDisplay.SlotSet(card, () => { DrawPile.Insert(0, card); afterAction?.Invoke(); });
                 break;
             case CardTransport.Method.Select:
-                Debug.LogError("Insert to deck with specified index is not supported: " + card.Substance.name);
+                Debug.LogError("Insert to deck with specified index is not supported: " + card.name);
                 break;
         }
         OnDrawPileChange.Invoke();
     }
-    public void ContinuousAddDrawPile(List<SubstanceCard> cards, CardTransport.Method method = CardTransport.Method.Bottom, UnityAction afterAction = null)
+    public void ContinuousAddDrawPile(List<Card> cards, CardTransport.Method method = CardTransport.Method.Bottom, UnityAction afterAction = null)
     {
         if (cards.Count == 0)
         {
@@ -223,7 +223,7 @@ public abstract class Gamer : MonoBehaviour
         }
         AddDrawPile(cards.RemoveFirst(), method, () => ContinuousAddDrawPile(cards, method, afterAction));
     }
-    public void RemoveDrawPile(SubstanceCard card)
+    public void RemoveDrawPile(Card card)
     {
         if (DrawPile.Remove(card))
         {
@@ -231,59 +231,55 @@ public abstract class Gamer : MonoBehaviour
             OnDrawPileChange.Invoke();
         }
     }
-    public SubstanceCard RemoveDrawPileTop()
+    public Card RemoveDrawPileTop()
     {
         if (DrawPile.Count == 0)
             return null;
-        SubstanceCard card = DrawPile.RemoveFirst();
+        Card card = DrawPile.RemoveFirst();
         drawPileDisplay.SlotClear(card);
         OnDrawPileChange.Invoke();
         return card;
     }
-    public SubstanceCard RemoveDrawPileBottom()
+    public Card RemoveDrawPileBottom()
     {
         if (DrawPile.Count == 0)
             return null;
-        SubstanceCard card = DrawPile.RemoveLast();
+        Card card = DrawPile.RemoveLast();
         drawPileDisplay.SlotClear(card);
         OnDrawPileChange.Invoke();
         return card;
     }
-    public SubstanceCard RemoveDrawPileRandom()
+    public Card RemoveDrawPileRandom()
     {
         if (DrawPile.Count == 0)
             return null;
-        SubstanceCard card = DrawPile.RemoveRandomElement();
+        Card card = DrawPile.RemoveRandomElement();
         drawPileDisplay.SlotClear(card);
         OnDrawPileChange.Invoke();
         return card;
     }
-    public SubstanceCard FindHandCard(Substance substance)
+    public Card FindHandCard(CardHeader cardHeader)
     {
-        return HandCards.Find(card => card.Substance.Equals(substance));
+        return HandCards.Find(card => card.Header.Equals(cardHeader));
     }
-    public List<SubstanceCard> FindAllHandCard(Substance substance)
+    public List<Card> FindAllHandCard(CardHeader cardHeader)
     {
-        return HandCards.FindAll(card => card.Substance.Equals(substance));
-    }
-    public SubstanceCard FindHandCard(SubstanceCard substanceCard)
-    {
-        return FindHandCard(substanceCard.Substance);
+        return HandCards.FindAll(card => card.Header.Equals(cardHeader));
     }
     /// <summary>
     /// 加入手牌
     /// </summary>
     /// <param name="substanceCard"></param>
-    public virtual void AddHandCard(SubstanceCard substanceCard, bool playSE = true)
+    public virtual void AddHandCard(Card substanceCard, bool playSE = true)
     {
         if(playSE)
-            MatchManager.PlaySE(substanceCard.CardMoveSE);
-        SubstanceCard duplicatedCard = FindHandCard(substanceCard);
+            MatchManager.PlaySE(Card.CardMoveSE);
+        Card duplicatedCard = FindHandCard(substanceCard.Header);
         if (StackHandCardMode && duplicatedCard != null)
         {
             substanceCard.TracePosition(duplicatedCard.transform.position, () =>
             {
-                duplicatedCard.UnionSameCard(substanceCard);
+                duplicatedCard.TryUnion(substanceCard);
                 MatchManager.FusionPanel.UpdateList();
                 OnHandCardsChanged.Invoke();
             });
@@ -302,15 +298,15 @@ public abstract class Gamer : MonoBehaviour
             OnHandCardsChanged.Invoke();
         }
     }
-    public void AddHandCard(Substance substance)
+    public void AddHandCard(CardHeader cardHeader)
     {
-        AddHandCard(SubstanceCard.GenerateSubstanceCard(substance));
+        AddHandCard(cardHeader.GenerateCard());
     }
-    public void RemoveHandCard(Substance substance)
+    public void RemoveHandCard(CardHeader cardHeader)
     {
-        RemoveHandCard(FindHandCard(substance));
+        RemoveHandCard(FindHandCard(cardHeader));
     }
-    public virtual bool RemoveHandCard(SubstanceCard substanceCard)
+    public virtual bool RemoveHandCard(Card substanceCard)
     {
         if (HandCards.Remove(substanceCard))
         {
@@ -336,17 +332,17 @@ public abstract class Gamer : MonoBehaviour
     {
         if(StackHandCardMode = cond)
         {
-            List<SubstanceCard> checkedCards = new List<SubstanceCard>();
-            Dictionary<SubstanceCard, List<SubstanceCard>> unionPairs = new Dictionary<SubstanceCard, List<SubstanceCard>>();
-            foreach(SubstanceCard card in new List<SubstanceCard>(HandCards))
+            List<Card> checkedCards = new List<Card>();
+            Dictionary<Card, List<Card>> unionPairs = new Dictionary<Card, List<Card>>();
+            foreach(Card card in new List<Card>(HandCards))
             {
-                SubstanceCard duplicatedCard = checkedCards.Find(each => each.IsSameSubstance(card));
+                Card duplicatedCard = checkedCards.Find(each => each.Unionable(card));
                 if (duplicatedCard != null)
                 {
                     RemoveHandCard(card);
-                    List<SubstanceCard> removingList;
+                    List<Card> removingList;
                     if (!unionPairs.TryGetValue(duplicatedCard, out removingList))
-                        unionPairs.Add(duplicatedCard, removingList = new List<SubstanceCard>());
+                        unionPairs.Add(duplicatedCard, removingList = new List<Card>());
                     removingList.Add(card);
                 }
                 else
@@ -356,25 +352,25 @@ public abstract class Gamer : MonoBehaviour
             }
             foreach(var pair in unionPairs)
             {
-                SubstanceCard remainingCard = pair.Key;
-                foreach(SubstanceCard removingCard in pair.Value)
+                Card remainingCard = pair.Key;
+                foreach(Card removingCard in pair.Value)
                 {
                     removingCard.TraceRotation(remainingCard.TraceRotationTarget);
                     removingCard.TracePosition(remainingCard.TracePositionTarget, () =>
                     {
-                        remainingCard.UnionSameCard(removingCard);
+                        remainingCard.TryUnion(removingCard);
                     });
                 }
             }
         }
         else
         {
-            foreach (SubstanceCard card in new List<SubstanceCard>(HandCards))
+            foreach (Card card in new List<Card>(HandCards))
             {
                 while(card.CardAmount > 1)
                 {
                     card.RemoveAmount(1);
-                    SubstanceCard newCard = SubstanceCard.GenerateSubstanceCard(card.Substance);
+                    Card newCard = card.Header.GenerateCard();
                     newCard.location = IsMySide ? CardTransport.Location.MyHandCard : CardTransport.Location.EnemyHandCard;
                     newCard.transform.SetPositionAndRotation(card.transform.position, card.transform.rotation);
                     AddHandCard(newCard, false);
@@ -394,7 +390,7 @@ public abstract class Gamer : MonoBehaviour
         SpeakInMatch(Character.SpeakType.StartFusion);
         foreach(var card in Opponent.Field.Cards)
         {
-            if(card.Symbol.Equals("FireFairy"))
+            if(card.Formula.Equals("FireFairy"))
             {
                 MatchManager.StartDamageAnimation(card.transform.position, (int)card.MeltingPoint / 1000, Opponent);
             }
@@ -430,9 +426,9 @@ public abstract class Gamer : MonoBehaviour
     /// 获得可消耗为融合素材的所有卡牌(手牌+场地)
     /// </summary>
     /// <returns></returns>
-    public List<SubstanceCard> GetConsumableCards()
+    public List<Card> GetConsumableCards()
     {
-        List<SubstanceCard> cards = new List<SubstanceCard>();
+        List<Card> cards = new List<Card>();
         cards.AddRange(HandCards);
         cards.AddRange(Field.Cards);
         return cards;
@@ -455,7 +451,7 @@ public abstract class Gamer : MonoBehaviour
     }
     public List<Reaction.ReactionMethod> FindAvailiableReactions(List<Reaction> reactions, SubstanceCard attacker = null)
     {
-        List<SubstanceCard> consumableCards = GetConsumableCards();
+        List<Card> consumableCards = GetConsumableCards();
         //in counterMode, only counter fusions are avaliable
         if (attacker != null)
         {
@@ -478,15 +474,15 @@ public abstract class Gamer : MonoBehaviour
     {
         onFusionExecute.Invoke(method);
         MatchManager.MatchLogDisplay.AddFusionLog(this, method.reaction);
-        foreach (KeyValuePair<SubstanceCard, int> consume in method.consumingCards)
+        foreach (KeyValuePair<Card, int> consume in method.consumingCards)
         {
-            consume.Key.RemoveAmount(consume.Value, SubstanceCard.DecreaseReason.FusionMaterial);
+            consume.Key.RemoveAmount(consume.Value, Card.DecreaseReason.FusionMaterial);
         }
         //AddHandCard has updatability but also has animation time so we need update at this time
         MatchManager.FusionPanel.UpdateList();
         foreach (var pair in method.reaction.rightSubstances)
         {
-            SubstanceCard newCard = SubstanceCard.GenerateSubstanceCard(pair.type);
+            SubstanceCard newCard = pair.type.GenerateSubstanceCard();
             newCard.InitCardAmount(pair.count);
             exposedSubstances.Add(newCard.Substance);
             AddHandCard(newCard);
@@ -536,27 +532,20 @@ public abstract class Gamer : MonoBehaviour
         }
         DoStackedAction();
     }
-    public bool BurnSlot(ShieldCardSlot cardSlot, int burnDamage)
+    public void BurnSlot(ShieldCardSlot cardSlot, int tempreture)
     {
         if (!cardSlot.IsEmpty)
         {
-            SubstanceCard placedCard = cardSlot.Card;
-            if (placedCard.MeltingPoint < burnDamage * 1000)
+            SubstanceCard placedCard = cardSlot.MainCard;
+            if (placedCard.BoilingPoint < tempreture)
+            {
+                cardSlot.DisbandMainCard();
+            }
+            else if (placedCard.MeltingPoint < tempreture)
             {
                 cardSlot.TakeBackCard();
             }
-            else //cannot overplace
-            {
-                //TODO: show invalid effect
-                return false;
-            }
         }
-        //TODO: show valid effect
-        SubstanceCard fireFairyCard = SubstanceCard.GenerateSubstanceCard(Substance.GetByName("FireFairy"));
-        fireFairyCard.InitCardAmount(1);
-        fireFairyCard.MeltingPoint = fireFairyCard.BoilingPoint = burnDamage * 1000;
-        cardSlot.SlotSet(fireFairyCard.gameObject);
-        return true;
     }
     Queue<Action> actionStack = new Queue<Action>();
     public bool HasStackedAction => actionStack.Count > 0;
@@ -581,6 +570,6 @@ public abstract class Gamer : MonoBehaviour
                 actionStack.Peek().Invoke();
         }
     }
-    public abstract void SelectCard(List<SubstanceCard> cards, int amount, Action<TypeAndCountList<SubstanceCard>> resultReceiver, Action cancelAction);
-    public abstract void SelectSlot(bool includeMyField, bool includeEnemyField, SubstanceCard card);
+    public abstract void SelectCard(List<Card> cards, int amount, Action<TypeAndCountList<Card>> resultReceiver, Action cancelAction);
+    public abstract void SelectSlot(bool includeMyField, bool includeEnemyField, Card card);
 }

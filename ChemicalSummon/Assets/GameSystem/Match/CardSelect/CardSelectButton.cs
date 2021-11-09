@@ -13,7 +13,7 @@ public class CardSelectButton : MonoBehaviour
     [SerializeField]
     Text capacityText;
 
-    public SubstanceCard Card { get; protected set; }
+    public Card Card { get; protected set; }
     int selectedAmount;
     public int SelectedAmount {
         get => selectedAmount;
@@ -23,11 +23,11 @@ public class CardSelectButton : MonoBehaviour
         }
     }
 
-    public void Set(SubstanceCard card)
+    public void Set(Card card)
     {
         locationText.text = CardTransport.LocationName(card.location);
         Card = card;
-        substanceText.text = card.Substance.name;
+        substanceText.text = card.CurrentLanguageName;
         SelectedAmount = 0;
     }
     public bool OnButtonClick()

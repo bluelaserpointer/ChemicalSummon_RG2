@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class OpeningManager : ChemicalSummonManager
+public class OpeningManager : General
 {
     public static OpeningManager Instance { get; protected set; }
 
@@ -30,7 +30,7 @@ public class OpeningManager : ChemicalSummonManager
         if(waitedTime > generateSpan)
         {
             waitedTime = 0;
-            SubstanceCard card = SubstanceCard.GenerateSubstanceCard(substances.GetRandomElement());
+            Card card = substances.GetRandomElement().GenerateCard();
             card.transform.SetParent(transform);
             card.transform.position = Vector3.Lerp(generateLeftAnchor.position, generateRightAnchor.position, Random.Range(0F, 1F));
             card.transform.localScale = cardScale * Vector3.one;

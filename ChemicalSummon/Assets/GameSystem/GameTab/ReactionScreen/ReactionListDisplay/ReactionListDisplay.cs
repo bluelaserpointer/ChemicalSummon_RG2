@@ -16,7 +16,7 @@ public class ReactionListDisplay : MonoBehaviour
 
     public void OnSearchFieldChanged()
     {
-        if (searchInputField.isFocused && ChemicalSummonManager.CurrentSceneIsWorld)
+        if (searchInputField.isFocused && General.CurrentSceneIsWorld)
             WorldManager.Player.LockMovement = true;
         string searchStr = searchInputField.text;
         if (searchStr.Length == 0)
@@ -25,13 +25,13 @@ public class ReactionListDisplay : MonoBehaviour
         {
             foreach(FusionButton button in originalButtons)
             {
-                button.gameObject.SetActive(button.Reaction.description.IndexOf(searchStr, System.StringComparison.OrdinalIgnoreCase) >= 0);
+                button.gameObject.SetActive(button.Reaction.formula.IndexOf(searchStr, System.StringComparison.OrdinalIgnoreCase) >= 0);
             }
         }
     }
     public void DoneSearhFieldEdit()
     {
-        if(ChemicalSummonManager.CurrentSceneIsWorld)
+        if(General.CurrentSceneIsWorld)
             WorldManager.Player.LockMovement = false;
     }
     public void InitList(List<FusionButton> buttons)

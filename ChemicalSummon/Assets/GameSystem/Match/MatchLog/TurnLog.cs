@@ -11,7 +11,7 @@ public class TurnLog : MonoBehaviour
 
     public void Set(int turn, string turnTypeStr)
     {
-        turnText.text = ChemicalSummonManager.LoadSentence("Turn") + " " + turn.ToString();
+        turnText.text = General.LoadSentence("Turn") + " " + turn.ToString();
         turnTypeText.text = turnTypeStr;
     }
 }

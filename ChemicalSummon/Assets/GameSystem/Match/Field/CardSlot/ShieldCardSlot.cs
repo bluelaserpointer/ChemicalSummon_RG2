@@ -7,8 +7,10 @@ using UnityEngine.Events;
 /// 格挡区卡槽
 /// </summary>
 [DisallowMultipleComponent]
-public class ShieldCardSlot : CardSlot, IAttackable
+public class ShieldCardSlot : MonoBehaviour
 {
+    [SerializeField]
+    CardSlot mainCardSlot, lapCardSlot;
     [SerializeField]
     Field field;
     [SerializeField]
@@ -28,15 +30,30 @@ public class ShieldCardSlot : CardSlot, IAttackable
     /// 所属玩家
     /// </summary>
     public Gamer Gamer => Field.Gamer;
-    public float Tempreture {
-        get
-        {
-            if (!IsEmpty && Card.Substance.Equals(Substance.GetByName("FireFairy")))
-                return Card.MeltingPoint;
-            else
-                return MatchManager.DefaultTempreture;
-        }
-    }
+    /// <summary>
+    /// 主卡 卡槽
+    /// </summary>
+    public CardSlot MainCardSlot => mainCardSlot;
+    /// <summary>
+    /// 覆盖卡 卡槽
+    /// </summary>
+    public CardSlot LapCardSlot => lapCardSlot;
+    /// <summary>
+    /// 主卡
+    /// </summary>
+    public SubstanceCard MainCard => MainCardSlot.TopCard as SubstanceCard;
+    /// <summary>
+    /// 覆盖卡
+    /// </summary>
+    public Card LapCard => LapCardSlot.TopCard;
+    /// <summary>
+    /// 是否为空(只要主卡为空覆盖卡也空)
+    /// </summary>
+    public bool IsEmpty => MainCardSlot.IsEmpty;
+    /// <summary>
+    /// 温度
+    /// </summary>
+    public float Tempreture => MatchManager.DefaultTempreture;
     /// <summary>
     /// 属于我方卡槽
     /// </summary>
@@ -49,41 +66,86 @@ public class ShieldCardSlot : CardSlot, IAttackable
     public SBA_Bump SBA_Bump => sBA_Bump;
     private void Awake()
     {
-        onSet.AddListener(() => {
-            if(ArrangeParent.childCount > 1)
-            {
-                SubstanceCard card = ArrangeParent.GetChild(0).GetComponent<SubstanceCard>();
-                if(card.IsPhenomenon)
-                {
-                    Destroy(card.gameObject);
-                }
-                card.Gamer = Gamer;
-            }
-            bool needUpdateFusionList = true;
-            switch(Card.location)
+        MainCardSlot.onClear.AddListener(field.onCardsChanged.Invoke);
+        LapCardSlot.onClear.AddListener(field.onCardsChanged.Invoke);
+    }
+    /// <summary>
+    /// 放置物质卡
+    /// 不检查放置条件
+    /// </summary>
+    /// <param name="substanceCard"></param>
+    public void SetMainCard(SubstanceCard substanceCard)
+    {
+        if (Equals(substanceCard.Slot)) //when card drag distance too short
+        {
+            MainCardSlot.DoAlignment(MainCard.transform);
+            return;
+        }
+        //check if need update fusion list
+        bool needUpdateFusionList = true;
+        if(IsMySide)
+        {
+            switch (substanceCard.location)
             {
                 case CardTransport.Location.MyField:
                 case CardTransport.Location.MyHandCard:
-                    if (IsMySide)
-                        needUpdateFusionList = false;
-                    break;
-                case CardTransport.Location.EnemyField:
-                case CardTransport.Location.EnemyHandCard:
-                    if (IsEnemySide)
-                        needUpdateFusionList = false;
+                    needUpdateFusionList = false;
                     break;
             }
-            if(needUpdateFusionList)
-                MatchManager.FusionPanel.UpdateList();
-            Card.location = IsMySide ? CardTransport.Location.MyField : CardTransport.Location.EnemyField;
-            Card.SetDraggable(CardDraggable);
-            field.onCardsChanged.Invoke();
-        });
-        onClear.AddListener(field.onCardsChanged.Invoke);
+        }
+        //place card
+        if (MainCardSlot.IsEmpty)
+        {
+            substanceCard.Disband();
+            MainCardSlot.SlotSet(substanceCard, () =>
+            {
+                placeAnimation.StartAnimation();
+                MatchManager.PlaySE(placeSE);
+            });
+            MainCard.location = IsMySide ? CardTransport.Location.MyField : CardTransport.Location.EnemyField;
+            MainCard.SetDraggable(CardDraggable);
+        }
+        else
+            MainCard.TryUnion(substanceCard);
+        if (needUpdateFusionList)
+            MatchManager.FusionPanel.UpdateList();
+        field.onCardsChanged.Invoke();
     }
-    public void DoAlignment()
+    /// <summary>
+    /// 添加覆盖卡
+    /// </summary>
+    /// <param name="card"></param>
+    public void AddLapCard(Card card)
     {
-        base.DoAlignment(GetTop());
+
+    }
+    /// <summary>
+    /// 检查主卡放置条件,AI不会调用
+    /// </summary>
+    /// <param name="card"></param>
+    /// <returns></returns>
+    public bool AllowSetAsMainCard(SubstanceCard card)
+    {
+        if (card != null)
+        {
+            if (!card.GetStateInTempreture(Tempreture).Equals(ThreeState.Solid))
+            {
+                MatchManager.MessagePanel.WarnNotPlaceNonSolid();
+                return false;
+            }
+            if (!Gamer.Equals(card.Gamer))
+            {
+                //TODO: warn not place to opponent field
+                return false;
+            }
+            if (!Gamer.InFusionTurn)
+            {
+                MatchManager.MessagePanel.WarnNotPlaceBeforeFusionTurn();
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
     /// <summary>
     /// 是否属于这个场地
@@ -103,38 +165,11 @@ public class ShieldCardSlot : CardSlot, IAttackable
     {
         return field.Equals(slot.field);
     }
-    public override bool AllowSlotSet(GameObject obj)
-    {
-        SubstanceCard substanceCard = obj.GetComponent<SubstanceCard>();
-        if (substanceCard == null)
-            return false;
-        if (!substanceCard.GetStateInTempreture(Tempreture).Equals(ThreeState.Solid))
-        {
-            MatchManager.MessagePanel.WarnNotPlaceNonSolid();
-            return false;
-        }
-        if (substanceCard.IsPhenomenon)
-            return true;
-        if (!Gamer.InFusionTurn)
-        {
-            MatchManager.MessagePanel.WarnNotPlaceBeforeFusionTurn();
-            return false;
-        }
-        return true;
-    }
-    public bool AllowAttack(SubstanceCard card)
-    {
-        return false; //implement special attack
-    }
-
-    public void Attack(SubstanceCard card)
-    {
-    }
     public void Damage(int dmg)
     {
         if (!IsEmpty)
         {
-            Card.Damage(dmg);
+            MainCard.Damage(dmg);
         }
         else
         {
@@ -152,20 +187,34 @@ public class ShieldCardSlot : CardSlot, IAttackable
         attackButton.SetButtonAction(buttonAction);
     }
     /// <summary>
+    /// 去除主卡（与覆盖卡）
+    /// </summary>
+    public void DisbandMainCard()
+    {
+        MainCardSlot.Disband(MainCard.transform);
+    }
+    /// <summary>
+    /// 去除所有覆盖卡
+    /// </summary>
+    public void DisbandLapCards()
+    {
+        LapCardSlot.Disband(LapCard.transform);
+    }
+    /// <summary>
     /// 拿回卡牌至手牌
     /// </summary>
     /// <returns></returns>
     public bool TakeBackCard()
     {
-        if (IsEmpty || Card.IsPhenomenon)
+        if (IsEmpty)
             return false;
-        SubstanceCard card = Card;
-        DisbandTop();
-        Gamer.AddHandCard(card);
+        SubstanceCard mainCard = MainCard;
+        DisbandMainCard();
+        Gamer.AddHandCard(mainCard);
         return true;
     }
 
-    public override void OnAlignmentEnd(Transform childTransform)
+    public void OnAlignmentEnd(Transform childTransform)
     {
         placeAnimation.StartAnimation();
         MatchManager.PlaySE(placeSE);

@@ -46,7 +46,7 @@ public class FusionDisplay : MonoBehaviour
         anchorParent.DestroyAllChildren();
         materialCardParent.DestroyAllChildren();
         productCardParent.DestroyAllChildren();
-        //material
+        //materials
         int cardAmount = reaction.leftSubstances.TotalCount();
         int iteration = 0;
         foreach (var stackedElement in reaction.leftSubstances)
@@ -57,17 +57,16 @@ public class FusionDisplay : MonoBehaviour
                 float angle = ++iteration * Mathf.PI * 2 / cardAmount;
                 Transform anchor = Instantiate(fusionDisplayCardSlot, anchorParent).transform;
                 anchor.localPosition = new Vector3(radius * Mathf.Cos(angle), radius * Mathf.Sin(angle));
-                SubstanceCard card = SubstanceCard.GenerateSubstanceCard(substance);
+                SubstanceCard card = substance.GenerateSubstanceCard();
                 card.transform.SetParent(materialCardParent);
                 card.transform.position = anchor.position;
                 card.transform.localScale = new Vector3(cardScale, cardScale, 1);
             }
         }
-        //product
+        //products
         foreach (var stackedElement in reaction.rightSubstances)
         {
-            SubstanceCard card = SubstanceCard.GenerateSubstanceCard(stackedElement.type);
-            card.InitCardAmount(stackedElement.count);
+            SubstanceCard card = stackedElement.type.GenerateSubstanceCard(stackedElement.count);
             card.transform.SetParent(productCardParent);
         }
         //specialDamageIcon

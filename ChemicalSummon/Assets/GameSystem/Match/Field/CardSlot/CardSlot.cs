@@ -6,17 +6,16 @@ using UnityEngine.Events;
 /// </summary>
 public class CardSlot : ObjectSlot
 {
-    public SubstanceCard Card => IsEmpty ? null : GetTop().GetComponent<SubstanceCard>();
-    public void DoAlignment(Transform childTransform, UnityAction afterAction)
+    public Card TopCard => IsEmpty ? null : GetTop().GetComponent<Card>();
+    public void DoAlignment(Transform childTransform, UnityAction afterAction = null)
     {
-        childTransform.GetComponent<SubstanceCard>().TracePosition(ArrangeParent.position, () => {
-            OnAlignmentEnd(childTransform);
+        childTransform.GetComponent<Card>().TracePosition(ArrangeParent.position, () => {
             afterAction?.Invoke();
         });
         if (doArrangeRotation)
         {
             oldLocalRotation = childTransform.localEulerAngles;
-            childTransform.GetComponent<SubstanceCard>().TraceRotation(arrangeLocalRotation);
+            childTransform.GetComponent<Card>().TraceRotation(arrangeLocalRotation);
         }
         if (doArrangeScale)
         {
@@ -24,12 +23,7 @@ public class CardSlot : ObjectSlot
             childTransform.localScale = arrangeLocalScale;
         }
     }
-    public override void DoAlignment(Transform childTransform)
-    {
-        DoAlignment(childTransform, null);
-    }
-    public virtual void OnAlignmentEnd(Transform childTransform) { }
-    public void SlotSet(SubstanceCard card, UnityAction afterAction = null)
+    public void SlotSet(Card card, UnityAction afterAction = null)
     {
         if (!AllowSlotSet(card.gameObject))
             return;

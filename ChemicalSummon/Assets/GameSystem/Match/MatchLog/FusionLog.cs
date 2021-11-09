@@ -24,7 +24,7 @@ public class FusionLog : MonoBehaviour
     public void Set(Gamer gamer, Reaction reaction)
     {
         fusionFrameImage.color = gamer.IsMySide ? mySideColor : enemySideColor;
-        reactionText.text = reaction.description.Replace("==", " == ");
+        reactionText.text = reaction.formula.Replace("==", " == ");
         reactionIconsTf.DestroyAllChildren();
         //requirementsIcon
         if (reaction.heatRequire > 0)

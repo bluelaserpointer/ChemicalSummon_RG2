@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1429726825b5b41aba171290ab550d, type: 3}
+  m_Name: H2
+  m_EditorClassIdentifier: 
+  name:
+    defaultString: H2
+    languageAndSentences:
+    - language: 0
+      sentence: "\u6C22\u6C14"
+    - language: 2
+      sentence: "\u6C34\u7D20"
+    - language: 1
+      sentence: Hydrogen
+  description:
+    defaultString: 
+    languageAndSentences:
+    - language: 0
+      sentence: "\u6700\u8F7B\u7684\u6C14\u4F53\uFF0C\u65E0\u8272\u65E0\u5473\u3002\u5E38\u6E29\u5E38\u538B\u4E0B\u6781\u6613\u71C3\u70E7\u3002"
+    - language: 2
+      sentence: "\u7121\u8272\u7121\u81ED\u306E\u6700\u3082\u8EFD\u3044\u6C17\u4F53\u3002\u5E38\u6E29\u5E38\u5727\u3067\u306F\u975E\u5E38\u306B\u71C3\u3048\u3084\u3059\u3044\u3002"
+  rank: 2
+  abilityPrefab: {fileID: 0}
+  formula: H2
+  elements:
+    list:
+    - type: {fileID: 11400000, guid: c0d0bee058945db48940bb40b3e80e06, type: 2}
+      count: 2
+    denyNegativeCount: 1
+  image: {fileID: 21300000, guid: c507f59260245b840aadf1e94741e0f1, type: 3}
+  atk: 0
+  meltingPoint: 0
+  boilingPoint: 0
+  isPhenomenon: 0
+  isWhat: 0
+  waterSoluble: 0
+  isOre: 0
+  researchSteps: []

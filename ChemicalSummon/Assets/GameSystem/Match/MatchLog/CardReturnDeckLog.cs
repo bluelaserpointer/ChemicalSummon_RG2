@@ -10,9 +10,9 @@ public class CardReturnDeckLog : MonoBehaviour
     [SerializeField]
     ImageWithTeamFrame cardDisplay;
 
-    public void Set(SubstanceCard card, int amount)
+    public void Set(Card card, int amount)
     {
-        logText.text = card.name + " x " + amount + "\r\n" + ChemicalSummonManager.LoadSentence("ReturnDeck");
+        logText.text = card.name + " x " + amount + "\r\n" + General.LoadSentence("ReturnDeck");
         amountText.text = "x" + amount;
         cardDisplay.SetCard(card);
     }

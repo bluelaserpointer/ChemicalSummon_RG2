@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1429726825b5b41aba171290ab550d, type: 3}
+  m_Name: O2
+  m_EditorClassIdentifier: 
+  name:
+    defaultString: O2
+    languageAndSentences:
+    - language: 0
+      sentence: "\u6C27\u6C14"
+    - language: 2
+      sentence: "\u9178\u7D20"
+  description:
+    defaultString: 
+    languageAndSentences:
+    - language: 0
+      sentence: "\u9AD8\u6E29\u65F6\u975E\u5E38\u6D3B\u6CFC\u7684\u65E0\u8272\u65E0\u5473\u6C14\u4F53\uFF0C\u7EDD\u5927\u591A\u6570\u751F\u547D\u9700\u8981\u5B83\u3002"
+    - language: 2
+      sentence: "\u9AD8\u6E29\u3067\u975E\u5E38\u306B\u6D3B\u767A\u306B\u306A\u308B\u7121\u8272\u7121\u81ED\u306E\u6C17\u4F53\u3001\u6B86\u3069\u306E\u751F\u547D\u304C\u5FC5\u8981\u3068\u3059\u308B\u3002"
+  rank: 1
+  abilityPrefab: {fileID: 0}
+  formula: O2
+  elements:
+    list:
+    - type: {fileID: 11400000, guid: 2a5b75dd53c9ba049b58cee4c08cd27e, type: 2}
+      count: 2
+    denyNegativeCount: 1
+  image: {fileID: 21300000, guid: 1d7816d3873964642b00b2d1ff0d09e2, type: 3}
+  atk: 0
+  meltingPoint: 0
+  boilingPoint: 0
+  isPhenomenon: 0
+  isWhat: 0
+  waterSoluble: 0
+  isOre: 0
+  researchSteps: []

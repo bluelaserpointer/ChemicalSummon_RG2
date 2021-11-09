@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 6375972918820058046}
   - component: {fileID: 7923122302957346530}
   m_Layer: 5
-  m_Name: get 18 cards
+  m_Name: get 22 cards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,6 +260,8 @@ MonoBehaviour:
       count: 4
     - type: {fileID: 11400000, guid: 97ca178e8f5373a4c9bc5a78b42e0d71, type: 2}
       count: 8
+    - type: {fileID: 11400000, guid: c5cc5343966fb0a44a8f73089c5dc09b, type: 2}
+      count: 4
     denyNegativeCount: 1
 --- !u!1 &7486298858991224002
 GameObject:

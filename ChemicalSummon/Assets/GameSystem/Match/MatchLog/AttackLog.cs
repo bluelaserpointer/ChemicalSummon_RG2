@@ -16,7 +16,7 @@ public class AttackLog : MonoBehaviour
         targetDisplay.SetCard(targetCard);
         attackerText.text = attackerCard.ATK.ToString();
         targetText.text = targetCard.ATK.ToString();
-        logText.text = ChemicalSummonManager.LoadSentence("AttackCard");
+        logText.text = General.LoadSentence("AttackCard");
     }
     public void Set(SubstanceCard attackerCard, Gamer targetGamer)
     {
@@ -24,6 +24,6 @@ public class AttackLog : MonoBehaviour
         targetDisplay.SetGamer(targetGamer);
         attackerText.text = attackerCard.ATK.ToString();
         targetText.text = targetGamer.HP.ToString() + "HP";
-        logText.text = ChemicalSummonManager.LoadSentence("AttackGamer");
+        logText.text = General.LoadSentence("AttackGamer");
     }
 }

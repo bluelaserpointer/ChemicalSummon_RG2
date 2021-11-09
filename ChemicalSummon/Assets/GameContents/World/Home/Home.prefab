@@ -824,6 +824,12 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
         type: 3}
+      propertyPath: cardHeader
+      value: 
+      objectReference: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3,
+        type: 2}
+    - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
+        type: 3}
       propertyPath: generateSpanSec
       value: 6
       objectReference: {fileID: 0}
@@ -905,6 +911,12 @@ PrefabInstance:
     - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
         type: 3}
       propertyPath: substance
+      value: 
+      objectReference: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3,
+        type: 2}
+    - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
+        type: 3}
+      propertyPath: cardHeader
       value: 
       objectReference: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3,
         type: 2}
@@ -996,6 +1008,12 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
         type: 3}
+      propertyPath: cardHeader
+      value: 
+      objectReference: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93,
+        type: 2}
+    - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
+        type: 3}
       propertyPath: generateSpanSec
       value: 6
       objectReference: {fileID: 0}
@@ -1057,7 +1075,7 @@ PrefabInstance:
     - target: {fileID: 8970415700210149296, guid: 9329cb4e77e902149a0d52fcc9455378,
         type: 3}
       propertyPath: m_Name
-      value: H2O_FairySpot
+      value: "\u6C34_FairySpot"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9329cb4e77e902149a0d52fcc9455378, type: 3}
@@ -1077,6 +1095,12 @@ PrefabInstance:
     - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
         type: 3}
       propertyPath: substance
+      value: 
+      objectReference: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3,
+        type: 2}
+    - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
+        type: 3}
+      propertyPath: cardHeader
       value: 
       objectReference: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3,
         type: 2}
@@ -2122,6 +2146,12 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
         type: 3}
+      propertyPath: cardHeader
+      value: 
+      objectReference: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93,
+        type: 2}
+    - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
+        type: 3}
       propertyPath: generateSpanSec
       value: 6
       objectReference: {fileID: 0}
@@ -2183,7 +2213,7 @@ PrefabInstance:
     - target: {fileID: 8970415700210149296, guid: 9329cb4e77e902149a0d52fcc9455378,
         type: 3}
       propertyPath: m_Name
-      value: H2O_FairySpot
+      value: "\u6C34_FairySpot"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9329cb4e77e902149a0d52fcc9455378, type: 3}
@@ -2203,6 +2233,12 @@ PrefabInstance:
     - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
         type: 3}
       propertyPath: substance
+      value: 
+      objectReference: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93,
+        type: 2}
+    - target: {fileID: 1104892798911807568, guid: 9329cb4e77e902149a0d52fcc9455378,
+        type: 3}
+      propertyPath: cardHeader
       value: 
       objectReference: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93,
         type: 2}
@@ -2269,7 +2305,7 @@ PrefabInstance:
     - target: {fileID: 8970415700210149296, guid: 9329cb4e77e902149a0d52fcc9455378,
         type: 3}
       propertyPath: m_Name
-      value: H2O_FairySpot
+      value: "\u6C34_FairySpot"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9329cb4e77e902149a0d52fcc9455378, type: 3}

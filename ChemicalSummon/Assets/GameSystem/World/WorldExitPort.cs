@@ -22,7 +22,7 @@ public class WorldExitPort : StepInListener
     {
         if (transform.root.Equals(this))
             return;
-        string gameObjectName = ">>" + (dst == null ? "?" : dst.World.name);
+        string gameObjectName = ">>" + (dst?.World?.name ?? "?");
         if (idso != null)
             gameObjectName += " - " + idso.name;
         gameObject.name = gameObjectName;

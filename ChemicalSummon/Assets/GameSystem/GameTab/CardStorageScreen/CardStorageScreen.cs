@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class CardStorageScreen : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField]
-    CardInfoDisplay cardInfoDisplay;
+    CardPreview cardPreview;
 
     [SerializeField]
     Transform cardListTransform;
@@ -16,13 +16,13 @@ public class CardStorageScreen : MonoBehaviour, IPointerDownHandler
 
     public void Init()
     {
-        cardInfoDisplay.gameObject.SetActive(false);
+        cardPreview.gameObject.SetActive(false);
         cardListTransform.DestroyAllChildren();
-        foreach(var subtanceStack in PlayerSave.SubstanceStorage)
+        foreach(var cardHeaderStack in PlayerSave.CardStorage)
         {
-            GameObject anchorObject = new GameObject(subtanceStack.type.chemicalSymbol + " anchor", typeof(RectTransform));
+            GameObject anchorObject = new GameObject(cardHeaderStack.type.name + " anchor", typeof(RectTransform));
             anchorObject.transform.SetParent(cardListTransform); //anchor protects card scale from grid layout arranging
-            SubstanceCard card = SubstanceCard.GenerateSubstanceCard(subtanceStack.type, subtanceStack.count);
+            Card card = cardHeaderStack.type.GenerateCard(cardHeaderStack.count);
             card.transform.SetParent(anchorObject.transform);
             card.SetDraggable(false);
             card.transform.localScale = cardScale * Vector3.one;
@@ -36,20 +36,17 @@ public class CardStorageScreen : MonoBehaviour, IPointerDownHandler
         {
             GameObject obj = rayResult.gameObject;
             //if it is CardInfoDisplay
-            if (obj.GetComponent<CardInfoDisplay>() != null)
+            if (obj.GetComponent<CardPreview>() != null)
                 return; //keep info display shown
             //if it is card
-            SubstanceCard card = obj.GetComponent<SubstanceCard>();
+            Card card = obj.GetComponent<Card>();
             if (card != null)
             {
                 if (eventData.button == PointerEventData.InputButton.Left)
-                {
-                    cardInfoDisplay.gameObject.SetActive(true);
-                    cardInfoDisplay.SetSubstance(card.Substance);
-                }
+                    cardPreview.SetCardHeader(card.Header);
                 return;
             }
-            cardInfoDisplay.gameObject.SetActive(false);
+            cardPreview.gameObject.SetActive(false);
         }
     }
 }

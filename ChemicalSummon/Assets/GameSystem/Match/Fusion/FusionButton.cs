@@ -35,7 +35,7 @@ public class FusionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void SetReaction(Reaction reaction, bool isCounter = false)
     {
         Reaction = reaction;
-        formulaText.text = Reaction.description;
+        formulaText.text = Reaction.formula;
         iconsTf.DestroyAllChildren();
         if (isCounter)
             Instantiate(counterIconPrefab, iconsTf);

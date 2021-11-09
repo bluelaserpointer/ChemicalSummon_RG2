@@ -19,8 +19,8 @@ public class NoFusionAI : EnemyAI
         OnFusionTurnLoop(0);
     }
     protected readonly Queue<Substance> aboutToSummonSubstances = new Queue<Substance>();
-    protected readonly List<CardSlot> lestEmptySlots = new List<CardSlot>();
-    protected readonly List<CardSlot> attackedSlot = new List<CardSlot>();
+    protected readonly List<ShieldCardSlot> lestEmptySlots = new List<ShieldCardSlot>();
+    protected readonly List<ShieldCardSlot> attackedSlot = new List<ShieldCardSlot>();
     public virtual void TakeBackCardsAction(int step)
     {
         ShieldCardSlot[] slots = Field.Slots;
@@ -54,27 +54,18 @@ public class NoFusionAI : EnemyAI
             OnFusionTurnLoop(step + 1);
             return;
         }
-        Substance substance = aboutToSummonSubstances.Dequeue();
-        foreach (ShieldCardSlot slot in lestEmptySlots)
+        Substance aboutToSummonSubstance = aboutToSummonSubstances.Dequeue();
+        foreach (ShieldCardSlot eachSlot in lestEmptySlots)
         {
-            if (!substance.GetStateInTempreture(slot.Tempreture).Equals(ThreeState.Solid))
+            if (!aboutToSummonSubstance.GetStateInTempreture(eachSlot.Tempreture).Equals(ThreeState.Solid))
                 continue;
-            lestEmptySlots.Remove(slot);
+            lestEmptySlots.Remove(eachSlot);
             Enemy.AddEnemyAction(() =>
             {
-                foreach(SubstanceCard card in new List<SubstanceCard>(HandCards))
+                foreach(SubstanceCard handCard in new List<Card>(HandCards))
                 {
-                    if(card.Substance.Equals(substance))
-                    {
-                        SubstanceCard placedCard = slot.Card;
-                        if (placedCard != null)
-                            placedCard.UnionSameCard(card);
-                        else
-                        {
-                            Enemy.RemoveHandCard(card);
-                            slot.SlotSet(card);
-                        }
-                    }
+                    if(handCard.Substance.Equals(aboutToSummonSubstance))
+                        eachSlot.SetMainCard(handCard);
                 }
                 PlaceCardsAction(step);
             });
@@ -111,7 +102,7 @@ public class NoFusionAI : EnemyAI
         {
             slot.HideAttackButton();
             if (!slot.IsEmpty)
-                slot.Card.SetAlpha(1F);
+                slot.MainCard.SetAlpha(1F);
         }
         if (MatchManager.IsMatchFinish)
         {
@@ -121,17 +112,17 @@ public class NoFusionAI : EnemyAI
         {
             foreach (ShieldCardSlot slot in slots)
             {
-                if (slot.IsEmpty || slot.Card.DenideAttack || attackedSlot.Contains(slot))
+                if (slot.IsEmpty || slot.MainCard.DenideAttack || attackedSlot.Contains(slot))
                     continue;
                 attackedSlot.Add(slot);
                 slot.ShowAttackButton();
                 foreach (ShieldCardSlot notAttackingSlot in slots)
                 {
                     if (!notAttackingSlot.Equals(slot) && !notAttackingSlot.IsEmpty)
-                        notAttackingSlot.Card.SetAlpha(0.5F);
+                        notAttackingSlot.MainCard.SetAlpha(0.5F);
                 }
-                MatchManager.MatchLogDisplay.AddDeclareAttackLog(slot.Card);
-                MatchManager.Player.Defense(slot.Card);
+                MatchManager.MatchLogDisplay.AddDeclareAttackLog(slot.MainCard);
+                MatchManager.Player.Defense(slot.MainCard);
                 return;
             }
             //no more slot can attack
@@ -156,7 +147,7 @@ public class NoFusionAI : EnemyAI
         SubstanceCard subCandidateCard = null;
         foreach (var slot in Enemy.Field.Slots)
         {
-            SubstanceCard card = slot.Card;
+            SubstanceCard card = slot.MainCard;
             if (card == null || card.Equals(candidateCard))
                 continue;
             if (subCandidateCard == null || card.ATK > subCandidateCard.ATK)

@@ -23,7 +23,7 @@ public class PlayerSave : MonoBehaviour
     public void OnFirstInit() //refered by DontDestroyOnLoad
     {
         instance = this;
-        ChemicalSummonManager.UpdateAllSentence();
+        General.UpdateAllSentence();
         InitSaveData();
     }
     //inspector
@@ -36,7 +36,7 @@ public class PlayerSave : MonoBehaviour
     [SerializeField]
     TypeAndCountList<Item> itemStorage;
     [SerializeField]
-    TypeAndCountList<Substance> substanceStorage;
+    TypeAndCountList<CardHeader> initialCardStorage;
     [SerializeField]
     List<Reaction> discoveredReactions;
     [SerializeField]
@@ -81,7 +81,7 @@ public class PlayerSave : MonoBehaviour
     public static Vector3 lastWorldPlayerPosition;
     public static Quaternion lastWorldPlayerRotation;
     public static TypeAndCountList<Item> ItemStorage => Instance.itemStorage;
-    public static TypeAndCountList<Substance> SubstanceStorage => Instance.substanceStorage;
+    public static TypeAndCountList<CardHeader> CardStorage => Instance.initialCardStorage;
     /// <summary>
     /// 可用的游戏者
     /// </summary>
@@ -97,11 +97,11 @@ public class PlayerSave : MonoBehaviour
     /// 新发现的反应式
     /// </summary>
     public static List<Reaction> NewDicoveredReactions => Instance.newDiscoveredReactions;
-    List<Substance> discoveredSubstances = new List<Substance>();
+    List<CardHeader> discoveredCards = new List<CardHeader>();
     /// <summary>
     /// 已发现的物质
     /// </summary>
-    public static List<Substance> DiscoveredSubstances => Instance.discoveredSubstances;
+    public static List<CardHeader> DiscoveredSubstances => Instance.discoveredCards;
     /// <summary>
     /// 选定的游戏者
     /// </summary>
@@ -154,12 +154,12 @@ public class PlayerSave : MonoBehaviour
     public void InitSaveData()
     {
         hasLastWorldPositionSave = false;
-        initialDeck.name = ChemicalSummonManager.LoadSentence("Initiater");
+        initialDeck.name = General.LoadSentence("Initiater");
         savedDecks.Add(initialDeck);
         activeDeck = initialDeck;
-        foreach(var substanceStack in SubstanceStorage)
+        foreach(var substanceStack in CardStorage)
         {
-            discoveredSubstances.Add(substanceStack.type);
+            discoveredCards.Add(substanceStack.type);
         }
     }
     private void Update()
@@ -217,7 +217,7 @@ public class PlayerSave : MonoBehaviour
     public static void StartMatch(Match match)
     {
         Instance.activeMatch = match;
-        if (ChemicalSummonManager.CurrentSceneIsWorld)
+        if (General.CurrentSceneIsWorld)
         {
             hasLastWorldPositionSave = true;
             Transform playerTransform = WorldManager.Player.Model.transform;

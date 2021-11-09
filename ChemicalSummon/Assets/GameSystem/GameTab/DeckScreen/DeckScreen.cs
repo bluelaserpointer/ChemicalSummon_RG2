@@ -17,7 +17,7 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
     Button deckDeleteButton;
 
     [SerializeField]
-    CardInfoDisplay cardInfoDisplay;
+    CardPreview cardPreview;
     [SerializeField]
     List<EchelonDisplay> echelons;
     [SerializeField]
@@ -26,11 +26,11 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
     DeckButton selectingDeckButton;
     Deck SelectingDeck => selectingDeckButton?.deck;
     EchelonDisplay echelonOnEdit;
-    TypeAndCountList<Substance> leftCardsInStorage;
-    public static CardInfoDisplay CardInfoDisplay => WorldManager.DeckScreen.cardInfoDisplay;
+    TypeAndCountList<CardHeader> leftCardsInStorage;
+    public static CardPreview CardPreview => WorldManager.DeckScreen.cardPreview;
     private void Start()
     {
-        CardInfoDisplay.gameObject.SetActive(false);
+        CardPreview.gameObject.SetActive(false);
     }
     public void Init()
     {
@@ -64,7 +64,7 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
     public void CreateNewDeck()
     {
         Deck deck = new Deck();
-        deck.name = ChemicalSummonManager.LoadSentence("NewDeck");
+        deck.name = General.LoadSentence("NewDeck");
         PlayerSave.SavedDecks.Add(deck);
         SelectDeckButton(InstantiateDeckButton(deck));
     }
@@ -82,7 +82,7 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
             eachDeckButton.Lit(eachDeckButton.Equals(deckButton));
         }
         int echelonIndex = 0;
-        leftCardsInStorage = new TypeAndCountList<Substance>(PlayerSave.SubstanceStorage);
+        leftCardsInStorage = new TypeAndCountList<CardHeader>(PlayerSave.CardStorage);
         foreach (var echelonCards in deckButton.deck.Echelons)
         {
             echelons[echelonIndex++].CardPool.Init(echelonCards);
@@ -158,24 +158,24 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
         {
             echelonOnEdit = echelon;
             EndDeleteDeckRecheck();
-            deckDeleteButton.GetComponentInChildren<Text>().text = ChemicalSummonManager.LoadSentence("Clear");
+            deckDeleteButton.GetComponentInChildren<Text>().text = General.LoadSentence("Clear");
             echelon.StartEdit();
             foreach (var each in echelons)
             {
                 if (!each.Equals(echelon))
                     each.gameObject.SetActive(false);
             }
-            TypeAndCountList<Substance> addableSubstances = new TypeAndCountList<Substance>();
+            TypeAndCountList<CardHeader> addableCards = new TypeAndCountList<CardHeader>();
             foreach(var substanceStack in leftCardsInStorage)
             {
-                if(substanceStack.type.echelon <= echelon.NameIndex)
+                if(substanceStack.type.rank <= echelon.NameIndex)
                 {
-                    addableSubstances.Add(substanceStack);
+                    addableCards.Add(substanceStack);
                 }
             }
             storageCardPool.gameObject.SetActive(true);
-            storageCardPool.capacity = PlayerSave.SubstanceStorage.TotalCount();
-            storageCardPool.Init(addableSubstances);
+            storageCardPool.capacity = PlayerSave.CardStorage.TotalCount();
+            storageCardPool.Init(addableCards);
         }
         else
         {
@@ -190,7 +190,7 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
             echelonOnEdit = null;
         }
         EndDeleteDeckRecheck();
-        deckDeleteButton.GetComponentInChildren<Text>().text = ChemicalSummonManager.LoadSentence("Delete");
+        deckDeleteButton.GetComponentInChildren<Text>().text = General.LoadSentence("Delete");
         foreach (var each in echelons)
         {
             each.gameObject.SetActive(true);
@@ -206,17 +206,14 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
         {
             GameObject obj = rayResult.gameObject;
             //if it is CardInfoDisplay
-            if (obj.GetComponent<CardInfoDisplay>() != null)
+            if (obj.GetComponent<CardPreview>() != null)
                 return; //keep info display shown
             //if it is card
-            SubstanceCard card = obj.GetComponent<SubstanceCard>();
+            Card card = obj.GetComponent<Card>();
             if(card != null)
             {
                 if (eventData.button == PointerEventData.InputButton.Left)
-                {
-                    CardInfoDisplay.gameObject.SetActive(true);
-                    CardInfoDisplay.SetSubstance(card.Substance);
-                }
+                    CardPreview.SetCardHeader(card.Header);
                 else if (eventData.button == PointerEventData.InputButton.Right)
                 {
                     if (echelonOnEdit != null)
@@ -224,23 +221,23 @@ public class DeckScreen : MonoBehaviour, IPointerDownHandler
                         CardPoolDisplay belongCardPool = card.transform.GetComponentInParent<CardPoolDisplay>();
                         if (belongCardPool.Equals(storageCardPool))
                         {
-                            echelonOnEdit.CardPool.AddCard(card.Substance);
-                            SelectingDeck.Echelons[echelonOnEdit.ArrayIndex].Add(card.Substance);
+                            echelonOnEdit.CardPool.AddCard(card.Header);
+                            SelectingDeck.Echelons[echelonOnEdit.ArrayIndex].Add(card.Header);
                             storageCardPool.RemoveOneCard(card);
-                            leftCardsInStorage.Remove(card.Substance);
+                            leftCardsInStorage.Remove(card.Header);
                         }
                         else if (belongCardPool.Equals(echelonOnEdit.CardPool))
                         {
-                            storageCardPool.AddCard(card.Substance);
-                            leftCardsInStorage.Add(card.Substance);
-                            SelectingDeck.Echelons[echelonOnEdit.ArrayIndex].Remove(card.Substance);
+                            storageCardPool.AddCard(card.Header);
+                            leftCardsInStorage.Add(card.Header);
+                            SelectingDeck.Echelons[echelonOnEdit.ArrayIndex].Remove(card.Header);
                             echelonOnEdit.CardPool.RemoveOneCard(card);
                         }
                     }
                 }
                 return;
             }
-            CardInfoDisplay.gameObject.SetActive(false);
+            CardPreview.gameObject.SetActive(false);
         }
     }
 }

@@ -9,6 +9,6 @@ public class EchelonPhaseLog : MonoBehaviour
 
     public void Set(int echelonPhase)
     {
-        logText.text = ChemicalSummonManager.LoadSentence("EchelonPhase") + " " + RomanNumerals.convert(echelonPhase);
+        logText.text = General.LoadSentence("EchelonPhase") + " " + RomanNumerals.convert(echelonPhase);
     }
 }

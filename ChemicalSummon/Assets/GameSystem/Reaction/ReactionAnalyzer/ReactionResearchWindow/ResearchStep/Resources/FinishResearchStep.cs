@@ -13,7 +13,7 @@ public class FinishResearchStep : ResearchStep
 
     public override void OnReach()
     {
-        formulaText.text = Reaction.description;
+        formulaText.text = Reaction.formula;
         PlayerSave.AddDiscoveredReaction(Reaction);
         WorldManager.ReactionScreen.Init();
         bool hasNewSubstance = false;

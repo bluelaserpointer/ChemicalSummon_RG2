@@ -40,7 +40,7 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
     {
         slots.ForEach(slot => slot.DestroyTop());
         playerStorage.Clear();
-        foreach (var eachCard in PlayerSave.SubstanceStorage)
+        foreach (var eachCard in PlayerSave.CardStorage)
         {
             playerStorage.AddCard(eachCard.type, eachCard.count);
         }
@@ -53,7 +53,7 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
         string puttedSubstancesStr = "";
         foreach(CardSlot slot in slots)
         {
-            SubstanceCard card = slot.Card;
+            SubstanceCard card = slot.TopCard as SubstanceCard;
             if (card != null)
             {
                 puttedSubstances.Add(card.Substance, card.CardAmount);
@@ -61,11 +61,11 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
                     puttedSubstancesStr += " + ";
                 if (card.CardAmount > 1)
                     puttedSubstancesStr += card.CardAmount;
-                puttedSubstancesStr += card.Symbol;
+                puttedSubstancesStr += card.Formula;
             }
         }
         if(puttedSubstancesStr.Length == 0)
-            reactionText.text = ChemicalSummonManager.LoadSentence("PleaseSetCards");
+            reactionText.text = General.LoadSentence("PleaseSetCards");
         else
             reactionText.text = puttedSubstancesStr + " == ?";
         int nearEqReactionCount = 0;
@@ -109,14 +109,14 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
             displayingReaction = nearestEqReaction;
             if (PlayerSave.DiscoveredReactions.Contains(nearestEqReaction))
             {
-                messageText.text = ChemicalSummonManager.LoadSentence("AlreadyHadReaction");
+                messageText.text = General.LoadSentence("AlreadyHadReaction");
                 magicCircleImage.color = magicCircleAlreadyHadColor;
                 fusionButton.interactable = true;
                 reactionText.text = displayingReaction.name;
             }
             else
             {
-                messageText.text = ChemicalSummonManager.LoadSentence("NewReactionFound");
+                messageText.text = General.LoadSentence("NewReactionFound");
                 magicCircleImage.color = magiCircleDiscoverNewColor;
                 researchButton.interactable = true;
             }
@@ -126,24 +126,24 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
             {
                 if(discoveredNearEqReactionCount == 0)
                 {
-                    messageText.text = ChemicalSummonManager.LoadSentence("AlmostDiscoverReaction");
+                    messageText.text = General.LoadSentence("AlmostDiscoverReaction");
                     magicCircleImage.color = magicCircleAlmostDiscoverColor;
                 }
                 else
                 {
-                    messageText.text = ChemicalSummonManager.LoadSentence("AlmostDiscoverAnotherReaction");
+                    messageText.text = General.LoadSentence("AlmostDiscoverAnotherReaction");
                     magicCircleImage.color = magicCircleAlmostDiscoverColor;
                 }
             }
             else
             {
-                messageText.text = ChemicalSummonManager.LoadSentence("CombinationAlreadyResearched");
+                messageText.text = General.LoadSentence("CombinationAlreadyResearched");
                 magicCircleImage.color = magicCircleAlreadyHadColor;
             }
         }
         else
         {
-            messageText.text = ChemicalSummonManager.LoadSentence("NotValidReaction");
+            messageText.text = General.LoadSentence("NotValidReaction");
             magicCircleImage.color = magicCircleNotValidColor;
         }
     }
@@ -155,13 +155,13 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
         {
             GameObject obj = rayResult.gameObject;
             //if it is CardInfoDisplay
-            if (obj.GetComponent<CardInfoDisplay>() != null)
+            if (obj.GetComponent<CardPreview>() != null)
                 return; //keep info display shown
             //if it is card
             SubstanceCard card = obj.GetComponent<SubstanceCard>();
             if (card != null)
             {
-                CardSlot slot = slots.Find(each => card.Equals(each.Card));
+                CardSlot slot = slots.Find(each => card.Equals(each.TopCard));
                 if(slot != null)
                 {
                     playerStorage.AddCard(card.Substance, 1);
@@ -178,10 +178,10 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
                 {
                     foreach (CardSlot eachSlot in slots)
                     {
-                        SubstanceCard slotCard = eachSlot.Card;
+                        SubstanceCard slotCard = eachSlot.TopCard as SubstanceCard;
                         if (slotCard == null)
                         {
-                            SubstanceCard newCard = SubstanceCard.GenerateSubstanceCard(card.Substance, 1);
+                            SubstanceCard newCard = card.Substance.GenerateSubstanceCard();
                             newCard.SetDraggable(false);
                             newCard.transform.position = card.transform.position;
                             eachSlot.SlotSet(newCard, OnCardsChange);
@@ -190,13 +190,13 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
                         }
                         else if (slotCard.IsSameSubstance(card))
                         {
-                            SubstanceCard newCard = SubstanceCard.GenerateSubstanceCard(card.Substance, 1);
-                            newCard.transform.SetParent(ChemicalSummonManager.MainCanvas.transform);
+                            SubstanceCard newCard = card.Substance.GenerateSubstanceCard();
+                            newCard.transform.SetParent(General.MainCanvas.transform);
                             newCard.SetDraggable(false);
                             newCard.transform.position = card.transform.position;
                             newCard.TracePosition(slotCard.transform, () =>
                             {
-                                slotCard.UnionSameCard(newCard);
+                                slotCard.TryUnion(newCard);
                                 OnCardsChange();
                             });
                             playerStorage.RemoveOneCard(card);
@@ -215,8 +215,8 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
     }
     public void FusionReaction()
     {
-        PlayerSave.SubstanceStorage.RemoveAll(displayingReaction.leftSubstances);
-        PlayerSave.SubstanceStorage.AddAll(displayingReaction.rightSubstances);
+        PlayerSave.CardStorage.RemoveAll(displayingReaction.leftSubstances);
+        PlayerSave.CardStorage.AddAll(displayingReaction.rightSubstances);
         Init();
     }
 }

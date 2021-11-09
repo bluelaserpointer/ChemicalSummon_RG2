@@ -12,7 +12,7 @@ using UnityEngine.UI;
 ///  , 管理回合
 /// </summary>
 [DisallowMultipleComponent]
-public class MatchManager : ChemicalSummonManager, IPointerDownHandler
+public class MatchManager : General, IPointerDownHandler
 {
     public static MatchManager Instance { get; protected set; }
     //inspector
@@ -28,7 +28,7 @@ public class MatchManager : ChemicalSummonManager, IPointerDownHandler
 
     [Header("Info")]
     [SerializeField]
-    CardInfoDisplay cardInfoDisplay;
+    CardPreview cardPreview;
     [SerializeField]
     FusionPanelButton fusionPanel;
     [SerializeField]
@@ -120,7 +120,7 @@ public class MatchManager : ChemicalSummonManager, IPointerDownHandler
     /// <summary>
     /// 卡牌信息栏
     /// </summary>
-    public static CardInfoDisplay CardInfoDisplay => Instance.cardInfoDisplay;
+    public static CardPreview CardPreview => Instance.cardPreview;
     /// <summary>
     /// 融合列表
     /// </summary>
@@ -366,10 +366,10 @@ public class MatchManager : ChemicalSummonManager, IPointerDownHandler
         {
             GameObject obj = rayResult.gameObject;
             //if it is CardInfoDisplay
-            if (obj.GetComponent<CardInfoDisplay>() != null)
+            if (obj.GetComponent<CardPreview>() != null)
                 return; //keep info display shown
             //if it is card
-            SubstanceCard card = obj.GetComponent<SubstanceCard>();
+            Card card = obj.GetComponent<Card>();
             if (card != null)
             {
                 if (Player.TrySelectSlotEvent(card.Slot))
@@ -379,7 +379,7 @@ public class MatchManager : ChemicalSummonManager, IPointerDownHandler
                 //set card info display
                 if (card.InField || card.IsMySide && card.InGamerHandCards)
                 {
-                    CardInfoDisplay.SetCard(card);
+                    CardPreview.SetCard(card);
                     return;
                 }
                 continue;
@@ -395,7 +395,7 @@ public class MatchManager : ChemicalSummonManager, IPointerDownHandler
                 continue;
             }
         }
-        CardInfoDisplay.gameObject.SetActive(false);
+        CardPreview.gameObject.SetActive(false);
     }
     //sounds
     public static void PlaySE(string seResourcePass)
@@ -459,7 +459,7 @@ public class MatchManager : ChemicalSummonManager, IPointerDownHandler
         tracer.AddReachAction(reachAction);
         tracer.StartAnimation();
     }
-    public static void StartDrawCardAnimation(SubstanceCard substanceCard)
+    public static void StartDrawCardAnimation(Card substanceCard)
     {
         DrawCardAnchor anchor = Instantiate(Instance.drawCardAnchorPrefab, Instance.drawCardAnchorParent);
         anchor.SetCard(substanceCard);

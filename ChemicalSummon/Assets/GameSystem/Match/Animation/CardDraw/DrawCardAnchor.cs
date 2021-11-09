@@ -6,31 +6,29 @@ public class DrawCardAnchor : MonoBehaviour
     [SerializeField]
     Transform cardCarrier;
 
-    SubstanceCard substanceCard;
+    Card card;
 
-    public SubstanceCard Card => substanceCard;
-
-    public void SetCard(SubstanceCard substanceCard)
+    public void SetCard(Card card)
     {
-        this.substanceCard = substanceCard;
-        substanceCard.transform.SetParent(cardCarrier);
-        substanceCard.SkipMovingAnimation();
-        if(substanceCard.location.Equals(CardTransport.Location.MyDeck))
+        this.card = card;
+        card.transform.SetParent(cardCarrier);
+        card.SkipMovingAnimation();
+        if(card.location.Equals(CardTransport.Location.MyDeck))
         {
-            substanceCard.TracePosition(transform);
-            substanceCard.transform.localRotation = Quaternion.identity;
+            card.TracePosition(transform);
+            card.transform.localRotation = Quaternion.identity;
         }
         else
         {
-            substanceCard.transform.localPosition = Vector3.zero;
-            substanceCard.transform.localRotation = Quaternion.identity;
+            card.transform.localPosition = Vector3.zero;
+            card.transform.localRotation = Quaternion.identity;
         }
     }
     public void OnAnimationEnd()
     {
-        substanceCard.transform.SetParent(MatchManager.Instance.transform); //prevent destroy children before animation play
-        substanceCard.location = CardTransport.Location.MyHandCard;
-        MatchManager.Player.AddHandCard(substanceCard);
+        card.transform.SetParent(MatchManager.Instance.transform); //prevent destroy children before animation play
+        card.location = CardTransport.Location.MyHandCard;
+        MatchManager.Player.AddHandCard(card);
         Destroy(gameObject);
     }
 }

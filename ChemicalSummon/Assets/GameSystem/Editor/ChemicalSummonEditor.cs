@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
@@ -42,7 +43,7 @@ public static class ChemicalSummonEditor
                 itemHeader.description.PutSentence_EmptyStrMeansRemove(Language.Japanese, rowData[6].ToString());
                 if (newCreated)
                 {
-                    AssetDatabase.CreateAsset(itemHeader, @"Assets/GameContents/Resources/ItemHeader/" + itemHeaderFileName + ".asset");
+                    AssetDatabase.CreateAsset(itemHeader, General.ResourcePath.Absolute + General.ResourcePath.Item + itemHeaderFileName + ".asset");
                     ++newCreatedCount;
                 }
                 else
@@ -91,7 +92,7 @@ public static class ChemicalSummonEditor
                 stageHeader.description.PutSentence_EmptyStrMeansRemove(Language.English, rowData[4].ToString());
                 if (newCreated)
                 {
-                    AssetDatabase.CreateAsset(stageHeader, @"Assets/GameContents/Resources/StageHeader/" + stageHeaderID + ".asset");
+                    AssetDatabase.CreateAsset(stageHeader, General.ResourcePath.Absolute + General.ResourcePath.Stage + stageHeaderID + ".asset");
                     ++newCreatedCount;
                 }
                 else
@@ -135,7 +136,7 @@ public static class ChemicalSummonEditor
                 sentence.sentence.PutSentence_EmptyStrMeansRemove(Language.Japanese, rowData[3].ToString());
                 if (newCreated)
                 {
-                    AssetDatabase.CreateAsset(sentence, @"Assets/GameContents/Resources/TranslatableSentence/" + sentenceName + ".asset");
+                    AssetDatabase.CreateAsset(sentence, General.ResourcePath.Absolute + "TranslatableSentence/" + sentenceName + ".asset");
                     ++newCreatedCount;
                 }
                 else
@@ -178,6 +179,22 @@ public static class ChemicalSummonEditor
             Character.SpeakType speakType = (Character.SpeakType)Enum.Parse(typeof(Character.SpeakType), firstRow[i].ToString());
             colSpeakType.Add(speakType);
         }
+        Action saveCharacter = () =>
+        {
+            if (character != null) //save last character
+            {
+                if (newCreated)
+                {
+                    AssetDatabase.CreateAsset(character, General.ResourcePath.Absolute + General.ResourcePath.Character + characterName + ".asset");
+                    ++newCreatedCount;
+                }
+                else
+                {
+                    EditorUtility.SetDirty(character);
+                    ++updatedCount;
+                }
+            }
+        };
         for (int row = 0; row < rows; row++)
         {
             DataRow rowData = table.Rows[row];
@@ -185,19 +202,7 @@ public static class ChemicalSummonEditor
             string header = rowData[0].ToString();
             if (!Enum.TryParse(header, out language)) //new character block
             {
-                if(character != null) //save last character
-                {
-                    if (newCreated)
-                    {
-                        AssetDatabase.CreateAsset(character, @"Assets/GameContents/Resources/Chemical/Character/" + characterName + ".asset");
-                        ++newCreatedCount;
-                    }
-                    else
-                    {
-                        EditorUtility.SetDirty(character);
-                        ++updatedCount;
-                    }
-                }
+                saveCharacter.Invoke();
                 character = Character.GetByName(header);
                 character.name.defaultString = characterName = header;
                 newCreated = character == null;
@@ -233,22 +238,10 @@ public static class ChemicalSummonEditor
                 }
             }
             character.initialHP = 65;
-            character.faceIcon = Resources.Load<Sprite>("Character/FaceIcon/" + characterName);
-            character.portrait = Resources.Load<Sprite>("Character/Portrait/" + characterName);
+            character.faceIcon = Resources.Load<Sprite>(General.ResourcePath.Character + "FaceIcon/" + characterName);
+            character.portrait = Resources.Load<Sprite>(General.ResourcePath.Character + "Portrait/" + characterName);
         }
-        if (character != null) //save last character
-        {
-            if (newCreated)
-            {
-                AssetDatabase.CreateAsset(character, @"Assets/GameContents/Resources/Chemical/Character/" + characterName + ".asset");
-                ++newCreatedCount;
-            }
-            else
-            {
-                EditorUtility.SetDirty(character);
-                ++updatedCount;
-            }
-        }
+        saveCharacter.Invoke(); //save last character
         AssetDatabase.SaveAssets(); //存储资源
         AssetDatabase.Refresh(); //刷新
         Debug.Log("CharacterAssetsCreated. updatedCount: " + updatedCount + ", newCreated: " + newCreatedCount);
@@ -271,15 +264,15 @@ public static class ChemicalSummonEditor
             for (int row = 1; row < rows; row++)
             {
                 DataRow rowData = table.Rows[row];
-                string reactionName = rowData[0].ToString();
-                Reaction reaction = Reaction.GetByName(reactionName);
+                string formulaStr = rowData[0].ToString();
+                Reaction reaction = Reaction.LoadFromResources(formulaStr);
                 bool newCreated = reaction == null;
                 if (newCreated)
                 {
                     reaction = ScriptableObject.CreateInstance<Reaction>();
                 }
-                reaction.description = reactionName;
-                string[] strs = reactionName.Split('=');
+                reaction.formula = formulaStr;
+                string[] strs = formulaStr.Split('=');
                 reaction.leftSubstances = StrToSubstanceAndAmount(strs[0]);
                 reaction.catalysts = StrToSubstanceAndAmount(strs[1]);
                 reaction.rightSubstances = StrToSubstanceAndAmount(strs[2]);
@@ -291,7 +284,7 @@ public static class ChemicalSummonEditor
                 reaction.electric = ToInt(rowData[5].ToString());
                 if (newCreated)
                 {
-                    AssetDatabase.CreateAsset(reaction, @"Assets/GameContents/Resources/Chemical/Reaction/" + reactionName + ".asset");
+                    AssetDatabase.CreateAsset(reaction, General.ResourcePath.Absolute + General.ResourcePath.Reaction + Substance.RemoveFormulaCaseConflict(formulaStr) + ".asset");
                     ++newCreatedCount;
                 }
                 else
@@ -334,7 +327,7 @@ public static class ChemicalSummonEditor
                     continue;
                 }
                 string substanceName = row[0].ToString();
-                Substance substance = Substance.GetByName(substanceName);
+                Substance substance = Substance.LoadFromResources(substanceName);
                 bool newCreated = substance == null;
                 if (newCreated)
                 {
@@ -344,7 +337,7 @@ public static class ChemicalSummonEditor
                 {
                     substance.elements.Clear();
                 }
-                substance.chemicalSymbol = substanceName;
+                substance.formula = substanceName;
                 //analyze compounds from molecular name
                 string molecularStr = row[1].ToString();
                 if (molecularStr.Length == 0) //when structual name and molecular name are same
@@ -409,9 +402,9 @@ public static class ChemicalSummonEditor
                     AvoidNull(Element.GetByNameWithWarn(tmpElementName), element => substance.elements.Add(element, ToInt(lastLetter)));
                     substance.isPhenomenon = false;
                 }
-                substance.echelon = ToInt(row[2].ToString());
-                if (substance.echelon == 0)
-                    substance.echelon = 3;
+                substance.rank = ToInt(row[2].ToString());
+                if (substance.rank == 0)
+                    substance.rank = 3;
                 substance.atk = ToInt(row[3].ToString());
                 substance.meltingPoint = ToInt(row[4].ToString());
                 substance.boilingPoint = ToInt(row[5].ToString());
@@ -419,21 +412,18 @@ public static class ChemicalSummonEditor
                 substance.name.PutSentence_EmptyStrMeansRemove(Language.Chinese, row[6].ToString());
                 substance.name.PutSentence_EmptyStrMeansRemove(Language.Japanese, row[7].ToString());
                 substance.name.PutSentence_EmptyStrMeansRemove(Language.English, row[8].ToString());
-                substance.abilities = CardAbility.GetBySubstanceName(substanceName);
+                substance.abilityPrefab = CardAbility.LoadFromResources(substanceName);
                 substance.description.defaultString = "";
                 substance.description.PutSentence_EmptyStrMeansRemove(Language.Chinese, row[9].ToString());
                 substance.description.PutSentence_EmptyStrMeansRemove(Language.Japanese, row[10].ToString());
                 substance.description.PutSentence_EmptyStrMeansRemove(Language.English, row[11].ToString());
-                substance.image = Resources.Load<Sprite>("Chemical/Sprites/" + substanceName);
+                string substanceNameWithoutCaseConflict = Substance.RemoveFormulaCaseConflict(substanceName);
+                substance.image = Resources.Load<Sprite>(General.ResourcePath.CardSprite + substanceNameWithoutCaseConflict);
                 if (substance.image == null)
-                    noImageSubstancesName.Add(substance.chemicalSymbol);
+                    noImageSubstancesName.Add(substance.formula);
                 if (newCreated)
                 {
-                    Substance caseConflictSubstance = Resources.Load<Substance>("Chemical/Substance/" + substanceName);
-                    if(caseConflictSubstance == null)
-                        AssetDatabase.CreateAsset(substance, @"Assets/GameContents/Resources/Chemical/Substance/" + substanceName + ".asset");
-                    else
-                        AssetDatabase.CreateAsset(substance, @"Assets/GameContents/Resources/Chemical/Substance/AvoidCaseConflict/" + substanceName + ".asset");
+                     AssetDatabase.CreateAsset(substance, General.ResourcePath.Absolute + General.ResourcePath.Substance + substanceNameWithoutCaseConflict + ".asset");
                     ++newCreatedCount;
                 }
                 else
@@ -472,7 +462,7 @@ public static class ChemicalSummonEditor
         {
             DataRow rowData = table.Rows[row];
             string elementName = rowData[0].ToString();
-            Element element = Element.GetByName(elementName);
+            Element element = Element.LoadFromResources(elementName);
             bool newCreated = element == null;
             if (newCreated)
             {
@@ -487,7 +477,7 @@ public static class ChemicalSummonEditor
             element.name.PutSentence_EmptyStrMeansRemove(Language.English, rowData[5].ToString());
             if (newCreated)
             {
-                AssetDatabase.CreateAsset(element, @"Assets/GameContents/Resources/Chemical/Element/" + elementName + ".asset");
+                AssetDatabase.CreateAsset(element, General.ResourcePath.Absolute + General.ResourcePath.Element + elementName + ".asset");
                 ++newCreatedCount;
             }
             else
@@ -499,6 +489,55 @@ public static class ChemicalSummonEditor
         AssetDatabase.SaveAssets(); //存储资源
         AssetDatabase.Refresh(); //刷新
         Debug.Log("ElementAssetsCreated. updatedCount: " + updatedCount + ", newCreated: " + newCreatedCount);
+    }
+    /// <summary>
+    /// 读取道具标头表自动生成ScriptableObject
+    /// </summary>
+    [MenuItem("ChemicalSummon/Load MagicCard From Excel")]
+    private static void LoadMagicCardExcel()
+    {
+        DataSet result = ReadExcelFromStreamingAsset("MagicCard.xlsx");
+        if (result == null)
+            return;
+        int newCreatedCount = 0;
+        int updatedCount = 0;
+        foreach (DataTable table in result.Tables)
+        {
+            int rows = table.Rows.Count;
+            for (int row = 1; row < rows; row++)
+            {
+                DataRow rowData = table.Rows[row];
+                string magicFileName = rowData[0].ToString();
+                Magic magic = Magic.LoadFromResources(magicFileName);
+                bool newCreated = magic == null;
+                if (newCreated)
+                {
+                    magic = ScriptableObject.CreateInstance<Magic>();
+                }
+                magic.name.defaultString = magicFileName;
+                magic.name.PutSentence_EmptyStrMeansRemove(Language.English, rowData[0].ToString());
+                magic.name.PutSentence_EmptyStrMeansRemove(Language.Chinese, rowData[1].ToString());
+                magic.name.PutSentence_EmptyStrMeansRemove(Language.Japanese, rowData[2].ToString());
+                magic.description.PutSentence_EmptyStrMeansRemove(Language.English, rowData[3].ToString());
+                magic.description.PutSentence_EmptyStrMeansRemove(Language.Chinese, rowData[4].ToString());
+                magic.description.PutSentence_EmptyStrMeansRemove(Language.Japanese, rowData[5].ToString());
+                magic.abilityPrefab = CardAbility.LoadFromResources(magicFileName);
+                magic.image = Resources.Load<Sprite>(General.ResourcePath.CardSprite + magicFileName);
+                if (newCreated)
+                {
+                    AssetDatabase.CreateAsset(magic, General.ResourcePath.Absolute + General.ResourcePath.Magic + magicFileName + ".asset");
+                    ++newCreatedCount;
+                }
+                else
+                {
+                    EditorUtility.SetDirty(magic);
+                    ++updatedCount;
+                }
+            }
+        }
+        AssetDatabase.SaveAssets(); //存储资源
+        AssetDatabase.Refresh(); //刷新
+        Debug.Log("MagicAssetsCreated. updatedCount: " + updatedCount + ", newCreated: " + newCreatedCount);
     }
     private static int ToInt(string str)
     {

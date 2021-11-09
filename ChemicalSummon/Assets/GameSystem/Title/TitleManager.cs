@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class TitleManager : ChemicalSummonManager
+public class TitleManager : General
 {
     public static TitleManager Instance { get; protected set; }
     [SerializeField]
@@ -16,6 +16,6 @@ public class TitleManager : ChemicalSummonManager
     void Awake()
     {
         ManagerInit(Instance = this);
-        versionText.text = "Version " + ChemicalSummonManager.Version;
+        versionText.text = "Version " + General.Version;
     }
 }
