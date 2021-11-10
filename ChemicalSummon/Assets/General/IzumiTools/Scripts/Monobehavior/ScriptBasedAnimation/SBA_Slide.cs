@@ -13,12 +13,16 @@ public class SBA_Slide : SBA_TracePosition
     public bool SlidedOut => slidedOut;
     public void SlideOut()
     {
+        if (slidedOut)
+            return;
         slidedOut = true;
         SetTarget(outPosition);
         StartAnimation();
     }
     public void SlideBack()
     {
+        if (!slidedOut)
+            return;
         slidedOut = false;
         SetTarget(initialPosition);
         StartAnimation();

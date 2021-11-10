@@ -26,6 +26,7 @@ public class FusionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     //data
     public Button Button => button;
+    public Reaction OriginalReaction { get; protected set; }
     public Reaction Reaction { get; protected set; }
 
     private void Awake()
@@ -34,7 +35,7 @@ public class FusionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     public void SetReaction(Reaction reaction, bool isCounter = false)
     {
-        Reaction = reaction;
+        OriginalReaction = Reaction = reaction;
         formulaText.text = Reaction.formula;
         iconsTf.DestroyAllChildren();
         if (isCounter)
@@ -60,7 +61,10 @@ public class FusionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         newSign.gameObject.SetActive(cond);
     }
-
+    public void ApplyEnhancement(FusionEnhancer enhancer)
+    {
+        //TODO: apply enhancements
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(MatchManager.CurrentSceneIsMatch)

@@ -41,6 +41,7 @@ public class CardDrag : Draggable
             foreach (RaycastResult eachResult in raycastResults)
             {
                 GameObject hitUI = eachResult.gameObject;
+                //Field (slot)
                 ShieldCardSlot cardSlot = hitUI.GetComponent<ShieldCardSlot>();
                 if (cardSlot != null)
                 {
@@ -55,8 +56,14 @@ public class CardDrag : Draggable
                         break;
                     }
                 }
-                //TODO: drag to fusion button / panel
+                //Fusion panel set card
+                if(hitUI.Equals(MatchManager.CardDragAreaForOpenReactionList))
+                {
+                    if (MatchManager.OpenReactionListButton.TrySetCard(card))
+                        break;
+                }
             }
+            //back to original place
             //TODO: acctually CurrentSlot always null because transform parent change after drag start. May should redesign this.
             if (CurrentSlot != null)
             {

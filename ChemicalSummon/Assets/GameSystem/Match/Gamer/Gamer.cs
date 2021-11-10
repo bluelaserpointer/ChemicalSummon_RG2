@@ -280,7 +280,7 @@ public abstract class Gamer : MonoBehaviour
             substanceCard.TracePosition(duplicatedCard.transform.position, () =>
             {
                 duplicatedCard.TryUnion(substanceCard);
-                MatchManager.FusionPanel.UpdateList();
+                MatchManager.OpenReactionListButton.UpdateList();
                 OnHandCardsChanged.Invoke();
             });
         }
@@ -294,7 +294,7 @@ public abstract class Gamer : MonoBehaviour
             else
                 HandCardsDisplay.Insert(HandCardsDisplay.cards.IndexOf(duplicatedCard.gameObject) + 1, substanceCard.gameObject);
             substanceCard.SetDraggable(IsMySide);
-            MatchManager.FusionPanel.UpdateList();
+            MatchManager.OpenReactionListButton.UpdateList();
             OnHandCardsChanged.Invoke();
         }
     }
@@ -479,7 +479,7 @@ public abstract class Gamer : MonoBehaviour
             consume.Key.RemoveAmount(consume.Value, Card.DecreaseReason.FusionMaterial);
         }
         //AddHandCard has updatability but also has animation time so we need update at this time
-        MatchManager.FusionPanel.UpdateList();
+        MatchManager.OpenReactionListButton.UpdateList();
         foreach (var pair in method.reaction.rightSubstances)
         {
             SubstanceCard newCard = pair.type.GenerateSubstanceCard();

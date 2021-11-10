@@ -33,6 +33,7 @@ public class ReactionInfoDisplay : MonoBehaviour
             SubstanceCard card = Instantiate(substanceCardPrefab, leftSubstanceListTf);
             card.Substance = each.type;
             card.InitCardAmount(each.count);
+            card.SetDraggable(false);
         }
         foreach (var each in reaction.rightSubstances)
         {

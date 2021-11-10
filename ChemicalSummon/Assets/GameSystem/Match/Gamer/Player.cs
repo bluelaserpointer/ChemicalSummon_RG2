@@ -33,7 +33,7 @@ public class Player : Gamer
     public override void FusionTurnEnd()
     {
         MatchManager.Player.HandCardsDisplay.transform.position -= new Vector3(0, 120, 0);
-        MatchManager.FusionPanel.HideFusionList();
+        MatchManager.OpenReactionListButton.HideFusionList();
     }
     public override void AttackTurnStart()
     {
@@ -72,7 +72,7 @@ public class Player : Gamer
                 EndDefence();
             });
         }
-        MatchManager.FusionPanel.UpdateList();
+        MatchManager.OpenReactionListButton.UpdateList();
     }
     public void EndDefence()
     {

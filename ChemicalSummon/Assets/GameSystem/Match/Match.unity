@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43726882, g: 0.75442445, b: 1.0289904, a: 1}
+  m_IndirectSpecularColor: {r: 0.43714154, g: 0.7543016, b: 1.0289202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -557,7 +557,7 @@ RectTransform:
   - {fileID: 1644933714}
   - {fileID: 797280705}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -797,6 +797,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 263326982}
   m_CullTransparentMesh: 0
+--- !u!1 &264253956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 264253957}
+  - component: {fileID: 264253959}
+  - component: {fileID: 264253958}
+  m_Layer: 5
+  m_Name: (CardDragAreaForOpenReactionList)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &264253957
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264253956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -11.074028}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2121452838}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 707.6387, y: -0.00012207}
+  m_SizeDelta: {x: 504.7126, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &264253958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264253956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &264253959
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264253956}
+  m_CullTransparentMesh: 1
 --- !u!1 &277209061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,7 +1217,7 @@ RectTransform:
   - {fileID: 1541968621}
   - {fileID: 398597110}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1896,7 +1971,7 @@ RectTransform:
   m_Children:
   - {fileID: 1663800492}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2245,7 +2320,7 @@ RectTransform:
   - {fileID: 2001669451}
   - {fileID: 190834156}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2629,7 +2704,7 @@ RectTransform:
   m_Children:
   - {fileID: 1261226496}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2956,7 +3031,7 @@ GameObject:
   - component: {fileID: 810751215}
   - component: {fileID: 810751218}
   m_Layer: 5
-  m_Name: CallFusionListButton
+  m_Name: OpenReactionListButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3101,7 +3176,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 810751213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c8d580fb49b3db458994430586c539b, type: 3}
+  m_Script: {fileID: 11500000, guid: d684d96faf49edb4ea2d097c6f24011d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fusionButtonListSlider: {fileID: 1800758239}
@@ -3997,7 +4072,7 @@ RectTransform:
   - {fileID: 1848947919}
   - {fileID: 1546286148}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4089,7 +4164,7 @@ RectTransform:
   - {fileID: 940512878}
   - {fileID: 646528450}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7543,6 +7618,18 @@ MonoBehaviour:
       m_Calls: []
   initialPosition: {fileID: 127999767}
   outPosition: {fileID: 1551309986}
+--- !u!114 &1800758240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4544787722673404665, guid: 4b78957f4be0aed4393b2f37b948919f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1800758236}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800758238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1dd6a187312a14fb40eb533918c949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1801764507
 GameObject:
   m_ObjectHideFlags: 0
@@ -8495,7 +8582,7 @@ RectTransform:
   - {fileID: 1982576220}
   - {fileID: 1801764508}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8701,7 +8788,7 @@ RectTransform:
   - {fileID: 1599342920}
   - {fileID: 1358815390}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8860,6 +8947,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 264253957}
   - {fileID: 742822861}
   - {fileID: 362160157}
   - {fileID: 651814591}
@@ -8992,7 +9080,8 @@ MonoBehaviour:
   player: {fileID: 2096314129}
   enemy: {fileID: 1198014517}
   cardPreview: {fileID: 1635256116}
-  fusionPanel: {fileID: 810751219}
+  reactionListDisplay: {fileID: 1800758240}
+  openReactionListButton: {fileID: 810751219}
   cardSelectPanel: {fileID: 2132090821}
   fusionDisplay: {fileID: 1644933718}
   matchLogDisplay: {fileID: 742822864}
@@ -9018,6 +9107,7 @@ MonoBehaviour:
   drawCardAnchorPrefab: {fileID: 7709142645193499436, guid: 665ed62195820e346a5e20413444570c,
     type: 3}
   drawCardAnchorParent: {fileID: 1359749068}
+  cardDragAreaForOpenReactionList: {fileID: 264253956}
   clickSE: {fileID: 8300000, guid: a9d8a0075b0b3cb4fbec8e8caed91472, type: 3}
   victorySE: {fileID: 8300000, guid: 44d20c815aa1e4e44a81ad2e5113bfd5, type: 3}
   disableEchelonPhaseChange: 0
@@ -9249,7 +9339,7 @@ PrefabInstance:
     - target: {fileID: 105799540880105182, guid: 22524d9ce93333f4f99f29ef692fb791,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 105799540880105182, guid: 22524d9ce93333f4f99f29ef692fb791,
         type: 3}

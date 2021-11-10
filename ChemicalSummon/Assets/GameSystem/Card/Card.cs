@@ -198,7 +198,7 @@ public abstract class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                     case DecreaseReason.Damage:
                     case DecreaseReason.SkillCost:
                     case DecreaseReason.SkillEffect:
-                        MatchManager.FusionPanel.UpdateList();
+                        MatchManager.OpenReactionListButton.UpdateList();
                         break;
                 }
             }

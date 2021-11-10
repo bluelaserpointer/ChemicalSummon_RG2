@@ -30,7 +30,9 @@ public class MatchManager : General, IPointerDownHandler
     [SerializeField]
     CardPreview cardPreview;
     [SerializeField]
-    FusionPanelButton fusionPanel;
+    ReactionListDisplay reactionListDisplay;
+    [SerializeField]
+    OpenReactionListButton openReactionListButton;
     [SerializeField]
     DecideCardSelectButton cardSelectPanel;
     [SerializeField]
@@ -64,6 +66,10 @@ public class MatchManager : General, IPointerDownHandler
     DrawCardAnchor drawCardAnchorPrefab;
     [SerializeField]
     Transform drawCardAnchorParent;
+
+    [Header("InvisibleArea")]
+    [SerializeField]
+    GameObject cardDragAreaForOpenReactionList;
 
     [Header("SE/BGM")]
     [SerializeField]
@@ -124,7 +130,11 @@ public class MatchManager : General, IPointerDownHandler
     /// <summary>
     /// 融合列表
     /// </summary>
-    public static FusionPanelButton FusionPanel => Instance.fusionPanel;
+    public static ReactionListDisplay ReactionListDisplay => Instance.reactionListDisplay;
+    /// <summary>
+    /// 打开融合列表按钮
+    /// </summary>
+    public static OpenReactionListButton OpenReactionListButton => Instance.openReactionListButton;
     /// <summary>
     /// 卡牌选择列表
     /// </summary>
@@ -165,6 +175,10 @@ public class MatchManager : General, IPointerDownHandler
     /// 卡组阶段
     /// </summary>
     public static int EchelonPhase => Instance.echelonPhase;
+    /// <summary>
+    /// 卡牌挪动至融合按钮的扩张判定
+    /// </summary>
+    public static GameObject CardDragAreaForOpenReactionList => Instance.cardDragAreaForOpenReactionList;
     private void Awake()
     {
         ManagerInit(Instance = this);

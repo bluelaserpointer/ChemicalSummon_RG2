@@ -10,16 +10,16 @@ public class CheckFusionAvaliable : MatchCondition
     }
     public override void StartCheck()
     {
-        MatchManager.FusionPanel.onFusionListUpdate.AddListener(Check);
+        MatchManager.OpenReactionListButton.onFusionListUpdate.AddListener(Check);
         Check();
     }
     private void Check()
     {
-        foreach(var method in MatchManager.FusionPanel.lastAvaliableReactionMethods)
+        foreach(var method in MatchManager.OpenReactionListButton.lastAvaliableReactionMethods)
         {
             if (method.reaction.Equals(reaction))
             {
-                MatchManager.FusionPanel.onFusionListUpdate.RemoveListener(Check);
+                MatchManager.OpenReactionListButton.onFusionListUpdate.RemoveListener(Check);
                 onConditionMet.Invoke();
                 break;
             }

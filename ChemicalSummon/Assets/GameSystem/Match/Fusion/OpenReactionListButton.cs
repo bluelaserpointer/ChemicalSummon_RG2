@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class FusionPanelButton : MonoBehaviour
+public class OpenReactionListButton : MonoBehaviour
 {
     [SerializeField]
     SBA_Slide fusionButtonListSlider;
@@ -27,6 +28,7 @@ public class FusionPanelButton : MonoBehaviour
     //data
     Reaction lastReaction;
     public Reaction LastReaction => lastReaction;
+    public ReactionListDisplay ReactionListDisplay => MatchManager.ReactionListDisplay;
     int lastFusionAmount;
     [HideInInspector]
     public readonly List<Reaction.ReactionMethod> lastAvaliableReactionMethods = new List<Reaction.ReactionMethod>();
@@ -74,7 +76,7 @@ public class FusionPanelButton : MonoBehaviour
             //TODO: describe which energy resources are unsatisfied.
             fusionButtons.Add(fusionButton);
         }
-        fusionButtonListSlider.GetComponent<ReactionListDisplay>().InitList(fusionButtons);
+        ReactionListDisplay.InitList(fusionButtons);
         if (lastFusionAmount < reactionMethods.Count)
         {
             newFusionNoticeAnimation.StartAnimation();
@@ -90,9 +92,17 @@ public class FusionPanelButton : MonoBehaviour
     {
         MatchManager.PlaySE(clickSE);
         fusionButtonListSlider.Switch();
+        if(!fusionButtonListSlider.SlidedOut)
+            ReactionListDisplay.ClearSearchInputField();
     }
     public void HideFusionList()
     {
         fusionButtonListSlider.SlideBack();
+        ReactionListDisplay.ClearSearchInputField();
+    }
+    public bool TrySetCard(Card card)
+    {
+        fusionButtonListSlider.SlideOut();
+        return ReactionListDisplay.TrySetCard(card);
     }
 }
