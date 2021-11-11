@@ -15,10 +15,10 @@ public class ReactionInfoDisplay : MonoBehaviour
     [SerializeField]
     Text clickAnyReactionText;
     //data
-    Reaction reaction;
+    public Reaction Reaction { get; protected set; }
     public void SetReaction(Reaction reaction)
     {
-        this.reaction = reaction;
+        Reaction = reaction;
         if (clickAnyReactionText.gameObject.activeSelf)
             clickAnyReactionText.gameObject.SetActive(false);
         //display

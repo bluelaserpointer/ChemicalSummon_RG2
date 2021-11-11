@@ -67,7 +67,9 @@ public class MatchManager : General, IPointerDownHandler
     [SerializeField]
     Transform drawCardAnchorParent;
 
-    [Header("InvisibleArea")]
+    [Header("CardDrag")]
+    [SerializeField]
+    CardDragGuidance cardDragGuidance;
     [SerializeField]
     GameObject cardDragAreaForOpenReactionList;
 
@@ -175,6 +177,10 @@ public class MatchManager : General, IPointerDownHandler
     /// 卡组阶段
     /// </summary>
     public static int EchelonPhase => Instance.echelonPhase;
+    /// <summary>
+    /// 卡牌挪动向导
+    /// </summary>
+    public static CardDragGuidance CardDragGuidance => Instance.cardDragGuidance;
     /// <summary>
     /// 卡牌挪动至融合按钮的扩张判定
     /// </summary>

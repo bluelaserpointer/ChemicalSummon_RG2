@@ -29,10 +29,12 @@ public class CardDrag : Draggable
             }
         }
         card.transform.SetParent(General.MainCanvas.transform);
+        MatchManager.CardDragGuidance.StartCardDrag(card);
     }
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);
+        MatchManager.CardDragGuidance.ClearAllGuidances();
         card.EnableShadow(false);
         if (General.CurrentSceneIsMatch)
         {

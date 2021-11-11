@@ -67,7 +67,7 @@ public abstract class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// <summary>
     /// 所在卡槽
     /// </summary>
-    public ShieldCardSlot Slot => cardDrag.CurrentSlot;
+    public ShieldCardSlot Slot => cardDrag?.CurrentSlot;
     /// <summary>
     /// 在场地(不考虑敌我)
     /// </summary>
@@ -157,7 +157,10 @@ public abstract class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// <param name="cond"></param>
     public void SetDraggable(bool cond)
     {
-        cardDrag.enabled = cond;
+        if (cardDrag != null)
+            cardDrag.enabled = cond;
+        else if(cond)
+            Debug.LogWarning("Card " + Header.name + " received SetDraggable(true) but it does not have CardDrag component.");
     }
     public static AudioClip CardMoveSE => Resources.Load<AudioClip>("Sound/SE/dealing_cards1");
     /// <summary>

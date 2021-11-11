@@ -124,13 +124,14 @@ public class ShieldCardSlot : MonoBehaviour
     /// </summary>
     /// <param name="card"></param>
     /// <returns></returns>
-    public bool AllowSetAsMainCard(SubstanceCard card)
+    public bool AllowSetAsMainCard(SubstanceCard card, bool enableWarnings = true)
     {
         if (card != null)
         {
             if (!card.GetStateInTempreture(Tempreture).Equals(ThreeState.Solid))
             {
-                MatchManager.MessagePanel.WarnNotPlaceNonSolid();
+                if(enableWarnings)
+                    MatchManager.MessagePanel.WarnNotPlaceNonSolid();
                 return false;
             }
             if (!Gamer.Equals(card.Gamer))
@@ -140,7 +141,14 @@ public class ShieldCardSlot : MonoBehaviour
             }
             if (!Gamer.InFusionTurn)
             {
-                MatchManager.MessagePanel.WarnNotPlaceBeforeFusionTurn();
+                if (enableWarnings)
+                    MatchManager.MessagePanel.WarnNotPlaceBeforeFusionTurn();
+                return false;
+            }
+            SubstanceCard placedCard = MainCard;
+            if (placedCard != null && !placedCard.Unionable(card))
+            {
+                //TODO: warn different type of cards cannot be unioned
                 return false;
             }
             return true;

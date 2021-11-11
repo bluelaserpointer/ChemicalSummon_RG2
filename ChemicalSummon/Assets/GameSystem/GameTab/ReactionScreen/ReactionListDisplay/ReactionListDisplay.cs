@@ -148,28 +148,6 @@ public class ReactionListDisplay : MonoBehaviour
         }
         else
             searchInputField.text += "+" + substance.formula;
-        /*
-        foreach (string eachItemName in searchInputField.text.Split('+'))
-        {
-            string numStr = Regex.Match(eachItemName, "^[0-9]+").Value;
-            if (numStr.Length == 0)
-            {
-                if (eachItemName.Equals(substance.formula))
-                {
-                    searchInputField.text = searchInputField.text.Replace(substance.formula, "2" + substance.formula);
-                    return;
-                }
-            }
-            else
-            {
-                if (eachItemName.Substring(numStr.Length).Equals(substance.formula))
-                {
-                    searchInputField.text = searchInputField.text.Replace(eachItemName, (int.Parse(numStr) + 1) + substance.formula);
-                    return;
-                }
-            }
-        }
-        */
     }
     /// <summary>
     /// 设置魔法卡强化

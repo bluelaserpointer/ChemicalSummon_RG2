@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43714154, g: 0.7543016, b: 1.0289202, a: 1}
+  m_IndirectSpecularColor: {r: 0.43731922, g: 0.75442153, b: 1.0289762, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1184,6 +1184,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344295202}
   m_CullTransparentMesh: 1
+--- !u!1 &348381272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 348381273}
+  - component: {fileID: 348381274}
+  m_Layer: 5
+  m_Name: CardDragGuidance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &348381273
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348381272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2121452838}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &348381274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348381272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0723fd7a20f404392f63d520407a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guidancePrefab: {fileID: 2159078826582041593, guid: 18b329476306dd3429bcd0940448e913,
+    type: 3}
 --- !u!1 &362160156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1971,7 +2021,7 @@ RectTransform:
   m_Children:
   - {fileID: 1663800492}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4164,7 +4214,7 @@ RectTransform:
   - {fileID: 940512878}
   - {fileID: 646528450}
   m_Father: {fileID: 2121452838}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8956,6 +9006,7 @@ RectTransform:
   - {fileID: 2018608352}
   - {fileID: 186060401}
   - {fileID: 1541449888}
+  - {fileID: 348381273}
   - {fileID: 578644686}
   - {fileID: 1220233030}
   m_Father: {fileID: 0}
@@ -9107,6 +9158,7 @@ MonoBehaviour:
   drawCardAnchorPrefab: {fileID: 7709142645193499436, guid: 665ed62195820e346a5e20413444570c,
     type: 3}
   drawCardAnchorParent: {fileID: 1359749068}
+  cardDragGuidance: {fileID: 348381274}
   cardDragAreaForOpenReactionList: {fileID: 264253956}
   clickSE: {fileID: 8300000, guid: a9d8a0075b0b3cb4fbec8e8caed91472, type: 3}
   victorySE: {fileID: 8300000, guid: 44d20c815aa1e4e44a81ad2e5113bfd5, type: 3}
