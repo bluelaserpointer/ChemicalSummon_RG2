@@ -1,12 +1,28 @@
-ï»¿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// æ€»ç®¡ç†
+/// ×Ü×ÊÔ´/¾²Ì¬º¯Êı¹ÜÀí£¬ÔËĞĞÊ±´¦ÓÚPlayerSaveÏÂ
 /// </summary>
-public abstract class General : MonoBehaviour
+[DisallowMultipleComponent]
+public class General : MonoBehaviour
 {
-    //static constants (version & path)
+    //inspector
+    [Header("Card")]
+    public SubstanceCard substanceCardPrefab;
+    public MagicCard magicCardPrefab;
+    [Header("FusionButton")]
+    public GameObject FusionHeatIcon;
+    public GameObject FusionElectricIcon;
+    public GameObject FusionVigorousnessIcon;
+    public GameObject FusionExplosionIcon;
+    public GameObject FusionCounterIcon;
+
+    //data
+    public static General Instance => PlayerSave.General;
+    //static constants (version & path & func)
     public static string Version => "alpha5.5.0pre";
     public static class ResourcePath
     {
@@ -21,42 +37,10 @@ public abstract class General : MonoBehaviour
         public static string Stage => "StageHeader/";
         public static string Character => "Character/";
     }
-
-    //inspector
-    [SerializeField]
-    Canvas mainCanvas;
-
-    //data
-    protected void ManagerInit(General manager)
-    {
-        CurrentManagerInstance = manager;
-        DynamicGI.UpdateEnvironment();
-    }
-    public static General CurrentManagerInstance { get; private set; }
-    public static Canvas MainCanvas => CurrentManagerInstance.mainCanvas;
+    public static Canvas CurrentMainCanvas => AbstractManager.MainCanvas;
     public static bool CurrentSceneIsMatch => SceneManager.GetActiveScene().name.Equals("Match");
     public static bool CurrentSceneIsWorld => SceneManager.GetActiveScene().name.Equals("World");
     public static bool CurrentSceneIsTitle => SceneManager.GetActiveScene().name.Equals("Title");
-    /// <summary>
-    /// è¿›å…¥æˆ˜æ–—(æŒ‰é’®äº‹ä»¶å‚ç…§ç”¨)
-    /// </summary>
-    /// <param name="match"></param>
-    public void GotoMatch(Match match)
-    {
-        PlayerSave.StartMatch(match);
-    }
-    public void GotoMenu()
-    {
-        SceneManager.LoadScene("Title");
-    }
-    public void GotoWorld()
-    {
-        SceneManager.LoadScene("World");
-    }
-    public void StartEvent(Event newEvent)
-    {
-        PlayerSave.StartEvent(newEvent);
-    }
     public static TranslatableSentenceSO LoadSentence(string name)
     {
         TranslatableSentenceSO sentence = Resources.Load<TranslatableSentenceSO>("TranslatableSentence/" + name);

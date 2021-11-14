@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: 2Al2O3+3C==4Al+3CO2
   m_EditorClassIdentifier: 
   formula: 2Al2O3+3C==4Al+3CO2
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: c68a65cb4463d154d893976467edbe10, type: 2}
-      count: 2
-    - type: {fileID: 11400000, guid: 97ca178e8f5373a4c9bc5a78b42e0d71, type: 2}
-      count: 3
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: fec21780cd1312e4b9fa3963ce7e3683, type: 2}
-      count: 4
-    - type: {fileID: 11400000, guid: 9af7cb25806b85042a7e37e479848a27, type: 2}
-      count: 3
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 3
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: c68a65cb4463d154d893976467edbe10, type: 2}
+        count: 2
+      - type: {fileID: 11400000, guid: 97ca178e8f5373a4c9bc5a78b42e0d71, type: 2}
+        count: 3
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: fec21780cd1312e4b9fa3963ce7e3683, type: 2}
+        count: 4
+      - type: {fileID: 11400000, guid: 9af7cb25806b85042a7e37e479848a27, type: 2}
+        count: 3
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 3
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

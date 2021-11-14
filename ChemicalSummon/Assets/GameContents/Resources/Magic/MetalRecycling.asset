@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f8abea6dde6644ebcd46cc4214fc77, type: 3}
   m_Name: MetalRecycling
   m_EditorClassIdentifier: 
-  rank: 0
-  abilityPrefab: {fileID: 0}
   name:
     defaultString: MetalRecycling
     languageAndSentences:
@@ -26,4 +24,6 @@ MonoBehaviour:
     languageAndSentences:
     - language: 0
       sentence: "\u56DE\u6536\u5E9F\u91D1\u5C5E\u91CD\u94F8\u3002"
+  rank: 0
+  abilityPrefab: {fileID: 0}
   image: {fileID: 0}

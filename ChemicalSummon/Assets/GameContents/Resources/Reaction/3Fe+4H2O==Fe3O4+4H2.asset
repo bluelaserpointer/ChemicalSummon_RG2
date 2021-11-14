@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: 3Fe+4H2O==Fe3O4+4H2
   m_EditorClassIdentifier: 
   formula: 3Fe+4H2O==Fe3O4+4H2
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
-      count: 3
-    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      count: 4
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: d4e5a815b167aad4ea34315744cb5025, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
-      count: 4
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 3
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
+        count: 3
+      - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+        count: 4
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: d4e5a815b167aad4ea34315744cb5025, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
+        count: 4
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 3
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

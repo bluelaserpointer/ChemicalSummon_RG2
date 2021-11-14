@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: CuO+H2SO4==CuS+H2O
   m_EditorClassIdentifier: 
   formula: CuO+H2SO4==CuS+H2O
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: bcc7f15f64fc5714cb0319c2494d4b19, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: c6b3e633dec983242af039cd6252be36, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 1f5d07400908dbd4794865c47ae4cb38, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: bcc7f15f64fc5714cb0319c2494d4b19, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: c6b3e633dec983242af039cd6252be36, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 1f5d07400908dbd4794865c47ae4cb38, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: SO2+H2O2==H2SO4
   m_EditorClassIdentifier: 
   formula: SO2+H2O2==H2SO4
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: d32989c40dd3d9e419a5fbb72b7f6ebb, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 7b08cd97b0cbb8e408f3866d109c8dda, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: c6b3e633dec983242af039cd6252be36, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: d32989c40dd3d9e419a5fbb72b7f6ebb, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 7b08cd97b0cbb8e408f3866d109c8dda, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: c6b3e633dec983242af039cd6252be36, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

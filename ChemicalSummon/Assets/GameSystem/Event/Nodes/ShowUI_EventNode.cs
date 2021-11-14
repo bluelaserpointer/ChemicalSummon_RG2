@@ -12,7 +12,7 @@ public class ShowUI_EventNode : EventNode
     public override void Reach()
     {
         ConversationWindow.Close();
-        Instantiate(ui, General.MainCanvas.transform).SetActive(true);
+        Instantiate(ui, AbstractManager.MainCanvas.transform).SetActive(true);
     }
     public void Progress()
     {

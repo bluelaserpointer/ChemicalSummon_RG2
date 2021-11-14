@@ -13,28 +13,30 @@ MonoBehaviour:
   m_Name: Na2CO3+2HCl==2NaCl+H2O+CO2
   m_EditorClassIdentifier: 
   formula: Na2CO3+2HCl==2NaCl+H2O+CO2
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: e96c7888c62e092439b2a988be3027fc, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 93776222225c1af438033ecf3db6e753, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3, type: 2}
-      count: 2
-    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 9af7cb25806b85042a7e37e479848a27, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: e96c7888c62e092439b2a988be3027fc, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 93776222225c1af438033ecf3db6e753, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3, type: 2}
+        count: 2
+      - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 9af7cb25806b85042a7e37e479848a27, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

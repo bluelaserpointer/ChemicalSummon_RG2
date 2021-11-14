@@ -38,7 +38,12 @@ public class CardDragGuidance : MonoBehaviour
             }
             else if (card.Header.IsMagic)
             {
-
+                MagicCard magicCard = card as MagicCard;
+                //fusion enchance
+                if (magicCard.TryGetFusionEnhancer != null)
+                    SetGuidance(MatchManager.CardDragAreaForOpenReactionList, General.LoadSentence("enhance"));
+                else
+                    print("that null");
             }
         }
     }

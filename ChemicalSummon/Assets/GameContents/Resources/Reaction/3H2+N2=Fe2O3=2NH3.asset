@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: 3H2+N2=Fe2O3=2NH3
   m_EditorClassIdentifier: 
   formula: 3H2+N2=Fe2O3=2NH3
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
-      count: 3
-    - type: {fileID: 11400000, guid: b365e14ba7fc0f84b87151b764002138, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: f2ec6eeea92d7fd46993d06d4b375e58, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  catalysts:
-    list:
-    - type: {fileID: 11400000, guid: a5379677c5bfe664f8b412d44336b0f9, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 1
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
+        count: 3
+      - type: {fileID: 11400000, guid: b365e14ba7fc0f84b87151b764002138, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: f2ec6eeea92d7fd46993d06d4b375e58, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    catalysts:
+      list:
+      - type: {fileID: 11400000, guid: a5379677c5bfe664f8b412d44336b0f9, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    heatRequire: 1
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

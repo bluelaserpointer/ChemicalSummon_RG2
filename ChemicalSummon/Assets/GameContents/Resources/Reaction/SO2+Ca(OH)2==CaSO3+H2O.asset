@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: SO2+Ca(OH)2==CaSO3+H2O
   m_EditorClassIdentifier: 
   formula: SO2+Ca(OH)2==CaSO3+H2O
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: d32989c40dd3d9e419a5fbb72b7f6ebb, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 3f69d70604de5ae4d9f72846b3b68824, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: bd16f513d561dd740b9a586914c781e0, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: d32989c40dd3d9e419a5fbb72b7f6ebb, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 3f69d70604de5ae4d9f72846b3b68824, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: bd16f513d561dd740b9a586914c781e0, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

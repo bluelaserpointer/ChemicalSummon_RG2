@@ -14,7 +14,7 @@ public class Magic : CardHeader
     /// <returns></returns>
     public MagicCard GenerateMagicCard(int amount = 1)
     {
-        MagicCard card = Instantiate(MagicCard.TemplatePrefab);
+        MagicCard card = Instantiate(General.Instance.magicCardPrefab);
         card.Magic = this;
         card.CardAmount = amount;
         card.location = CardTransport.Location.OffSite;

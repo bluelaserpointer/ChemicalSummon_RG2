@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: CuCl2+2NaOH==Cu(OH)2+2NaCl
   m_EditorClassIdentifier: 
   formula: CuCl2+2NaOH==Cu(OH)2+2NaCl
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 56c6b818c28f9ac4c852364dd2570856, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: d848fab6dbbbb5644bd0ee6083d28857, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: dbd1c78e7f18683499beb3cc01b9ef04, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 56c6b818c28f9ac4c852364dd2570856, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: d848fab6dbbbb5644bd0ee6083d28857, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: dbd1c78e7f18683499beb3cc01b9ef04, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

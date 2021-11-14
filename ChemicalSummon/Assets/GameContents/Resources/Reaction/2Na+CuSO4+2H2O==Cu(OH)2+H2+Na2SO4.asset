@@ -13,30 +13,32 @@ MonoBehaviour:
   m_Name: 2Na+CuSO4+2H2O==Cu(OH)2+H2+Na2SO4
   m_EditorClassIdentifier: 
   formula: 2Na+CuSO4+2H2O==Cu(OH)2+H2+Na2SO4
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 1985c22d2651fa148affbed385ebe7ad, type: 2}
-      count: 2
-    - type: {fileID: 11400000, guid: 28b384b5591aae84da8954bb9c200fae, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: dbd1c78e7f18683499beb3cc01b9ef04, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 57bd190221a59f04399ec87311a312ed, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 1985c22d2651fa148affbed385ebe7ad, type: 2}
+        count: 2
+      - type: {fileID: 11400000, guid: 28b384b5591aae84da8954bb9c200fae, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: dbd1c78e7f18683499beb3cc01b9ef04, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 57bd190221a59f04399ec87311a312ed, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

@@ -33,7 +33,7 @@ public class CheckField_EventNode : EventNode
     {
         if(checkSomeOfThemExists)
         {
-            if (TargetField.Cards.Find(card => fieldContainsList.Contains(card.Substance)) != null)
+            if (TargetField.MainCards.Find(card => fieldContainsList.Contains(card.Substance)) != null)
             {
                 TargetField.onCardsChanged.RemoveListener(CheckField);
                 ProgressEvent();
@@ -41,7 +41,7 @@ public class CheckField_EventNode : EventNode
         }
         else
         {
-            List<SubstanceCard> fieldCards = new List<SubstanceCard>(TargetField.Cards);
+            List<SubstanceCard> fieldCards = new List<SubstanceCard>(TargetField.MainCards);
             bool cond = true;
             foreach(Substance substance in fieldContainsList)
             {

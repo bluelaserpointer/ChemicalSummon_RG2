@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: 4Al+3MnO2==3Mn+2Al2O3
   m_EditorClassIdentifier: 
   formula: 4Al+3MnO2==3Mn+2Al2O3
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: fec21780cd1312e4b9fa3963ce7e3683, type: 2}
-      count: 4
-    - type: {fileID: 11400000, guid: b7c94d5f61dea284ab9ae2cacedeaf98, type: 2}
-      count: 3
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 4761f4d65dd9bc54ebe431aa5fc6bfc7, type: 2}
-      count: 3
-    - type: {fileID: 11400000, guid: c68a65cb4463d154d893976467edbe10, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 25
-  electric: 0
-  heat: 5
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: fec21780cd1312e4b9fa3963ce7e3683, type: 2}
+        count: 4
+      - type: {fileID: 11400000, guid: b7c94d5f61dea284ab9ae2cacedeaf98, type: 2}
+        count: 3
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 4761f4d65dd9bc54ebe431aa5fc6bfc7, type: 2}
+        count: 3
+      - type: {fileID: 11400000, guid: c68a65cb4463d154d893976467edbe10, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 25
+    electric: 0
+    heat: 5
+    explosionPower: 0
   researchSteps: []

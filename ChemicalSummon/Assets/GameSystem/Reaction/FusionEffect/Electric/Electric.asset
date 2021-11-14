@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ce4a3627d829248bbdfd0318391b25, type: 3}
+  m_Name: Electric
+  m_EditorClassIdentifier: 
+  effectName: {fileID: 11400000, guid: 35024477c9b4a374e9a358e7d674e66b, type: 2}
+  mainColor: {r: 0, g: 0, b: 0, a: 0}
+  iconObject: {fileID: 6121598671615877621, guid: ea29547937eb16d49b0b8fc26a6c69b5,
+    type: 3}

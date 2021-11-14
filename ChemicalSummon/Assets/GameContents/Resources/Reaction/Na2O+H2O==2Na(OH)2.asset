@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: Na2O+H2O==2Na(OH)2
   m_EditorClassIdentifier: 
   formula: Na2O+H2O==2Na(OH)2
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 4d78935b4d54b8446a868d1d040f9703, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: f6e89cafaf8246d4abbd5e9ed7a08d22, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 4d78935b4d54b8446a868d1d040f9703, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: f6e89cafaf8246d4abbd5e9ed7a08d22, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

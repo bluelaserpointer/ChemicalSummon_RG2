@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: Fe+2HCl==FeCl2+H2
   m_EditorClassIdentifier: 
   formula: Fe+2HCl==FeCl2+H2
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 93776222225c1af438033ecf3db6e753, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 7f30aaa1f8f1a684b87dd548eae8b282, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 93776222225c1af438033ecf3db6e753, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 7f30aaa1f8f1a684b87dd548eae8b282, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

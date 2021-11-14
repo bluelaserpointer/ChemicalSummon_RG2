@@ -30,9 +30,9 @@ public class MatchLogDisplay : MonoBehaviour
     {
         Instantiate(drawLogPrefab, scrollViewContent).Set(gamer, card);
     }
-    public void AddFusionLog(Gamer gamer, Reaction reaction)
+    public void AddFusionLog(Gamer gamer, Fusion fusion)
     {
-        Instantiate(fusionLogPrefab, scrollViewContent).Set(gamer, reaction);
+        Instantiate(fusionLogPrefab, scrollViewContent).Set(gamer, fusion);
     }
     public void AddBattleLog(SubstanceCard card1, SubstanceCard card2)
     {

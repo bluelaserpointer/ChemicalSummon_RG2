@@ -6,13 +6,14 @@ public abstract class FusionEnhancer : CardAbility
 {
     public override void DoAbility(Card card)
     {
-        //TODO: call reaction window and take this card for enhancement
-        throw new System.NotImplementedException();
+        MatchManager.OpenReactionListButton.TrySetCard(card);
     }
 
     public override bool IsAvaliable(Card card)
     {
         return true;
     }
-    public abstract Reaction.ReactionMethod Apply(Reaction.ReactionMethod method);
+    public abstract bool Appliable(Fusion fusion);
+    public abstract void Apply(Fusion fusion);
+    public abstract void OnFusion(Gamer gamer, Reaction reaction);
 }

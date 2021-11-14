@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3651542610835703196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8724822999065710583}
+  - component: {fileID: 7888538160791663720}
+  m_Layer: 0
+  m_Name: General/ResourceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8724822999065710583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651542610835703196}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7334558923965601778}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7888538160791663720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651542610835703196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44db8dbaf8408e64695378540217ba5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  substanceCardPrefab: {fileID: 4415756728138588497, guid: 920ca528614abc94fa681e407b755ed7,
+    type: 3}
+  magicCardPrefab: {fileID: 8569102544947879561, guid: 6cfe489f0573afb4bb9426e3af07f313,
+    type: 3}
+  FusionHeatIcon: {fileID: 7484193339024635620, guid: 2efc9e9be2f79b24b975a0a839d78798,
+    type: 3}
+  FusionElectricIcon: {fileID: 6121598671615877621, guid: ea29547937eb16d49b0b8fc26a6c69b5,
+    type: 3}
+  FusionVigorousnessIcon: {fileID: 7484193339024635620, guid: 0b45431ba88910640b6c231c13623236,
+    type: 3}
+  FusionExplosionIcon: {fileID: 9063769471622185523, guid: ef0c268158db7d64f85bc7405eb5a9d9,
+    type: 3}
+  FusionCounterIcon: {fileID: 6710694665071123381, guid: ebd1a664d7ffb824bbac912ea3d37665,
+    type: 3}
 --- !u!1 &6212914409111469480
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,7 +88,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 7334558923965601778}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -129,6 +186,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 8724822999065710583}
   - {fileID: 7757624127472712280}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -172,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b1c15831f09024d8a061a2f1eb33fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  general: {fileID: 7888538160791663720}
   permanentCanvas: {fileID: 4615180061886943108}
   currentWorldHeader: {fileID: 11400000, guid: f54d4729e4dfabc47a281fce32c40412, type: 2}
   currentCharacterPosition: {x: -5.1, y: 0, z: -0.88}
@@ -180,10 +239,11 @@ MonoBehaviour:
     - type: {fileID: 59571194470741858, guid: b8b8dccc053580949910be8426a7a65a, type: 3}
       count: 2
     denyNegativeCount: 1
-  substanceStorage:
+  initialCardStorage:
     list: []
     denyNegativeCount: 1
-  discoveredReactions: []
+  discoveredReactions:
+  - {fileID: 11400000, guid: 2d36dfa6859f87f49a208934d46219bc, type: 2}
   initialDeck:
     name: Initiater
     echelons:

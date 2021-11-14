@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: CO2+2H2==CH4+O2
   m_EditorClassIdentifier: 
   formula: CO2+2H2==CH4+O2
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 9af7cb25806b85042a7e37e479848a27, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: c83d772af4cdb3b4e8d09e8a6009a2ed, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 2
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 9af7cb25806b85042a7e37e479848a27, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: c83d772af4cdb3b4e8d09e8a6009a2ed, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 2
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

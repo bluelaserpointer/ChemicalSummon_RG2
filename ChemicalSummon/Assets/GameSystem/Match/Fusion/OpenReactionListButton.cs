@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+/// <summary>
+/// 融合列表开启按钮
+/// </summary>
 [DisallowMultipleComponent]
 public class OpenReactionListButton : MonoBehaviour
 {
@@ -49,20 +52,25 @@ public class OpenReactionListButton : MonoBehaviour
         List<FusionButton> fusionButtons = new List<FusionButton>();
         foreach (var method in reactionMethods)
         {
-            Reaction reaction = method.reaction;
+            Fusion fusion = method.fusion;
             FusionButton fusionButton = Instantiate(prefabFusionButton);
-            fusionButton.SetReaction(reaction, counterMode);
+            fusionButton.SetFusion(fusion, counterMode);
             //activate fusion
             fusionButton.Button.onClick.AddListener(() => {
                 MatchManager.FusionDisplay.StartReactionAnimation(() =>
                 {
-                    lastReaction = reaction;
+                    lastReaction = fusion.Reaction;
+                    foreach(MagicCard magicCard in MatchManager.Player.aboutToUseMagicCards)
+                    {
+                        magicCard.Dispose();
+                    }
+                    MatchManager.Player.aboutToUseMagicCards.Clear();
                     //must recheck because player cards may union/distribute in handcards/fields
                     List<Card> atNewTimeConsumableCards = MatchManager.Player.GetConsumableCards();
                     if (currentAttacker != null)
                         atNewTimeConsumableCards.Insert(0, currentAttacker);
                     Reaction.ReactionMethod method;
-                    if(Reaction.GenerateReactionMethod(reaction, MatchManager.Player, atNewTimeConsumableCards, currentAttacker, out method))
+                    if(Reaction.GenerateFusionMethod(fusionButton.Fusion, MatchManager.Player, atNewTimeConsumableCards, currentAttacker, out method))
                         MatchManager.Player.DoFusion(method);
                     //counter fusion
                     if (counterMode)
@@ -72,7 +80,7 @@ public class OpenReactionListButton : MonoBehaviour
                 });
             });
             //check energy requirements
-            fusionButton.Button.interactable = MatchManager.Player.EnoughEnergyToDo(reaction);
+            fusionButton.Button.interactable = MatchManager.Player.EnoughEnergyToDo(fusion);
             //TODO: describe which energy resources are unsatisfied.
             fusionButtons.Add(fusionButton);
         }
@@ -91,14 +99,16 @@ public class OpenReactionListButton : MonoBehaviour
     public void OnFusionPanelButtonPress()
     {
         MatchManager.PlaySE(clickSE);
-        fusionButtonListSlider.Switch();
-        if(!fusionButtonListSlider.SlidedOut)
-            ReactionListDisplay.ClearSearchInputField();
+        if (fusionButtonListSlider.SlidedOut)
+            HideFusionList();
+        else
+            fusionButtonListSlider.SlideOut();
     }
     public void HideFusionList()
     {
         fusionButtonListSlider.SlideBack();
         ReactionListDisplay.ClearSearchInputField();
+        MatchManager.Player.aboutToUseMagicCards.Clear();
     }
     public bool TrySetCard(Card card)
     {

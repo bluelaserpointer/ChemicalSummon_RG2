@@ -9,7 +9,12 @@ public class Player : Gamer
 {
     [SerializeField]
     Text switchStackHandCardText;
-    
+
+    /// <summary>
+    /// 即将使用的魔法卡（攻击强化、融合强化等情况被使用）
+    /// </summary>
+    public readonly List<MagicCard> aboutToUseMagicCards = new List<MagicCard>();
+
     public override TurnType FusionTurn => TurnType.MyFusionTurn;
     public override TurnType AttackTurn => TurnType.MyAttackTurn;
     public override List<Reaction> LearnedReactions => PlayerSave.DiscoveredReactions;
@@ -128,6 +133,6 @@ public class Player : Gamer
     public override void DoFusion(Reaction.ReactionMethod method)
     {
         base.DoFusion(method);
-        MatchManager.CardPreview.SetCardHeader(method.reaction.rightSubstances.list[0].type);
+        MatchManager.CardPreview.SetCardHeader(method.fusion.RightSubstances.list[0].type);
     }
 }

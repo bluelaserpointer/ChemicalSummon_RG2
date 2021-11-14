@@ -12,7 +12,7 @@ public class BasicFusionAI : NoFusionAI
        
         foreach (Reaction.ReactionMethod method in Enemy.FindAvailiableReactions(EnhanceReactions))
         {
-            if (!Enemy.EnoughEnergyToDo(method.reaction))
+            if (!Enemy.EnoughEnergyToDo(method.fusion))
                 continue;
             //print("can process " + method.reaction.name);
             if (topATKCard != null && method.consumingCards.ContainsKey(topATKCard)) //hate using top ATK
@@ -108,7 +108,7 @@ public class BasicFusionAI : NoFusionAI
     protected int JudgePriority(Reaction reaction)
     {
         int score = 0;
-        score += reaction.explosion * 10;
+        score += reaction.ExplosionPower * 10;
         
         return score;
     }
@@ -122,7 +122,7 @@ public class BasicFusionAI : NoFusionAI
         //TODO: improve counter tactics
         foreach (Reaction.ReactionMethod method in Enemy.FindAvailiableReactions(EnhanceReactions, attacker))
         {
-            if (!Enemy.EnoughEnergyToDo(method.reaction))
+            if (!Enemy.EnoughEnergyToDo(method.fusion))
                 continue;
             if (enemyStrongestATK > playerStrongestATK && method.consumingCards.ContainsKey(enemyStrongestCard))
             { //if our top ATK is higher than the player, should not do counter fusion that includes the highest ATK card
@@ -135,7 +135,7 @@ public class BasicFusionAI : NoFusionAI
         {
             foreach (Reaction.ReactionMethod method in Enemy.FindAvailiableReactions(CounterReactions, attacker))
             {
-                if (!Enemy.EnoughEnergyToDo(method.reaction))
+                if (!Enemy.EnoughEnergyToDo(method.fusion))
                     continue;
                 if (enemyStrongestATK > playerStrongestATK && method.consumingCards.ContainsKey(enemyStrongestCard))
                 { //if our top ATK is higher than the player, should not do counter fusion that includes the highest ATK card

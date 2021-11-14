@@ -135,7 +135,7 @@ public class Substance : CardHeader
     /// <returns></returns>
     public SubstanceCard GenerateSubstanceCard(int amount = 1)
     {
-        SubstanceCard card = Instantiate(SubstanceCard.TemplatePrefab);
+        SubstanceCard card = Instantiate(General.Instance.substanceCardPrefab);
         card.Substance = this;
         card.InitCardAmount(amount);
         card.location = CardTransport.Location.OffSite;

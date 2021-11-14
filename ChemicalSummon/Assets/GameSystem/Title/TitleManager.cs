@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class TitleManager : General
+public class TitleManager : AbstractManager
 {
     public static TitleManager Instance { get; protected set; }
     [SerializeField]

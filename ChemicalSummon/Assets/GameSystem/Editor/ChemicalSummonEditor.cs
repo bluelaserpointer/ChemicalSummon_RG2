@@ -273,15 +273,16 @@ public static class ChemicalSummonEditor
                 }
                 reaction.formula = formulaStr;
                 string[] strs = formulaStr.Split('=');
-                reaction.leftSubstances = StrToSubstanceAndAmount(strs[0]);
-                reaction.catalysts = StrToSubstanceAndAmount(strs[1]);
-                reaction.rightSubstances = StrToSubstanceAndAmount(strs[2]);
-                //Special
-                reaction.heatRequire = ToInt(rowData[1].ToString());
-                reaction.electricRequire = ToInt(rowData[2].ToString());
-                reaction.explosion = ToInt(rowData[3].ToString());
-                reaction.heat = ToInt(rowData[4].ToString());
-                reaction.electric = ToInt(rowData[5].ToString());
+                Reaction.Stats stats = new Reaction.Stats();
+                stats.leftSubstances = StrToSubstanceAndAmount(strs[0]);
+                stats.catalysts = StrToSubstanceAndAmount(strs[1]);
+                stats.rightSubstances = StrToSubstanceAndAmount(strs[2]);
+                stats.heatRequire = ToInt(rowData[1].ToString());
+                stats.electricRequire = ToInt(rowData[2].ToString());
+                stats.vigorousness = ToInt(rowData[3].ToString());
+                stats.heat = ToInt(rowData[4].ToString());
+                stats.electric = ToInt(rowData[5].ToString());
+                reaction.initialStats = stats;
                 if (newCreated)
                 {
                     AssetDatabase.CreateAsset(reaction, General.ResourcePath.Absolute + General.ResourcePath.Reaction + Substance.RemoveFormulaCaseConflict(formulaStr) + ".asset");

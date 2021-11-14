@@ -28,6 +28,8 @@ public class PlayerSave : MonoBehaviour
     }
     //inspector
     [SerializeField]
+    General general;
+    [SerializeField]
     Canvas permanentCanvas;
     [SerializeField]
     WorldHeader currentWorldHeader;
@@ -59,6 +61,7 @@ public class PlayerSave : MonoBehaviour
     List<Chapter> allChapters = new List<Chapter>();
 
     //data
+    public static General General => Instance.general;
     public static Canvas PermanentCanvas => Instance.permanentCanvas;
     public static WorldHeader CurrentWorldHeader
     {

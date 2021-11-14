@@ -16,31 +16,31 @@ public class FusionLog : MonoBehaviour
     [SerializeField]
     Color mySideColor, enemySideColor;
     [SerializeField]
-    GameObject explosionIconPrefab, heatIconPrefab, electricIconPrefab;
-    [SerializeField]
     Binder_ImageAndText gemPrefab;
     [SerializeField]
     Color heatGemColor, electricGemColor;
-    public void Set(Gamer gamer, Reaction reaction)
+    public void Set(Gamer gamer, Fusion fusion)
     {
         fusionFrameImage.color = gamer.IsMySide ? mySideColor : enemySideColor;
-        reactionText.text = reaction.formula.Replace("==", " == ");
+        reactionText.text = fusion.Reaction.formula.Replace("==", " == ");
         reactionIconsTf.DestroyAllChildren();
         //requirementsIcon
-        if (reaction.heatRequire > 0)
+        if (fusion.HeatRequire > 0)
         {
-            Instantiate(gemPrefab, reactionIconsTf).Set(heatGemColor, reaction.heatRequire.ToString());
+            Instantiate(gemPrefab, reactionIconsTf).Set(heatGemColor, fusion.HeatRequire.ToString());
         }
-        if (reaction.electricRequire > 0)
+        if (fusion.ElectricRequire > 0)
         {
-            Instantiate(gemPrefab, reactionIconsTf).Set(electricGemColor, reaction.electricRequire.ToString());
+            Instantiate(gemPrefab, reactionIconsTf).Set(electricGemColor, fusion.ElectricRequire.ToString());
         }
         //productsIcon
-        if (reaction.explosion > 0)
-            Instantiate(explosionIconPrefab, reactionIconsTf).GetComponentInChildren<Text>().text = reaction.explosion.ToString();
-        if (reaction.heat > 0)
-            Instantiate(heatIconPrefab, reactionIconsTf).GetComponentInChildren<Text>().text = reaction.heat.ToString();
-        if (reaction.electric > 0)
-            Instantiate(electricIconPrefab, reactionIconsTf).GetComponentInChildren<Text>().text = reaction.electric.ToString();
+        if (fusion.Electric > 0)
+            Instantiate(General.Instance.FusionElectricIcon, reactionIconsTf).GetComponentInChildren<Text>().text = fusion.Electric.ToString();
+        if (fusion.Heat > 0)
+            Instantiate(General.Instance.FusionHeatIcon, reactionIconsTf).GetComponentInChildren<Text>().text = fusion.Heat.ToString();
+        if (fusion.Vigorousness > 0)
+            Instantiate(General.Instance.FusionVigorousnessIcon, reactionIconsTf).GetComponentInChildren<Text>().text = fusion.Vigorousness.ToString();
+        if (fusion.ExplosionPower > 0)
+            Instantiate(General.Instance.FusionExplosionIcon, reactionIconsTf).GetComponentInChildren<Text>().text = fusion.ExplosionDamage.ToString();
     }
 }

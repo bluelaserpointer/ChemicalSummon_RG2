@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: Mg+Cl2==MgCl2
   m_EditorClassIdentifier: 
   formula: Mg+Cl2==MgCl2
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 4d90b796aa6997f46816c054495584a6, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 3c315e54fb08c6f40aaaff9c90978d4b, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: d858fd4cb6ba8bf4598319ec04c43d03, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 2
-  heatRequire: 1
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 4d90b796aa6997f46816c054495584a6, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 3c315e54fb08c6f40aaaff9c90978d4b, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: d858fd4cb6ba8bf4598319ec04c43d03, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 1
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 2
+    explosionPower: 0
   researchSteps: []

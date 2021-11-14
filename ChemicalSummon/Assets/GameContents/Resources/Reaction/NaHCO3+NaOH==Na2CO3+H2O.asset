@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: NaHCO3+NaOH==Na2CO3+H2O
   m_EditorClassIdentifier: 
   formula: NaHCO3+NaOH==Na2CO3+H2O
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 916fc465064651344aa51d8b7d0cb2f7, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: d848fab6dbbbb5644bd0ee6083d28857, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: e96c7888c62e092439b2a988be3027fc, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 916fc465064651344aa51d8b7d0cb2f7, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: d848fab6dbbbb5644bd0ee6083d28857, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: e96c7888c62e092439b2a988be3027fc, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

@@ -19,7 +19,6 @@ public class CardPreview : MonoBehaviour
     [SerializeField]
     Text cardDescriptionText;
 
-    public bool IsInBattle => General.CurrentSceneIsMatch;
     public Card DisplayCard { get; protected set; }
     public Card ReferedCard { get; protected set; }
     /// <summary>

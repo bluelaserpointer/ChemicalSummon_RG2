@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: K+O2==KO2
   m_EditorClassIdentifier: 
   formula: K+O2==KO2
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 89cf64b814f000549be0da043a195374, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 6e2975ade16775248abd1a3f59e22f45, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 2
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 89cf64b814f000549be0da043a195374, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 6e2975ade16775248abd1a3f59e22f45, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 2
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

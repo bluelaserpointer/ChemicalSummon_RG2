@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class OpeningManager : General
+public class OpeningManager : AbstractManager
 {
     public static OpeningManager Instance { get; protected set; }
 

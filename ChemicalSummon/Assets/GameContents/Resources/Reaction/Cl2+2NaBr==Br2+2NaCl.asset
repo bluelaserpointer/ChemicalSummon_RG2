@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: Cl2+2NaBr==Br2+2NaCl
   m_EditorClassIdentifier: 
   formula: Cl2+2NaBr==Br2+2NaCl
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 3c315e54fb08c6f40aaaff9c90978d4b, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: c8ecc647a8197074982037777b7d47dc, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 203d98f2ee1841148976a9a82659872e, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 3c315e54fb08c6f40aaaff9c90978d4b, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: c8ecc647a8197074982037777b7d47dc, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 203d98f2ee1841148976a9a82659872e, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

@@ -24,20 +24,20 @@ public abstract class EnemyAI : MonoBehaviour
     protected float GuessCounterPossibility(List<Reaction> concernReactions, SubstanceCard attacker)
     {
         List<SubstanceCard> consumableCards = new List<SubstanceCard>();
-        consumableCards.AddRange(Player.Field.Cards);
+        consumableCards.AddRange(Player.Field.MainCards);
         consumableCards.Insert(0, attacker);
         float maxPossiblity = 0;
         int opponentHandCardCount = Player.HandCardCount;
         foreach (Reaction reaction in concernReactions)
         {
-            if (reaction.heatRequire > Player.HeatGem || reaction.electricRequire > Player.ElectricGem)
+            if (reaction.HeatRequire > Player.HeatGem || reaction.ElectricRequire > Player.ElectricGem)
                 continue;
             bool condition = true;
             bool addedAttacker = false;
             Dictionary<SubstanceCard, int> consumingCards = new Dictionary<SubstanceCard, int>();
             TypeAndCountList<Substance> lackedSubstances = new TypeAndCountList<Substance>();
             int lackCardCount = 0;
-            foreach (var pair in reaction.leftSubstances)
+            foreach (var pair in reaction.LeftSubstances)
             {
                 Substance requiredSubstance = pair.type;
                 int requiredAmount = pair.count;
@@ -76,10 +76,17 @@ public abstract class EnemyAI : MonoBehaviour
                 float possiblity = Mathf.Clamp(0.75f + 0.25F * (opponentHandCardCount - lackCardCount) / lackCardCount, 0, 1);
                 foreach(var each in lackedSubstances)
                 {
-                    Substance substance = each.type;
-                    if(!substance.IsPureElement)
+                    Substance lackedSubstance = each.type;
+                    if(!lackedSubstance.IsPureElement)
                     {
-                        int exposedCount = Player.exposedSubstances.StackCount(substance);
+                        int exposedCount = 0;
+                        foreach (SubstanceCard playerFieldSubstanceCard in Player.Field.MainCards)
+                        {
+                            if(playerFieldSubstanceCard.Substance.Equals(lackedSubstance))
+                            {
+                                exposedCount += playerFieldSubstanceCard.CardAmount;
+                            }
+                        }
                         if (exposedCount > 0)
                         {
                             float subPossibility = 1;
@@ -88,7 +95,7 @@ public abstract class EnemyAI : MonoBehaviour
                             {
                                 subPossibility *= (playerTotalCards - exposedCount - i) / (playerTotalCards - i);
                             }
-                            print(substance.formula + " chance: " + (1 - subPossibility) + " of total " + playerTotalCards);
+                            print(lackedSubstance.formula + " chance: " + (1 - subPossibility) + " of total " + playerTotalCards);
                             possiblity *= 1 - subPossibility;
                         }
                         else

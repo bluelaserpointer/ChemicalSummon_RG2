@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f8abea6dde6644ebcd46cc4214fc77, type: 3}
   m_Name: PaintProtection
   m_EditorClassIdentifier: 
-  rank: 0
-  abilityPrefab: {fileID: 0}
   name:
     defaultString: PaintProtection
     languageAndSentences:
@@ -26,4 +24,6 @@ MonoBehaviour:
     languageAndSentences:
     - language: 0
       sentence: "\u9694\u79BB\u5316\u5B66\u53CD\u5E94\u3002"
+  rank: 0
+  abilityPrefab: {fileID: 0}
   image: {fileID: 0}

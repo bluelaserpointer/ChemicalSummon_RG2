@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: 4Brass+Ni==5NickelSilver
   m_EditorClassIdentifier: 
   formula: 4Brass+Ni==5NickelSilver
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 0488a955e10893749a44a22866f1f933, type: 2}
-      count: 4
-    - type: {fileID: 11400000, guid: 02984bd018adf944a8e66c168ba559f7, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: e265b9ce3714f904b8b5eb597e9f991f, type: 2}
-      count: 5
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 2
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 0488a955e10893749a44a22866f1f933, type: 2}
+        count: 4
+      - type: {fileID: 11400000, guid: 02984bd018adf944a8e66c168ba559f7, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: e265b9ce3714f904b8b5eb597e9f991f, type: 2}
+        count: 5
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 2
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

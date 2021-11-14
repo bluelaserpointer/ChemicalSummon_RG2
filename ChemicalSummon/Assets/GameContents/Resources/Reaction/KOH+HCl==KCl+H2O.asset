@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: KOH+HCl==KCl+H2O
   m_EditorClassIdentifier: 
   formula: KOH+HCl==KCl+H2O
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 684f92936fe97114d805f510e44f2506, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 93776222225c1af438033ecf3db6e753, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: d514883c6eb5cf64088ab1cf911bc402, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 684f92936fe97114d805f510e44f2506, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 93776222225c1af438033ecf3db6e753, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: d514883c6eb5cf64088ab1cf911bc402, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

@@ -36,6 +36,18 @@ public class MagicCard : Card
     public override CardHeader Header => Magic;
     public override string CurrentLanguageName => Magic.name;
     public override Sprite Image => Magic.image;
-    static MagicCard templatePrefab;
-    public static MagicCard TemplatePrefab => templatePrefab ?? (templatePrefab = Resources.Load<MagicCard>("CardPrefab/MagicCard")); //Assets/GameSystem/Card/Magic/Resources/SubstanceCard
+    public FusionEnhancer TryGetFusionEnhancer
+    {
+        get
+        {
+            FusionEnhancer enhancer = null;
+            foreach (CardAbility ability in abilities)
+            {
+                enhancer = ability as FusionEnhancer;
+                if (enhancer != null)
+                    break;
+            }
+            return enhancer;
+        }
+    }
 }

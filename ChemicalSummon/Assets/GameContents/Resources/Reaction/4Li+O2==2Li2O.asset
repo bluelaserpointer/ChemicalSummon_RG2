@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: 4Li+O2==2Li2O
   m_EditorClassIdentifier: 
   formula: 4Li+O2==2Li2O
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 9d2eab3f11943994f93ef5a77c8ebd07, type: 2}
-      count: 4
-    - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 1557925efff36f14c8432647cbc9a45f, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 1
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 9d2eab3f11943994f93ef5a77c8ebd07, type: 2}
+        count: 4
+      - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 1557925efff36f14c8432647cbc9a45f, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 1
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

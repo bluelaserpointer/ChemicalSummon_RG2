@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: Al2(SO4)3+6NH3.H2O==2Al(OH)3+3(NH4)2SO4
   m_EditorClassIdentifier: 
   formula: Al2(SO4)3+6NH3.H2O==2Al(OH)3+3(NH4)2SO4
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 66796f0ae01a0c144909baf54ba828f2, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 13ad68f0ef498204d81c13c039834585, type: 2}
-      count: 6
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 76de494611950b543a35fc562258082c, type: 2}
-      count: 2
-    - type: {fileID: 11400000, guid: f175acf16ba43824e9efddcf3630fd0e, type: 2}
-      count: 3
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 66796f0ae01a0c144909baf54ba828f2, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 13ad68f0ef498204d81c13c039834585, type: 2}
+        count: 6
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 76de494611950b543a35fc562258082c, type: 2}
+        count: 2
+      - type: {fileID: 11400000, guid: f175acf16ba43824e9efddcf3630fd0e, type: 2}
+        count: 3
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

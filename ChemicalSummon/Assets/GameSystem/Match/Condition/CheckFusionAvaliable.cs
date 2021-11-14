@@ -17,7 +17,7 @@ public class CheckFusionAvaliable : MatchCondition
     {
         foreach(var method in MatchManager.OpenReactionListButton.lastAvaliableReactionMethods)
         {
-            if (method.reaction.Equals(reaction))
+            if (method.fusion.Reaction.Equals(reaction))
             {
                 MatchManager.OpenReactionListButton.onFusionListUpdate.RemoveListener(Check);
                 onConditionMet.Invoke();

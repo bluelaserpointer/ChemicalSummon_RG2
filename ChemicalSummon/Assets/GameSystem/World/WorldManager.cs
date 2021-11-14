@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class WorldManager : General
+public class WorldManager : AbstractManager
 {
     public static WorldManager Instance { get; protected set; }
 

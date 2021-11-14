@@ -28,7 +28,7 @@ public class CardDrag : Draggable
                 MatchManager.Player.HandCardsDisplay.Remove(gameObject);
             }
         }
-        card.transform.SetParent(General.MainCanvas.transform);
+        card.transform.SetParent(AbstractManager.MainCanvas.transform);
         MatchManager.CardDragGuidance.StartCardDrag(card);
     }
     public override void OnEndDrag(PointerEventData eventData)
@@ -65,7 +65,7 @@ public class CardDrag : Draggable
                         break;
                 }
             }
-            //back to original place
+            //return to original place
             //TODO: acctually CurrentSlot always null because transform parent change after drag start. May should redesign this.
             if (CurrentSlot != null)
             {

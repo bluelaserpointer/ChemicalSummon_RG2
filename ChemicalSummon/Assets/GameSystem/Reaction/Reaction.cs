@@ -12,12 +12,59 @@ public class Reaction : ScriptableObject
 {
     public string formula;
 
-    public TypeAndCountList<Substance> leftSubstances = new TypeAndCountList<Substance>();
-    public TypeAndCountList<Substance> rightSubstances = new TypeAndCountList<Substance>();
-    public TypeAndCountList<Substance> catalysts = new TypeAndCountList<Substance>();
+    [Serializable]
+    public struct Stats
+    {
+        public TypeAndCountList<Substance> leftSubstances;
+        public TypeAndCountList<Substance> rightSubstances;
+        public TypeAndCountList<Substance> catalysts;
 
-    public int explosion, electric, heat, heatRequire, electricRequire;
+        public int heatRequire, electricRequire;
+        public int vigorousness, electric, heat, explosionPower;
+        public int ExplosionDamage => explosionPower * heat * vigorousness;
+    }
+    public Stats initialStats;
+
+    /// <summary>
+    /// 左式(消耗素材)
+    /// </summary>
+    public TypeAndCountList<Substance> LeftSubstances => initialStats.leftSubstances;
+    /// <summary>
+    /// 右式(生成素材)
+    /// </summary>
+    public TypeAndCountList<Substance> RightSubstances => initialStats.rightSubstances;
+    /// <summary>
+    /// 触媒(非消耗素材)
+    /// </summary>
+    public TypeAndCountList<Substance> Catalysts => initialStats.catalysts;
+    /// <summary>
+    /// 热量消耗
+    /// </summary>
+    public int HeatRequire => initialStats.heatRequire;
+    /// <summary>
+    /// 电量消耗
+    /// </summary>
+    public int ElectricRequire => initialStats.electricRequire;
+    /// <summary>
+    /// 剧烈度
+    /// </summary>
+    public int Vigorousness => initialStats.vigorousness;
+    /// <summary>
+    /// 电量释放
+    /// </summary>
+    public int Electric => initialStats.electric;
+    /// <summary>
+    /// 热量释放
+    /// </summary>
+    public int Heat => initialStats.heat;
+    /// <summary>
+    /// 爆炸系数
+    /// </summary>
+    public int ExplosionPower => initialStats.explosionPower;
+
     public List<ResearchStep> researchSteps = new List<ResearchStep>();
+
+    //data
     public bool IsRequiredSubstance(Substance substance)
     {
         return GetRequiredAmount(substance) > 0;
@@ -27,11 +74,11 @@ public class Reaction : ScriptableObject
         return GetProducingSubstance(substance) > 0;
     }
     public int GetRequiredAmount(Substance substance) {
-        return leftSubstances.StackCount(substance);
+        return LeftSubstances.StackCount(substance);
     }
     public int GetProducingSubstance(Substance substance)
     {
-        return rightSubstances.StackCount(substance);
+        return RightSubstances.StackCount(substance);
     }
     public static Reaction LoadFromResources(string name)
     {
@@ -43,15 +90,15 @@ public class Reaction : ScriptableObject
     }
     public struct ReactionMethod
     {
-        public Reaction reaction;
+        public Fusion fusion;
         public Dictionary<Card, int> consumingCards;
-        public ReactionMethod(Reaction reaction, Dictionary<Card, int> consumingCards)
+        public ReactionMethod(Fusion fusion, Dictionary<Card, int> consumingCards)
         {
-            this.reaction = reaction;
+            this.fusion = fusion;
             this.consumingCards = consumingCards;
         }
     }
-    public static bool GenerateReactionMethod(Reaction reaction, Gamer gamer, List<Card> consumableCards, SubstanceCard attacker, out ReactionMethod method)
+    public static bool GenerateFusionMethod(Fusion fusion, Gamer gamer, List<Card> consumableCards, SubstanceCard attacker, out ReactionMethod method)
     {
         if (attacker != null && !consumableCards.Contains(attacker))
         {
@@ -61,7 +108,7 @@ public class Reaction : ScriptableObject
         bool condition = true;
         bool addedAttacker = false;
         Dictionary<Card, int> consumingCards = new Dictionary<Card, int>();
-        foreach (var pair in reaction.leftSubstances)
+        foreach (var pair in fusion.LeftSubstances)
         {
             Substance requiredSubstance = pair.type;
             int requiredAmount = pair.count;
@@ -98,7 +145,7 @@ public class Reaction : ScriptableObject
         }
         if (condition && (attacker == null || addedAttacker))
         {
-            method = new ReactionMethod(reaction, consumingCards);
+            method = new ReactionMethod(fusion, consumingCards);
             return true;
         }
         else

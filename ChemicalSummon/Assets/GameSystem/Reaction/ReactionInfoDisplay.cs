@@ -28,28 +28,28 @@ public class ReactionInfoDisplay : MonoBehaviour
             Destroy(eachTf.gameObject);
         foreach (Transform eachTf in specialsListTf)
             Destroy(eachTf.gameObject);
-        foreach (var each in reaction.leftSubstances)
+        foreach (var each in reaction.LeftSubstances)
         {
             SubstanceCard card = Instantiate(substanceCardPrefab, leftSubstanceListTf);
             card.Substance = each.type;
             card.InitCardAmount(each.count);
             card.SetDraggable(false);
         }
-        foreach (var each in reaction.rightSubstances)
+        foreach (var each in reaction.RightSubstances)
         {
             SubstanceCard card = Instantiate(substanceCardPrefab, rightSubstanceListTf);
             card.Substance = each.type;
             card.InitCardAmount(each.count);
         }
-        if(reaction.electric > 0)
+        if(reaction.Electric > 0)
         {
             Instantiate(reactionSpecialDamageLabelPrefab, specialsListTf).SetReactionDamageType(DamageType.Electronic);
         }
-        if (reaction.explosion > 0)
+        if (reaction.ExplosionPower > 0)
         {
             Instantiate(reactionSpecialDamageLabelPrefab, specialsListTf).SetReactionDamageType(DamageType.Explosion);
         }
-        if (reaction.heat > 0)
+        if (reaction.Heat > 0)
         {
             Instantiate(reactionSpecialDamageLabelPrefab, specialsListTf).SetReactionDamageType(DamageType.Heat);
         }

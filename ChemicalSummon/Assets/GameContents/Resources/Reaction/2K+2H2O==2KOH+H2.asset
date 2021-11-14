@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: 2K+2H2O==2KOH+H2
   m_EditorClassIdentifier: 
   formula: 2K+2H2O==2KOH+H2
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 89cf64b814f000549be0da043a195374, type: 2}
-      count: 2
-    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 684f92936fe97114d805f510e44f2506, type: 2}
-      count: 2
-    - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 11
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 89cf64b814f000549be0da043a195374, type: 2}
+        count: 2
+      - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 684f92936fe97114d805f510e44f2506, type: 2}
+        count: 2
+      - type: {fileID: 11400000, guid: 13e656293f977114ab98baf3a739544d, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 11
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

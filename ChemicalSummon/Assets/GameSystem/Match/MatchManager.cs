@@ -12,7 +12,7 @@ using UnityEngine.UI;
 ///  , 管理回合
 /// </summary>
 [DisallowMultipleComponent]
-public class MatchManager : General, IPointerDownHandler
+public class MatchManager : AbstractManager, IPointerDownHandler
 {
     public static MatchManager Instance { get; protected set; }
     //inspector
@@ -36,7 +36,7 @@ public class MatchManager : General, IPointerDownHandler
     [SerializeField]
     DecideCardSelectButton cardSelectPanel;
     [SerializeField]
-    FusionDisplay fusionDisplay;
+    FusionMagicCircle fusionDisplay;
     [SerializeField]
     MatchLogDisplay matchLogDisplay;
     [SerializeField]
@@ -144,7 +144,7 @@ public class MatchManager : General, IPointerDownHandler
     /// <summary>
     /// 融合展示
     /// </summary>
-    public static FusionDisplay FusionDisplay => Instance.fusionDisplay;
+    public static FusionMagicCircle FusionDisplay => Instance.fusionDisplay;
     /// <summary>
     /// 行动历史栏
     /// </summary>
@@ -364,15 +364,15 @@ public class MatchManager : General, IPointerDownHandler
         switch (turnType)
         {
             case TurnType.FirstMoverDecide:
-                return LoadSentence("DecidingFirstMover");
+                return General.LoadSentence("DecidingFirstMover");
             case TurnType.MyFusionTurn:
-                return LoadSentence("FusionTurn");
+                return General.LoadSentence("FusionTurn");
             case TurnType.MyAttackTurn:
-                return LoadSentence("AttackTurn");
+                return General.LoadSentence("AttackTurn");
             case TurnType.EnemyFusionTurn:
-                return LoadSentence("EnemyFusionTurn");
+                return General.LoadSentence("EnemyFusionTurn");
             case TurnType.EnemyAttackTurn:
-                return LoadSentence("EnemyAttackTurn");
+                return General.LoadSentence("EnemyAttackTurn");
         }
         return null;
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class SettingScreen : General
+public class SettingScreen : AbstractManager
 {
     [SerializeField]
     Transform thingsInTitle, thingsInWorld, thingsInMatch;

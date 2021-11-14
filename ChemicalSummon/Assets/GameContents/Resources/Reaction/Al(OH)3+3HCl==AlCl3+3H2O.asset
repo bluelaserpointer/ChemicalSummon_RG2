@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: Al(OH)3+3HCl==AlCl3+3H2O
   m_EditorClassIdentifier: 
   formula: Al(OH)3+3HCl==AlCl3+3H2O
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 76de494611950b543a35fc562258082c, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 93776222225c1af438033ecf3db6e753, type: 2}
-      count: 3
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: e79c1bbdbe10abc48819ebfe5426015f, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
-      count: 3
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 76de494611950b543a35fc562258082c, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 93776222225c1af438033ecf3db6e753, type: 2}
+        count: 3
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: e79c1bbdbe10abc48819ebfe5426015f, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 85f1c1866bd34314db8d0336b2578c93, type: 2}
+        count: 3
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

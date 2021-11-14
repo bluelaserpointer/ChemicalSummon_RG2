@@ -16,7 +16,7 @@ public class CheckFusionDone : MatchCondition
     }
     private void Check(Reaction.ReactionMethod method)
     {
-        if(method.reaction.Equals(reaction))
+        if(method.fusion.Reaction.Equals(reaction))
         {
             MatchManager.Player.onFusionExecute.RemoveListener(Check);
             onConditionMet.Invoke();

@@ -51,15 +51,15 @@ public class MatchMod : MonoBehaviour
 
     [Header("DrawPile(These disables deck setting)")]
     [SerializeField]
-    List<Substance> enemyDrawPile;
+    List<CardHeader> enemyDrawPile;
     [SerializeField]
-    List<Substance> playerDrawPile;
+    List<CardHeader> playerDrawPile;
 
     [Header("HandCard")]
     [SerializeField]
-    TypeAndCountList<Substance> enemyHandCards;
+    TypeAndCountList<CardHeader> enemyHandCards;
     [SerializeField]
-    TypeAndCountList<Substance> playerHandCards;
+    TypeAndCountList<CardHeader> playerHandCards;
 
     private Enemy Enemy => MatchManager.Enemy;
     private Player Player => MatchManager.Player;

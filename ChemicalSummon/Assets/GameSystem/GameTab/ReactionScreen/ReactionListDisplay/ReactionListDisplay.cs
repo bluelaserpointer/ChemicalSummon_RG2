@@ -164,6 +164,7 @@ public class ReactionListDisplay : MonoBehaviour
         }
         if (enhancer == null)
             return false;
+        MatchManager.Player.aboutToUseMagicCards.Add(magicCard);
         originalButtons.ForEach(button => button.ApplyEnhancement(enhancer));
         return true;
     }

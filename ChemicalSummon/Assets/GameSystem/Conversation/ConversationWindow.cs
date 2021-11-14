@@ -40,7 +40,7 @@ public class ConversationWindow : MonoBehaviour
     {
         if (IsOpen)
             return;
-        Instantiate(BaseConversation, General.MainCanvas.transform);
+        Instantiate(BaseConversation, AbstractManager.MainCanvas.transform);
         SetBackground(null);
     }
     public static void SetTalk(Talk_EventNode talk)

@@ -149,10 +149,6 @@ public class SubstanceCard : Card
             boilingPointText.text = value.ToString() + "℃";
         }
     }
-    static SubstanceCard templatePrefab;
-    public static SubstanceCard TemplatePrefab => templatePrefab ?? (templatePrefab = Resources.Load<SubstanceCard>("CardPrefab/SubstanceCard")); //Assets/GameSystem/Card/Resources/SubstanceCard
-
-
     /// <summary>
     /// 与卡牌战斗
     /// </summary>

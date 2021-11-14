@@ -148,8 +148,6 @@ public abstract class Gamer : MonoBehaviour
     /// 手牌变化事件
     /// </summary>
     public UnityEvent OnHandCardsChanged => onHandCardsChanged;
-    [HideInInspector]
-    public TypeAndCountList<Substance> exposedSubstances = new TypeAndCountList<Substance>();
     public void Init(Character character)
     {
         Character = character;
@@ -388,7 +386,7 @@ public abstract class Gamer : MonoBehaviour
     public virtual void FusionTurnStart()
     {
         SpeakInMatch(Character.SpeakType.StartFusion);
-        foreach(var card in Opponent.Field.Cards)
+        foreach(var card in Opponent.Field.MainCards)
         {
             if(card.Formula.Equals("FireFairy"))
             {
@@ -430,7 +428,7 @@ public abstract class Gamer : MonoBehaviour
     {
         List<Card> cards = new List<Card>();
         cards.AddRange(HandCards);
-        cards.AddRange(Field.Cards);
+        cards.AddRange(Field.MainCards);
         return cards;
     }
     public abstract void Defense(SubstanceCard attacker);
@@ -461,56 +459,63 @@ public abstract class Gamer : MonoBehaviour
         foreach (Reaction reaction in reactions)
         {
             Reaction.ReactionMethod method;
-            if(Reaction.GenerateReactionMethod(reaction, this, consumableCards, attacker, out method))
+            if(Reaction.GenerateFusionMethod(new Fusion(reaction), this, consumableCards, attacker, out method))
                 results.Add(method);
         }
         return results;
     }
-    public bool EnoughEnergyToDo(Reaction reaction)
+    public bool EnoughEnergyToDo(Fusion fusion)
     {
-        return HeatGem >= reaction.heatRequire && ElectricGem >= reaction.electricRequire;
+        return HeatGem >= fusion.HeatRequire && ElectricGem >= fusion.ElectricRequire;
     }
     public virtual void DoFusion(Reaction.ReactionMethod method)
     {
         onFusionExecute.Invoke(method);
-        MatchManager.MatchLogDisplay.AddFusionLog(this, method.reaction);
+        MatchManager.MatchLogDisplay.AddFusionLog(this, method.fusion);
         foreach (KeyValuePair<Card, int> consume in method.consumingCards)
         {
             consume.Key.RemoveAmount(consume.Value, Card.DecreaseReason.FusionMaterial);
         }
         //AddHandCard has updatability but also has animation time so we need update at this time
         MatchManager.OpenReactionListButton.UpdateList();
-        foreach (var pair in method.reaction.rightSubstances)
+        foreach (var pair in method.fusion.RightSubstances)
         {
             SubstanceCard newCard = pair.type.GenerateSubstanceCard();
             newCard.InitCardAmount(pair.count);
-            exposedSubstances.Add(newCard.Substance);
             AddHandCard(newCard);
         }
-        Reaction reaction = method.reaction;
+        Fusion fusion = method.fusion;
         //special
-        if (reaction.heatRequire > 0)
-            HeatGem -= reaction.heatRequire;
-        if (reaction.electricRequire > 0)
-            ElectricGem -= reaction.electricRequire;
-        if (reaction.heat > 0)
-            PushActionStack(() => DoBurn(reaction.heat));
-        if (reaction.electric > 0)
-            PushActionStack(() => DoElectricShock(reaction.electric));
-        if (reaction.explosion > 0)
-            PushActionStack(() => DoExplosion(reaction.explosion));
-        if (reaction.explosion == 0)
+        if (fusion.HeatRequire > 0)
+            HeatGem -= fusion.HeatRequire;
+        if (fusion.ElectricRequire > 0)
+            ElectricGem -= fusion.ElectricRequire;
+        if (fusion.Electric > 0)
+            PushActionStack(() => CollectElectric(fusion.Electric));
+        if (fusion.ExplosionPower > 0)
+            PushActionStack(() => DoExplosion(fusion.Heat * fusion.Vigorousness * fusion.ExplosionPower));
+        else if(fusion.Heat > 0) // cannot collet heat used for explosion
+            PushActionStack(() => CollectHeat(fusion.Heat));
+        if (fusion.ExplosionPower == 0) //avoid SE contradiction
             MatchManager.PlaySE("Sound/SE/powerup10");
         //talk
         SpeakInMatch(MatchManager.CurrentTurnType.Equals(FusionTurn) ? Character.SpeakType.Fusion : Character.SpeakType.Counter);
         //event invoke
         MatchManager.Instance.onFusionFinish.Invoke();
     }
-    public virtual void DoBurn(int burnDamage)
+    public virtual void CollectHeat(int heatAmount)
     {
-        for (int i = 0; i < burnDamage; ++i)
+        for (int i = 0; i < heatAmount; ++i)
         {
             MatchManager.StartGemMoveAnimation(Color.red, MatchManager.FusionDisplay.transform.position, StatusPanels.HeatGemPanel.transform.position, () => ++HeatGem);
+        }
+        DoStackedAction();
+    }
+    public virtual void CollectElectric(int electricAmount)
+    {
+        for (int i = 0; i < electricAmount; ++i)
+        {
+            MatchManager.StartGemMoveAnimation(Color.yellow, MatchManager.FusionDisplay.transform.position, StatusPanels.ElectricGemPanel.transform.position, () => ++ElectricGem);
         }
         DoStackedAction();
     }
@@ -521,14 +526,6 @@ public abstract class Gamer : MonoBehaviour
         foreach (ShieldCardSlot cardSlot in Opponent.Field.Slots)
         {
             cardSlot.Damage(explosionDamage);
-        }
-        DoStackedAction();
-    }
-    public virtual void DoElectricShock(int electricDamage)
-    {
-        for (int i = 0; i < electricDamage; ++i)
-        {
-            MatchManager.StartGemMoveAnimation(Color.yellow, MatchManager.FusionDisplay.transform.position, StatusPanels.ElectricGemPanel.transform.position, () => ++ElectricGem);
         }
         DoStackedAction();
     }

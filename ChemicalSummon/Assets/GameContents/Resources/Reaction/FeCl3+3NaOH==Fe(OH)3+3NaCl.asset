@@ -13,26 +13,28 @@ MonoBehaviour:
   m_Name: FeCl3+3NaOH==Fe(OH)3+3NaCl
   m_EditorClassIdentifier: 
   formula: FeCl3+3NaOH==Fe(OH)3+3NaCl
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 521b152b9ad2bbb45a1e979b8eba4479, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: d848fab6dbbbb5644bd0ee6083d28857, type: 2}
-      count: 3
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: eb2d9914ab5e1fe41b032cd07c9853da, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3, type: 2}
-      count: 3
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 0
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 521b152b9ad2bbb45a1e979b8eba4479, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: d848fab6dbbbb5644bd0ee6083d28857, type: 2}
+        count: 3
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: eb2d9914ab5e1fe41b032cd07c9853da, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: d854676727c4767438a0fa6e2ab26fc3, type: 2}
+        count: 3
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 0
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []

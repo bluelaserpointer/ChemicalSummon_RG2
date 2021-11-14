@@ -38,7 +38,7 @@ public class Field : MonoBehaviour
     /// <summary>
     /// 所有卡牌
     /// </summary>
-    public List<SubstanceCard> Cards {
+    public List<SubstanceCard> MainCards {
         get
         {
             List<SubstanceCard> cards = new List<SubstanceCard>();
@@ -53,59 +53,8 @@ public class Field : MonoBehaviour
             return cards;
         }
     }
-    public SubstanceCard TopATKCard => Cards.FindMostValuable(card => card.ATK).Key;
-    public int TopATK => (int)(Cards.FindMostValuable(card => card.ATK).Value);
-    /// <summary>
-    /// 查看物质卡
-    /// </summary>
-    /// <param name="substance"></param>
-    /// <param name="amount"></param>
-    /// <returns></returns>
-    public List<SubstanceCard> FindSubstances(Substance substance, ref int amount)
-    {
-        List<SubstanceCard> results = new List<SubstanceCard>();
-        if (amount > 0)
-        {
-            foreach (SubstanceCard card in Cards)
-            {
-                if (card.Substance.Equals(substance))
-                {
-                    results.Add(card);
-                    amount -= card.CardAmount;
-                    if (amount <= 0)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-        return results;
-    }
-    /// <summary>
-    /// 对手查看物质卡(只能查看暴露(格挡区)的卡牌)
-    /// </summary>
-    /// <param name="substance"></param>
-    /// <param name="amount"></param>
-    /// <returns></returns>
-    public List<SubstanceCard> FindSubstancesFromEnemy(Substance substance, int amount)
-    {
-        List<SubstanceCard> results = new List<SubstanceCard>();
-        if (amount > 0)
-        {
-            foreach (SubstanceCard card in Cards)
-            {
-                if (card.Substance.Equals(substance))
-                {
-                    results.Add(card);
-                    if (--amount == 0)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-        return results;
-    }
+    public SubstanceCard TopATKCard => MainCards.FindMostValuable(card => card.ATK).Key;
+    public int TopATK => (int)(MainCards.FindMostValuable(card => card.ATK).Value);
     public bool CardsDraggable => IsMySide && MatchManager.CurrentTurnType.Equals(TurnType.MyFusionTurn);
     public void UpdateCardsDraggable()
     {

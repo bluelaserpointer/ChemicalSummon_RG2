@@ -8,11 +8,9 @@ public class Enemy : Gamer
 {
     [SerializeField]
     EnemyThinking enemyThinkingPrefab;
-    [SerializeField]
-    Transform enemyThinkingPreview;
     public void AddEnemyAction(Action action)
     {
-        EnemyThinking gamerAction = Instantiate(enemyThinkingPrefab, enemyThinkingPreview);
+        EnemyThinking gamerAction = Instantiate(enemyThinkingPrefab, transform);
         gamerAction.action = action;
     }
     public EnemyAI AI => MatchManager.Match.EnemyAI;

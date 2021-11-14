@@ -74,13 +74,13 @@ public class CardTransport
                 return cards;
             case Location.Field:
                 //TODO: convert problem
-                cards = MatchManager.MyField.Cards.FindAll(card => condition.Accept(card)).ConvertAll(scard => scard as Card);
-                cards.AddRange(MatchManager.EnemyField.Cards.FindAll(card => condition.Accept(card)));
+                cards = MatchManager.MyField.MainCards.FindAll(card => condition.Accept(card)).ConvertAll(scard => scard as Card);
+                cards.AddRange(MatchManager.EnemyField.MainCards.FindAll(card => condition.Accept(card)));
                 return cards;
             case Location.MyField:
-                return MatchManager.MyField.Cards.FindAll(card => condition.Accept(card)).ConvertAll(scard => scard as Card);
+                return MatchManager.MyField.MainCards.FindAll(card => condition.Accept(card)).ConvertAll(scard => scard as Card);
             case Location.EnemyField:
-                return MatchManager.EnemyField.Cards.FindAll(card => condition.Accept(card)).ConvertAll(scard => scard as Card);
+                return MatchManager.EnemyField.MainCards.FindAll(card => condition.Accept(card)).ConvertAll(scard => scard as Card);
             case Location.MyHandCard:
                 return MatchManager.Player.HandCards.FindAll(card => condition.Accept(card));
             case Location.MyDeck:

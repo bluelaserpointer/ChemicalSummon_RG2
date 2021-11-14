@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: C+O2==CO2
   m_EditorClassIdentifier: 
   formula: C+O2==CO2
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 97ca178e8f5373a4c9bc5a78b42e0d71, type: 2}
-      count: 1
-    - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 9af7cb25806b85042a7e37e479848a27, type: 2}
-      count: 1
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 3
-  heatRequire: 1
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 97ca178e8f5373a4c9bc5a78b42e0d71, type: 2}
+        count: 1
+      - type: {fileID: 11400000, guid: 0ea7f1a2a301f9d48b2bb22f8ea1505b, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 9af7cb25806b85042a7e37e479848a27, type: 2}
+        count: 1
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 1
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 3
+    explosionPower: 0
   researchSteps: []

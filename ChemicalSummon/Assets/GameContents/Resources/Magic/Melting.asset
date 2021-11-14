@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f8abea6dde6644ebcd46cc4214fc77, type: 3}
   m_Name: Melting
   m_EditorClassIdentifier: 
-  rank: 0
-  abilityPrefab: {fileID: 0}
   name:
     defaultString: Melting
     languageAndSentences:
@@ -26,4 +24,6 @@ MonoBehaviour:
     languageAndSentences:
     - language: 0
       sentence: "\u7528\u9AD8\u6E29\u7194\u5316\u575A\u56FA\u7684\u5821\u5792\u3002"
+  rank: 0
+  abilityPrefab: {fileID: 0}
   image: {fileID: 0}

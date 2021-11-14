@@ -13,24 +13,26 @@ MonoBehaviour:
   m_Name: 2Fe+3Cl2==2FeCl3
   m_EditorClassIdentifier: 
   formula: 2Fe+3Cl2==2FeCl3
-  leftSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
-      count: 2
-    - type: {fileID: 11400000, guid: 3c315e54fb08c6f40aaaff9c90978d4b, type: 2}
-      count: 3
-    denyNegativeCount: 1
-  rightSubstances:
-    list:
-    - type: {fileID: 11400000, guid: 521b152b9ad2bbb45a1e979b8eba4479, type: 2}
-      count: 2
-    denyNegativeCount: 1
-  catalysts:
-    list: []
-    denyNegativeCount: 1
-  explosion: 0
-  electric: 0
-  heat: 0
-  heatRequire: 2
-  electricRequire: 0
+  initialStats:
+    leftSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 7b5edf5392ec2a243a8ed92570ed0f01, type: 2}
+        count: 2
+      - type: {fileID: 11400000, guid: 3c315e54fb08c6f40aaaff9c90978d4b, type: 2}
+        count: 3
+      denyNegativeCount: 1
+    rightSubstances:
+      list:
+      - type: {fileID: 11400000, guid: 521b152b9ad2bbb45a1e979b8eba4479, type: 2}
+        count: 2
+      denyNegativeCount: 1
+    catalysts:
+      list: []
+      denyNegativeCount: 1
+    heatRequire: 2
+    electricRequire: 0
+    vigorousness: 0
+    electric: 0
+    heat: 0
+    explosionPower: 0
   researchSteps: []
