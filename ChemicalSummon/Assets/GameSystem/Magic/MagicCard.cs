@@ -22,15 +22,17 @@ public class MagicCard : Card
             magic = value;
             cardNameText.text = magic.name;
             cardImage.sprite = magic.image;
-            descriptionText.text = magic.description;
-            if (magic.abilityPrefab == null)
-                abilities = new CardAbility[0];
-            else
+            abilities.Clear();
+            abilities.AddRange(Magic.AttachAbility(this));
+            string cardDescription = "";
+            foreach (var ability in abilities)
             {
-                GameObject abilitiesObject = Instantiate(magic.abilityPrefab, transform);
-                abilitiesObject.name = "Abilities";
-                abilities = abilitiesObject.GetComponentsInChildren<CardAbility>();
+                if (cardDescription.Length == 0)
+                    cardDescription = ability.Description;
+                else
+                    cardDescription += "\r\n" + ability.Description;
             }
+            descriptionText.text = cardDescription;
         }
     }
     public override CardHeader Header => Magic;

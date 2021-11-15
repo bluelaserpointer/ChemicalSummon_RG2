@@ -30,7 +30,7 @@ public class AbilityLabel : MonoBehaviour
     public void Init(int abilityIndex, CardAbility ability)
     {
         card = null;
-        invokeButton.gameObject.SetActive(false);
+        invokeButton.enabled = false;
         this.ability = ability;
         headerText.text = abilitySentence + abilityIndex;
         abilityIcon.sprite = ability.Icon;
@@ -43,7 +43,7 @@ public class AbilityLabel : MonoBehaviour
     public void SetCard(Card card)
     {
         this.card = card;
-        invokeButton.gameObject.SetActive(true);
+        invokeButton.enabled = true;
         UpdateAbilityState();
     }
     public void UpdateAbilityState()

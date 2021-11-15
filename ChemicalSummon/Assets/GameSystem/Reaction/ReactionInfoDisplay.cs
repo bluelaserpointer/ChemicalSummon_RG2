@@ -45,7 +45,7 @@ public class ReactionInfoDisplay : MonoBehaviour
         {
             Instantiate(reactionSpecialDamageLabelPrefab, specialsListTf).SetReactionDamageType(DamageType.Electronic);
         }
-        if (reaction.ExplosionPower > 0)
+        if (reaction.ExplosionDamage > 0)
         {
             Instantiate(reactionSpecialDamageLabelPrefab, specialsListTf).SetReactionDamageType(DamageType.Explosion);
         }

@@ -20,8 +20,8 @@ public class Reaction : ScriptableObject
         public TypeAndCountList<Substance> catalysts;
 
         public int heatRequire, electricRequire;
-        public int vigorousness, electric, heat, explosionPower;
-        public int ExplosionDamage => explosionPower * heat * vigorousness;
+        public int vigorousness, electric, heat, explosionDamage;
+        public int ExplosionDamage => explosionDamage;
     }
     public Stats initialStats;
 
@@ -60,7 +60,7 @@ public class Reaction : ScriptableObject
     /// <summary>
     /// 爆炸系数
     /// </summary>
-    public int ExplosionPower => initialStats.explosionPower;
+    public int ExplosionDamage => initialStats.explosionDamage;
 
     public List<ResearchStep> researchSteps = new List<ResearchStep>();
 

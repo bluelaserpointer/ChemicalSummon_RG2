@@ -20,7 +20,8 @@ public class ReactionListDisplay : MonoBehaviour
     [SerializeField]
     Toggle leftMode, catalystMode, rightMode, allMode;
 
-    List<FusionButton> originalButtons = new List<FusionButton>();
+    List<FusionButton> fusionButtons = new List<FusionButton>();
+    public List<FusionButton> FusionButtons => fusionButtons;
 
     public void OnInputSearchField()
     {
@@ -38,7 +39,7 @@ public class ReactionListDisplay : MonoBehaviour
         string searchStr = searchInputField.text;
         if (searchStr.Length == 0)
         {
-            originalButtons.ForEach(button => button.gameObject.SetActive(true));
+            fusionButtons.ForEach(button => button.gameObject.SetActive(true));
             clearInputFieldButton.gameObject.SetActive(false);
             return;
         }
@@ -47,7 +48,7 @@ public class ReactionListDisplay : MonoBehaviour
         string[] searchNames = searchStr.Split(new char[] { '+' }, StringSplitOptions.RemoveEmptyEntries);
         if(searchNames.Length == 0)
         {
-            originalButtons.ForEach(button => button.gameObject.SetActive(true));
+            fusionButtons.ForEach(button => button.gameObject.SetActive(true));
             return;
         }
         //search mode
@@ -63,7 +64,7 @@ public class ReactionListDisplay : MonoBehaviour
             searchPlaceConverter = (str) => str.Split('=')[2];
         else
             return;
-        foreach (FusionButton button in originalButtons)
+        foreach (FusionButton button in fusionButtons)
         {
             string searchPlace = searchPlaceConverter.Invoke(button.Reaction.formula);
             bool hit = true;
@@ -87,9 +88,9 @@ public class ReactionListDisplay : MonoBehaviour
     }
     public void InitList(List<FusionButton> buttons)
     {
-        originalButtons = buttons;
+        fusionButtons = buttons;
         buttonListTransform.DestroyAllChildren();
-        originalButtons.ForEach(button => button.transform.SetParent(buttonListTransform));
+        fusionButtons.ForEach(button => button.transform.SetParent(buttonListTransform));
         ClearSearchInputField();
     }
     public void ClearSearchInputField()
@@ -150,7 +151,7 @@ public class ReactionListDisplay : MonoBehaviour
             searchInputField.text += "+" + substance.formula;
     }
     /// <summary>
-    /// 设置魔法卡强化
+    /// 设置魔法卡强化（仅战斗内使用）
     /// </summary>
     /// <param name="magicCard"></param>
     /// <returns></returns>
@@ -164,8 +165,8 @@ public class ReactionListDisplay : MonoBehaviour
         }
         if (enhancer == null)
             return false;
-        MatchManager.Player.aboutToUseMagicCards.Add(magicCard);
-        originalButtons.ForEach(button => button.ApplyEnhancement(enhancer));
+        if (!MatchManager.EnhancementList.AddAbility(magicCard, enhancer))
+            return false;
         return true;
     }
 

@@ -48,12 +48,4 @@ public class General : MonoBehaviour
             Debug.LogWarning("Cannot find TranslatableSentence ScriptableObject by name: " + name);
         return sentence;
     }
-    public static void UpdateAllSentence()
-    {
-        foreach (var abilityPrefab in CardAbility.LoadAllFromResources())
-        {
-            foreach (var ability in abilityPrefab.GetComponentsInChildren<CardAbility>())
-                ability.UpdateDescriptionLanguage();
-        }
-    }
 }

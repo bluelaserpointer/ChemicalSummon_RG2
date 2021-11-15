@@ -43,7 +43,7 @@ public class OpenReactionListButton : MonoBehaviour
         fusionCountImage.color = noFusionColor;
         fusionCountText.text = fusionSentence + " 0";
     }
-    public void UpdateList()
+    public void UpdateFusionMethod()
     {
         //in counterMode, only counter fusions are avaliable
         SubstanceCard currentAttacker = MatchManager.Player.CurrentAttacker;
@@ -60,11 +60,6 @@ public class OpenReactionListButton : MonoBehaviour
                 MatchManager.FusionDisplay.StartReactionAnimation(() =>
                 {
                     lastReaction = fusion.Reaction;
-                    foreach(MagicCard magicCard in MatchManager.Player.aboutToUseMagicCards)
-                    {
-                        magicCard.Dispose();
-                    }
-                    MatchManager.Player.aboutToUseMagicCards.Clear();
                     //must recheck because player cards may union/distribute in handcards/fields
                     List<Card> atNewTimeConsumableCards = MatchManager.Player.GetConsumableCards();
                     if (currentAttacker != null)
@@ -72,6 +67,8 @@ public class OpenReactionListButton : MonoBehaviour
                     Reaction.ReactionMethod method;
                     if(Reaction.GenerateFusionMethod(fusionButton.Fusion, MatchManager.Player, atNewTimeConsumableCards, currentAttacker, out method))
                         MatchManager.Player.DoFusion(method);
+                    //enhancements after actions
+                    MatchManager.EnhancementList.OnEnhanceTargetExecuted();
                     //counter fusion
                     if (counterMode)
                     {
@@ -108,7 +105,7 @@ public class OpenReactionListButton : MonoBehaviour
     {
         fusionButtonListSlider.SlideBack();
         ReactionListDisplay.ClearSearchInputField();
-        MatchManager.Player.aboutToUseMagicCards.Clear();
+        MatchManager.EnhancementList.RemoveAllEnhancements();
     }
     public bool TrySetCard(Card card)
     {

@@ -23,7 +23,6 @@ public class PlayerSave : MonoBehaviour
     public void OnFirstInit() //refered by DontDestroyOnLoad
     {
         instance = this;
-        General.UpdateAllSentence();
         InitSaveData();
     }
     //inspector

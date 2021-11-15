@@ -278,7 +278,7 @@ public abstract class Gamer : MonoBehaviour
             substanceCard.TracePosition(duplicatedCard.transform.position, () =>
             {
                 duplicatedCard.TryUnion(substanceCard);
-                MatchManager.OpenReactionListButton.UpdateList();
+                MatchManager.OpenReactionListButton.UpdateFusionMethod();
                 OnHandCardsChanged.Invoke();
             });
         }
@@ -292,7 +292,7 @@ public abstract class Gamer : MonoBehaviour
             else
                 HandCardsDisplay.Insert(HandCardsDisplay.cards.IndexOf(duplicatedCard.gameObject) + 1, substanceCard.gameObject);
             substanceCard.SetDraggable(IsMySide);
-            MatchManager.OpenReactionListButton.UpdateList();
+            MatchManager.OpenReactionListButton.UpdateFusionMethod();
             OnHandCardsChanged.Invoke();
         }
     }
@@ -477,7 +477,7 @@ public abstract class Gamer : MonoBehaviour
             consume.Key.RemoveAmount(consume.Value, Card.DecreaseReason.FusionMaterial);
         }
         //AddHandCard has updatability but also has animation time so we need update at this time
-        MatchManager.OpenReactionListButton.UpdateList();
+        MatchManager.OpenReactionListButton.UpdateFusionMethod();
         foreach (var pair in method.fusion.RightSubstances)
         {
             SubstanceCard newCard = pair.type.GenerateSubstanceCard();
@@ -492,11 +492,11 @@ public abstract class Gamer : MonoBehaviour
             ElectricGem -= fusion.ElectricRequire;
         if (fusion.Electric > 0)
             PushActionStack(() => CollectElectric(fusion.Electric));
-        if (fusion.ExplosionPower > 0)
-            PushActionStack(() => DoExplosion(fusion.Heat * fusion.Vigorousness * fusion.ExplosionPower));
+        if (fusion.ExplosionDamage > 0)
+            PushActionStack(() => DoExplosion(fusion.ExplosionDamage));
         else if(fusion.Heat > 0) // cannot collet heat used for explosion
             PushActionStack(() => CollectHeat(fusion.Heat));
-        if (fusion.ExplosionPower == 0) //avoid SE contradiction
+        if (fusion.ExplosionDamage == 0) //avoid SE contradiction
             MatchManager.PlaySE("Sound/SE/powerup10");
         //talk
         SpeakInMatch(MatchManager.CurrentTurnType.Equals(FusionTurn) ? Character.SpeakType.Fusion : Character.SpeakType.Counter);

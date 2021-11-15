@@ -30,6 +30,7 @@ public class FusionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public Fusion Fusion { get; protected set; }
     public Reaction Reaction => Fusion.Reaction;
     public bool IsCounter { get; protected set; }
+    public readonly List<FusionEnhancer> validEnhancements = new List<FusionEnhancer>();
 
     private void Awake()
     {
@@ -62,7 +63,23 @@ public class FusionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     public void ApplyEnhancement(FusionEnhancer enhancer)
     {
-        enhancer.Apply(Fusion);
+        if (Fusion.ApplyEnhancement(enhancer))
+        {
+            validEnhancements.Add(enhancer);
+            if(validEnhancements.Count == 1)
+            {
+                GetComponent<Image>().color = Color.magenta;
+                print("magenta");
+            }
+        }
+        UpdateUI();
+    }
+    public void ClearEnhancement()
+    {
+        Fusion.ClearEnhancement();
+        validEnhancements.Clear();
+        GetComponent<Image>().color = Color.white;
+        print("white");
         UpdateUI();
     }
     public void UpdateUI()
@@ -87,7 +104,7 @@ public class FusionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             Instantiate(General.Instance.FusionElectricIcon, iconsTf).GetComponentInChildren<Text>().text = Fusion.Electric.ToString();
         if (Fusion.Vigorousness > 0)
             Instantiate(General.Instance.FusionVigorousnessIcon, iconsTf).GetComponentInChildren<Text>().text = Fusion.Heat.ToString();
-        if (Fusion.ExplosionPower > 0)
+        if (Fusion.ExplosionDamage > 0)
             Instantiate(General.Instance.FusionExplosionIcon, iconsTf).GetComponentInChildren<Text>().text = Fusion.ExplosionDamage.ToString();
     }
     public void OnPointerEnter(PointerEventData eventData)

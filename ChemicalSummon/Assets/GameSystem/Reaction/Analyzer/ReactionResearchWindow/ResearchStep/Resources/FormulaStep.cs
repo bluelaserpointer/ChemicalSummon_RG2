@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class FormulaStep : ResearchStep
 {
     [SerializeField]
-    Text messageText, formulaText, heatRqText, elecRqText, expText, heatText, elecText;
+    Text messageText, formulaText, heatRqText, elecRqText, vigText, heatText, elecText;
 
     [SerializeField]
     Button nextStepButton;
@@ -26,7 +26,7 @@ public class FormulaStep : ResearchStep
         formulaText.text = Reaction.formula;
         heatRqText.text = Reaction.HeatRequire.ToString();
         elecRqText.text = Reaction.ElectricRequire.ToString();
-        expText.text = Reaction.ExplosionPower.ToString();
+        vigText.text = Reaction.Vigorousness.ToString();
         heatText.text = Reaction.Heat.ToString();
         elecText.text = Reaction.Electric.ToString();
         nextStepButton.gameObject.SetActive(true);

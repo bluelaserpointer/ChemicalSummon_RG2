@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6136554688850006137}
   - component: {fileID: 6136554688850006151}
   m_Layer: 5
-  m_Name: '"Explosion"'
+  m_Name: '"Vigrousness"'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7206\u70B8"
+  m_Text: "\u5267\u70C8\u5EA6"
 --- !u!114 &6136554688850006151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,14 +93,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alwaysUpdate: 0
-  scriptableObject: {fileID: 11400000, guid: d3275f2633da7bb47ab10eff0b2535be, type: 2}
+  so_sentence: {fileID: 11400000, guid: 7e8cb472d462aa64a87b1cc767aefc10, type: 2}
   sentence:
-    defaultString: Explosion
+    defaultString: Vigorousness
     languageAndSentences:
     - language: 0
-      sentence: "\u7206\u70B8"
+      sentence: "\u5267\u70C8\u5EA6"
     - language: 2
-      sentence: "\u7206\u767A"
+      sentence: "\u6FC0\u3057\u3055"
 --- !u!1 &6136554688865207246
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 6136554688865207243}
   - component: {fileID: 6136554688865207244}
   m_Layer: 5
-  m_Name: ExplosionText
+  m_Name: VigrousnessText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alwaysUpdate: 0
-  scriptableObject: {fileID: 11400000, guid: 304b441477b23474eb57d4532977c09a, type: 2}
+  so_sentence: {fileID: 11400000, guid: 304b441477b23474eb57d4532977c09a, type: 2}
   sentence:
     defaultString: ElectricRequire
     languageAndSentences:
@@ -643,7 +643,7 @@ MonoBehaviour:
   formulaText: {fileID: 6136554690598401657}
   heatRqText: {fileID: 6136554689182454383}
   elecRqText: {fileID: 6136554690485260818}
-  expText: {fileID: 6136554688865207244}
+  vigText: {fileID: 6136554688865207244}
   heatText: {fileID: 6136554690286553551}
   elecText: {fileID: 6136554689314265970}
   nextStepButton: {fileID: 6136554690554266056}
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alwaysUpdate: 0
-  scriptableObject: {fileID: 11400000, guid: c49225ab72d4bf2439f1204861714156, type: 2}
+  so_sentence: {fileID: 11400000, guid: c49225ab72d4bf2439f1204861714156, type: 2}
   sentence:
     defaultString: HeatRequire
     languageAndSentences:
@@ -841,7 +841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alwaysUpdate: 0
-  scriptableObject: {fileID: 11400000, guid: 61c0753352025e64a97817acc96f6b6c, type: 2}
+  so_sentence: {fileID: 11400000, guid: 61c0753352025e64a97817acc96f6b6c, type: 2}
   sentence:
     defaultString: ElectricProduct
     languageAndSentences:
@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alwaysUpdate: 0
-  scriptableObject: {fileID: 11400000, guid: 8daf66ee508e54e408a33dc079db640b, type: 2}
+  so_sentence: {fileID: 0}
   sentence:
     defaultString: NextStep
     languageAndSentences:
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alwaysUpdate: 0
-  scriptableObject: {fileID: 11400000, guid: 8e83847f6f285b14b906a133d363a9da, type: 2}
+  so_sentence: {fileID: 11400000, guid: 8e83847f6f285b14b906a133d363a9da, type: 2}
   sentence:
     defaultString: Formula
     languageAndSentences:
@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alwaysUpdate: 0
-  scriptableObject: {fileID: 11400000, guid: 4128eb56cb04f3b4697c23edbbc7fcfe, type: 2}
+  so_sentence: {fileID: 11400000, guid: 4128eb56cb04f3b4697c23edbbc7fcfe, type: 2}
   sentence:
     defaultString: HeatProduct
     languageAndSentences:

@@ -23,4 +23,20 @@ public abstract class CardHeader : ScriptableObject
     /// 是否为魔法卡标头
     /// </summary>
     public bool IsMagic => GetType().Equals(typeof(Magic));
+    /// <summary>
+    /// 装配技能
+    /// </summary>
+    /// <param name="card"></param>
+    /// <returns></returns>
+    public CardAbility[] AttachAbility(Card card)
+    {
+        if (abilityPrefab == null)
+            return new CardAbility[0];
+        GameObject abilitiesObject = Instantiate(abilityPrefab, card.transform);
+        abilitiesObject.name = "Abilities";
+        CardAbility[]  abilities = abilitiesObject.GetComponentsInChildren<CardAbility>();
+        foreach (var ability in abilities)
+            ability.SetCard(card);
+        return abilities;
+    }
 }

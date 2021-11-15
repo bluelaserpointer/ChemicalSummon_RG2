@@ -48,10 +48,6 @@ public class Fusion
     /// </summary>
     public int Heat => stats.heat;
     /// <summary>
-    /// ±¬Õ¨ÏµÊý
-    /// </summary>
-    public int ExplosionPower => stats.explosionPower;
-    /// <summary>
     /// ±¬Õ¨ÉËº¦
     /// </summary>
     public int ExplosionDamage => stats.ExplosionDamage;
@@ -63,5 +59,9 @@ public class Fusion
             return true;
         }
         return false;
+    }
+    public void ClearEnhancement()
+    {
+        stats = Reaction.initialStats;
     }
 }

@@ -45,5 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: -7763475090823894447, guid: 5c736874cd4122d4a9d66f3e29318fda, type: 3}
   isActiveAbility: 1
-  minHeat: 1
-  minVigorousness: 5
+  explosionDamageMultiply: 1

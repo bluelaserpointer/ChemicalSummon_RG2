@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class SBA_Slide : SBA_TracePosition
 {
     [SerializeField]
-    Transform initialPosition, outPosition;
+    Transform inPosition, outPosition;
     //data
     bool slidedOut;
     public bool SlidedOut => slidedOut;
@@ -24,7 +24,7 @@ public class SBA_Slide : SBA_TracePosition
         if (!slidedOut)
             return;
         slidedOut = false;
-        SetTarget(initialPosition);
+        SetTarget(inPosition);
         StartAnimation();
     }
     public void Switch() {
@@ -32,5 +32,12 @@ public class SBA_Slide : SBA_TracePosition
             SlideBack();
         else
             SlideOut();
+    }
+    public void Slide(bool outOrBack)
+    {
+        if (outOrBack)
+            SlideOut();
+        else
+            SlideBack();
     }
 }

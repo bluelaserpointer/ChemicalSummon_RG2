@@ -89,12 +89,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardDrag: {fileID: 2039017663572531025}
-  cardMoveSE: {fileID: 8300000, guid: 42bd5c13934c6304da33ef5f5c402724, type: 3}
   tracer: {fileID: 711146614304152339}
   rotater: {fileID: 1980787139938493364}
   canvasGroup: {fileID: 7782614334551921177}
   cardImage: {fileID: 4065969815881794983}
   amountText: {fileID: 6339833329462780208}
+  abilities: []
   location: 0
   cardNameText: {fileID: 2794025709241259662}
   descriptionText: {fileID: 1638474231834706093}
@@ -477,7 +477,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 14
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

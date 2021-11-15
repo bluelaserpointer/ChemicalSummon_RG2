@@ -34,6 +34,8 @@ public class MatchManager : AbstractManager, IPointerDownHandler
     [SerializeField]
     OpenReactionListButton openReactionListButton;
     [SerializeField]
+    EnhancementList appliedEnhancementList;
+    [SerializeField]
     DecideCardSelectButton cardSelectPanel;
     [SerializeField]
     FusionMagicCircle fusionDisplay;
@@ -137,6 +139,10 @@ public class MatchManager : AbstractManager, IPointerDownHandler
     /// 打开融合列表按钮
     /// </summary>
     public static OpenReactionListButton OpenReactionListButton => Instance.openReactionListButton;
+    /// <summary>
+    /// 强化列表
+    /// </summary>
+    public static EnhancementList EnhancementList => Instance.appliedEnhancementList;
     /// <summary>
     /// 卡牌选择列表
     /// </summary>

@@ -57,14 +57,8 @@ public class SubstanceCard : Card
             {
                 echelonLabel.color = echelonColors[Rank - 1];
             }
-            if (substance.abilityPrefab == null)
-                abilities = new CardAbility[0];
-            else
-            {
-                GameObject abilitiesObject = Instantiate(substance.abilityPrefab, transform);
-                abilitiesObject.name = "Abilities";
-                abilities = abilitiesObject.GetComponentsInChildren<CardAbility>();
-            }
+            abilities.Clear();
+            abilities.AddRange(Substance.AttachAbility(this));
         }
     }
     public override CardHeader Header => Substance;

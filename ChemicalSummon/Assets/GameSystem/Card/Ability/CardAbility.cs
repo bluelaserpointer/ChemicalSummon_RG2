@@ -10,6 +10,10 @@ public abstract class CardAbility : MonoBehaviour
     bool isActiveAbility = true;
 
     //data
+    /// <summary>
+    /// 现在挂上的卡
+    /// </summary>
+    public Card Card { get; protected set; }
     public Sprite Icon => icon;
     string description;
     public string Description => description;
@@ -23,11 +27,12 @@ public abstract class CardAbility : MonoBehaviour
     /// <returns></returns>
     public abstract string GetDescription();
     /// <summary>
-    /// 由于技能说明文采取缓冲记录，需要语言切换时更新缓冲
+    /// 技能说明文采取缓冲记录，需要更新缓冲
     /// TODO: 今后可能会简化这个系统，改为sentence内部缓冲
     /// </summary>
-    public void UpdateDescriptionLanguage()
+    public void SetCard(Card card)
     {
+        Card = card;
         description = GetDescription();
     }
     public abstract bool IsAvaliable(Card card);

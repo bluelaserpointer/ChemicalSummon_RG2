@@ -70,10 +70,10 @@ public class FusionMagicCircle : MonoBehaviour
             card.transform.SetParent(productCardParent);
         }
         //specialDamageIcon
-        if (fusion.ExplosionPower > 0)
+        if (fusion.ExplosionDamage > 0)
         {
             explosionMark.SetActive(true);
-            explosionMark.GetComponentInChildren<Text>().text = fusion.ExplosionPower.ToString();
+            explosionMark.GetComponentInChildren<Text>().text = fusion.ExplosionDamage.ToString();
         }
         else
             explosionMark.SetActive(false);

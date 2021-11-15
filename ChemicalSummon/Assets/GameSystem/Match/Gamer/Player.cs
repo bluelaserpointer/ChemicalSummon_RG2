@@ -9,11 +9,8 @@ public class Player : Gamer
 {
     [SerializeField]
     Text switchStackHandCardText;
-
-    /// <summary>
-    /// 即将使用的魔法卡（攻击强化、融合强化等情况被使用）
-    /// </summary>
-    public readonly List<MagicCard> aboutToUseMagicCards = new List<MagicCard>();
+    [SerializeField]
+    Image switchStackHandCardArrowLeft, switchStackHandCardArrowRight;
 
     public override TurnType FusionTurn => TurnType.MyFusionTurn;
     public override TurnType AttackTurn => TurnType.MyAttackTurn;
@@ -28,7 +25,17 @@ public class Player : Gamer
     public override void SetStackHandCardMode(bool cond)
     {
         base.SetStackHandCardMode(cond);
-        switchStackHandCardText.text = General.LoadSentence(cond ? "DestackHandCard" : "StackHandCard");
+        switchStackHandCardArrowLeft.transform.Rotate(new Vector3(0, 0, 180));
+        switchStackHandCardArrowRight.transform.Rotate(new Vector3(0, 0, 180));
+        if (cond)
+        {
+            switchStackHandCardText.text = General.LoadSentence("DestackHandCard");
+        }
+        else
+        {
+
+            switchStackHandCardText.text = General.LoadSentence("StackHandCard");
+        }
     }
     public override void FusionTurnStart()
     {
@@ -77,7 +84,7 @@ public class Player : Gamer
                 EndDefence();
             });
         }
-        MatchManager.OpenReactionListButton.UpdateList();
+        MatchManager.OpenReactionListButton.UpdateFusionMethod();
     }
     public void EndDefence()
     {

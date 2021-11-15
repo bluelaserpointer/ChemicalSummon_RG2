@@ -55,7 +55,6 @@ public class SettingScreen : AbstractManager
                 languageText.text = "日本語";
                 break;
         }
-        General.UpdateAllSentence();
     }
     public void NextLanguage()
     {

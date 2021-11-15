@@ -108,7 +108,7 @@ public class BasicFusionAI : NoFusionAI
     protected int JudgePriority(Reaction reaction)
     {
         int score = 0;
-        score += reaction.ExplosionPower * 10;
+        score += reaction.ExplosionDamage * 10;
         
         return score;
     }

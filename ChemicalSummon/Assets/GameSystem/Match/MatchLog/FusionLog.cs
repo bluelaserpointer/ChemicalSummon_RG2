@@ -40,7 +40,7 @@ public class FusionLog : MonoBehaviour
             Instantiate(General.Instance.FusionHeatIcon, reactionIconsTf).GetComponentInChildren<Text>().text = fusion.Heat.ToString();
         if (fusion.Vigorousness > 0)
             Instantiate(General.Instance.FusionVigorousnessIcon, reactionIconsTf).GetComponentInChildren<Text>().text = fusion.Vigorousness.ToString();
-        if (fusion.ExplosionPower > 0)
+        if (fusion.ExplosionDamage > 0)
             Instantiate(General.Instance.FusionExplosionIcon, reactionIconsTf).GetComponentInChildren<Text>().text = fusion.ExplosionDamage.ToString();
     }
 }

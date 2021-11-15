@@ -108,7 +108,7 @@ public class ShieldCardSlot : MonoBehaviour
         else
             MainCard.TryUnion(substanceCard);
         if (needUpdateFusionList)
-            MatchManager.OpenReactionListButton.UpdateList();
+            MatchManager.OpenReactionListButton.UpdateFusionMethod();
         field.onCardsChanged.Invoke();
     }
     /// <summary>

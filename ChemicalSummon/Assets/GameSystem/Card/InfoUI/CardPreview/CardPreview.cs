@@ -72,7 +72,7 @@ public class CardPreview : MonoBehaviour
         //TODO: prevent display card's passive ability being invoked
         abilityListTransform.DestroyAllChildren();
         int abilityIndex = 0;
-        foreach (var ability in displaySubstanceCard.abilities)
+        foreach (var ability in DisplayCard.abilities)
         {
             Instantiate(abilityLabelPrefab, abilityListTransform).Init(++abilityIndex, ability);
         }

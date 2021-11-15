@@ -26,7 +26,7 @@ public abstract class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     //data
     [HideInInspector]
-    public CardAbility[] abilities;
+    public readonly List<CardAbility> abilities = new List<CardAbility>();
     /// <summary>
     /// 卡牌名称(根据当前语言变化)
     /// </summary>
@@ -201,7 +201,7 @@ public abstract class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                     case DecreaseReason.Damage:
                     case DecreaseReason.SkillCost:
                     case DecreaseReason.SkillEffect:
-                        MatchManager.OpenReactionListButton.UpdateList();
+                        MatchManager.OpenReactionListButton.UpdateFusionMethod();
                         break;
                 }
             }
