@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 [Serializable]
 [RequireComponent(typeof(DontDestroyOnLoad))]
-public class PlayerSave : MonoBehaviour
+public sealed class PlayerSave : MonoBehaviour
 {
     private static PlayerSave instance;
     public static PlayerSave Instance {
@@ -59,6 +59,14 @@ public class PlayerSave : MonoBehaviour
     List<Chapter> openedChapters = new List<Chapter>();
     List<Chapter> allChapters = new List<Chapter>();
 
+    /// <summary>
+    /// 研究等级总经验
+    /// </summary>
+    public static int ResearchExp { get; private set; }
+    /// <summary>
+    /// 研究等级
+    /// </summary>
+    public static int ResearchLevel { get; private set; }
     //data
     public static General General => Instance.general;
     public static Canvas PermanentCanvas => Instance.permanentCanvas;
@@ -155,6 +163,8 @@ public class PlayerSave : MonoBehaviour
     }
     public void InitSaveData()
     {
+        ResearchExp = 0;
+        ResearchLevel = 1;
         hasLastWorldPositionSave = false;
         initialDeck.name = General.LoadSentence("Initiater");
         savedDecks.Add(initialDeck);
@@ -163,6 +173,8 @@ public class PlayerSave : MonoBehaviour
         {
             discoveredCards.Add(substanceStack.type);
         }
+        if (General.CurrentSceneIsWorld)
+            WorldManager.OnPlayerDataLoaded();
     }
     private void Update()
     {
@@ -179,6 +191,22 @@ public class PlayerSave : MonoBehaviour
                 }
             }
         }
+    }
+    public static void AddResearchExp(int exp)
+    {
+        int currentExp = ResearchExp += exp;
+        int level = 1;
+        foreach (int expRequirement in General.researchLevelEachExp)
+            if (currentExp >= expRequirement)
+            {
+                ++level;
+                //TODO: level up event
+            }
+            else
+                break;
+        ResearchLevel = level;
+        if (!General.CurrentSceneIsWorld)
+            Debug.LogWarning("Don't add research exp when not in scene world.");
     }
     /// <summary>
     /// 增加发现的反应式

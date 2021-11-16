@@ -37,6 +37,19 @@ public class General : MonoBehaviour
         public static string Stage => "StageHeader/";
         public static string Character => "Character/";
     }
+    /// <summary>
+    /// 每个研究等级所需的经验值总量
+    /// </summary>
+    public static int[] researchLevelEachExp = new int[5] { 100, 300, 600, 1000, 1500 };
+    public static int NextLevelExp(int level)
+    {
+        return researchLevelEachExp[level - 1];
+    }
+    public static int PrevLevelExp(int level)
+    {
+        return level == 1 ? 0 : researchLevelEachExp[level - 2];
+    }
+    //Scene check
     public static Canvas CurrentMainCanvas => AbstractManager.MainCanvas;
     public static bool CurrentSceneIsMatch => SceneManager.GetActiveScene().name.Equals("Match");
     public static bool CurrentSceneIsWorld => SceneManager.GetActiveScene().name.Equals("World");

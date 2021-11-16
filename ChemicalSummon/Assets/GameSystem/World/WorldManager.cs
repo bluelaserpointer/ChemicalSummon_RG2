@@ -34,6 +34,8 @@ public class WorldManager : AbstractManager
     Image newReactionSign;
     [SerializeField]
     Transform popUpTransform;
+    [SerializeField]
+    ResearchExpGauge researchExpGauge;
 
     World generatedWorld;
     public static World World => Instance.generatedWorld;
@@ -45,6 +47,7 @@ public class WorldManager : AbstractManager
     public static SettingScreen SettingScreen => Instance.settingScreen;
     public static Image NewReactionSign => Instance.newReactionSign;
     public static Transform PopUpTransform => Instance.popUpTransform;
+    public static ResearchExpGauge ResearchExpGauge => Instance.researchExpGauge;
 
     private void Awake()
     {
@@ -67,6 +70,10 @@ public class WorldManager : AbstractManager
     private void Update()
     {
         playerCameraAnchor.transform.position = Vector3.Lerp(playerCameraAnchor.transform.position, Player.Model.transform.position, cameraTracingRate);
+    }
+    public static void OnPlayerDataLoaded()
+    {
+        ResearchExpGauge.Init();
     }
     public static void PlaySE(AudioClip clip)
     {

@@ -15,6 +15,7 @@ public class FinishResearchStep : ResearchStep
     {
         formulaText.text = Reaction.formula;
         PlayerSave.AddDiscoveredReaction(Reaction);
+        PlayerSave.AddResearchExp(10);
         WorldManager.ReactionScreen.Init();
         bool hasNewSubstance = false;
         foreach (var substanceStack in Reaction.RightSubstances)
