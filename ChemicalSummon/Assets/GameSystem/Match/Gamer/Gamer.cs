@@ -523,13 +523,13 @@ public abstract class Gamer : MonoBehaviour
     {
         MatchManager.PlaySE("Sound/SE/attack2");
         MatchManager.StartExplosionAnimation(Opponent.Field);
-        foreach (ShieldCardSlot cardSlot in Opponent.Field.Slots)
+        foreach (FieldCardSlot cardSlot in Opponent.Field.Slots)
         {
             cardSlot.Damage(explosionDamage);
         }
         DoStackedAction();
     }
-    public void BurnSlot(ShieldCardSlot cardSlot, int tempreture)
+    public void BurnSlot(FieldCardSlot cardSlot, int tempreture)
     {
         if (!cardSlot.IsEmpty)
         {

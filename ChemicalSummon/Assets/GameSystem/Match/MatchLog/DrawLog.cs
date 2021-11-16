@@ -27,6 +27,6 @@ public class DrawLog : MonoBehaviour
             cardImage.sprite = cardReverseSprite;
         }
         logText.text = General.LoadSentence("PlayerActionLog_Draw").ToString()
-            .Replace("$card", card.IsMySide ? card.name : "");
+            .Replace("$card", card.IsMySide ? card.ShortName : "");
     }
 }

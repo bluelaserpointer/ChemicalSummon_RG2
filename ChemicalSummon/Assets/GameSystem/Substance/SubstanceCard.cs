@@ -86,6 +86,7 @@ public class SubstanceCard : Card
     /// 物质名（当前语言）
     /// </summary>
     public override string CurrentLanguageName => Substance.name;
+    public override string ShortName => Formula;
     /// <summary>
     /// 化学表达式
     /// </summary>

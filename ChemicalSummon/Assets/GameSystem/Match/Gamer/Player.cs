@@ -50,7 +50,7 @@ public class Player : Gamer
     public override void AttackTurnStart()
     {
         base.AttackTurnStart();
-        foreach(ShieldCardSlot slot in Field.Slots)
+        foreach(FieldCardSlot slot in Field.Slots)
         {
             if (slot.IsEmpty || slot.MainCard.DenideAttack)
                 continue;
@@ -65,7 +65,7 @@ public class Player : Gamer
     }
     public void RemoveAttackButtons()
     {
-        foreach(ShieldCardSlot slot in Field.Slots)
+        foreach(FieldCardSlot slot in Field.Slots)
         {
             slot.HideAttackButton();
         }
@@ -73,7 +73,7 @@ public class Player : Gamer
     public override void Defense(SubstanceCard attacker)
     {
         CurrentAttacker = attacker;
-        foreach (ShieldCardSlot slot in Field.Slots)
+        foreach (FieldCardSlot slot in Field.Slots)
         {
             if (slot.IsEmpty || slot.MainCard.DenideAttack)
                 continue;
@@ -101,7 +101,7 @@ public class Player : Gamer
         CurrentAttacker.Battle(this);
         EndDefence();
     }
-    Func<ShieldCardSlot, bool> selectSlotAction;
+    Func<FieldCardSlot, bool> selectSlotAction;
     public void DoBurn_FireFairy(int burnDamage)
     {
         MatchManager.MessagePanel.SelectOpponentSlot();
@@ -119,7 +119,7 @@ public class Player : Gamer
     /// </summary>
     /// <param name="slot"></param>
     /// <returns></returns>
-    public bool TrySelectSlotEvent(ShieldCardSlot slot)
+    public bool TrySelectSlotEvent(FieldCardSlot slot)
     {
         if (selectSlotAction == null || slot == null)
             return false;

@@ -20,7 +20,7 @@ public class CardDragGuidance : MonoBehaviour
         {
             if (card.Header.IsSubstance)
             {
-                foreach (ShieldCardSlot slot in MatchManager.MyField.Slots)
+                foreach (FieldCardSlot slot in MatchManager.MyField.Slots)
                 {
                     if (slot.AllowSetAsMainCard(card as SubstanceCard, false))
                     {

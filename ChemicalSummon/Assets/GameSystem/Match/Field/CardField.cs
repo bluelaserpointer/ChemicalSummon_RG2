@@ -9,9 +9,9 @@ using UnityEngine;
 public class CardField : Field
 {
     [SerializeField]
-    List<ShieldCardSlot> shieldCardSlots;
+    List<FieldCardSlot> shieldCardSlots;
     /// <summary>
     /// 格挡区卡槽
     /// </summary>
-    public new List<ShieldCardSlot> Slots => shieldCardSlots;
+    public new List<FieldCardSlot> Slots => shieldCardSlots;
 }

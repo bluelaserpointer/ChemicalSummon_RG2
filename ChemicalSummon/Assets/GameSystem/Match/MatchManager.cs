@@ -411,7 +411,7 @@ public class MatchManager : AbstractManager, IPointerDownHandler
                 continue;
             }
             //if it is slot
-            ShieldCardSlot slot = obj.GetComponent<ShieldCardSlot>();
+            FieldCardSlot slot = obj.GetComponent<FieldCardSlot>();
             if (slot != null)
             {
                 if(Player.TrySelectSlotEvent(slot))
@@ -440,7 +440,7 @@ public class MatchManager : AbstractManager, IPointerDownHandler
             AudioSource.PlayClipAtPoint(clip, GameObject.FindGameObjectWithTag("SE Listener").transform.position);
     }
     //animations
-    public static void StartAttackAnimation(ShieldCardSlot slot1, ShieldCardSlot slot2, UnityAction onBump)
+    public static void StartAttackAnimation(FieldCardSlot slot1, FieldCardSlot slot2, UnityAction onBump)
     {
         slot1.SBA_Bump.target = Instance.transform;
         slot1.SBA_Bump.StartAnimation();

@@ -68,8 +68,8 @@ public class BasicFusionAI : NoFusionAI
     }
     public override void AttackTurnLoop()
     {
-        ShieldCardSlot[] slots = Field.Slots;
-        foreach (ShieldCardSlot slot in slots)
+        FieldCardSlot[] slots = Field.Slots;
+        foreach (FieldCardSlot slot in slots)
         {
             slot.HideAttackButton();
             if (!slot.IsEmpty)
@@ -82,7 +82,7 @@ public class BasicFusionAI : NoFusionAI
         int highestATK = Player.Field.TopATK;
         Enemy.AddEnemyAction(() =>
         {
-            foreach (ShieldCardSlot slot in slots)
+            foreach (FieldCardSlot slot in slots)
             {
                 if (slot.IsEmpty || slot.MainCard.DenideAttack || attackedSlot.Contains(slot) || slot.MainCard.ATK < highestATK)
                     continue;
@@ -92,7 +92,7 @@ public class BasicFusionAI : NoFusionAI
                     continue;
                 attackedSlot.Add(slot);
                 slot.ShowAttackButton();
-                foreach (ShieldCardSlot notAttackingSlot in slots)
+                foreach (FieldCardSlot notAttackingSlot in slots)
                 {
                     if (!notAttackingSlot.Equals(slot) && !notAttackingSlot.IsEmpty)
                         notAttackingSlot.MainCard.SetAlpha(0.5F);

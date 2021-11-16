@@ -69,7 +69,6 @@ public class FusionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             if(validEnhancements.Count == 1)
             {
                 GetComponent<Image>().color = Color.magenta;
-                print("magenta");
             }
         }
         UpdateUI();
@@ -79,7 +78,6 @@ public class FusionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         Fusion.ClearEnhancement();
         validEnhancements.Clear();
         GetComponent<Image>().color = Color.white;
-        print("white");
         UpdateUI();
     }
     public void UpdateUI()

@@ -37,6 +37,7 @@ public class MagicCard : Card
     }
     public override CardHeader Header => Magic;
     public override string CurrentLanguageName => Magic.name;
+    public override string ShortName => CurrentLanguageName;
     public override Sprite Image => Magic.image;
     public FusionEnhancer TryGetFusionEnhancer
     {

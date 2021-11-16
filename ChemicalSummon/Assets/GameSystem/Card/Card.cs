@@ -31,6 +31,10 @@ public abstract class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// 卡牌名称(根据当前语言变化)
     /// </summary>
     public abstract string CurrentLanguageName { get; }
+    /// <summary>
+    /// 卡牌缩短名称(只为物质卡创建，返回化学式)
+    /// </summary>
+    public abstract string ShortName { get; }
 
     Gamer gamer;
     /// <summary>
@@ -67,7 +71,7 @@ public abstract class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// <summary>
     /// 所在卡槽
     /// </summary>
-    public ShieldCardSlot Slot => cardDrag?.CurrentSlot;
+    public FieldCardSlot Slot => cardDrag?.CurrentSlot;
     /// <summary>
     /// 在场地(不考虑敌我)
     /// </summary>

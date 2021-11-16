@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class CardDrag : Draggable
 {
     Card card;
-    public ShieldCardSlot CurrentSlot => transform.parent == null ? null : transform.GetComponentInParent<ShieldCardSlot>();
+    public FieldCardSlot CurrentSlot => transform.parent == null ? null : transform.GetComponentInParent<FieldCardSlot>();
     
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class CardDrag : Draggable
             {
                 GameObject hitUI = eachResult.gameObject;
                 //Field (slot)
-                ShieldCardSlot cardSlot = hitUI.GetComponent<ShieldCardSlot>();
+                FieldCardSlot cardSlot = hitUI.GetComponent<FieldCardSlot>();
                 if (cardSlot != null)
                 {
                     SubstanceCard substanceCard = card as SubstanceCard;

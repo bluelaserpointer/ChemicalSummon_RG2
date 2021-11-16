@@ -34,7 +34,7 @@ public class Field : MonoBehaviour
             return null;
         }
     }
-    public ShieldCardSlot[] Slots => GetComponentsInChildren<ShieldCardSlot>();
+    public FieldCardSlot[] Slots => GetComponentsInChildren<FieldCardSlot>();
     /// <summary>
     /// 所有卡牌
     /// </summary>
@@ -42,7 +42,7 @@ public class Field : MonoBehaviour
         get
         {
             List<SubstanceCard> cards = new List<SubstanceCard>();
-            foreach (ShieldCardSlot slot in Slots)
+            foreach (FieldCardSlot slot in Slots)
             {
                 SubstanceCard card = slot.MainCard;
                 if (card != null)
@@ -59,7 +59,7 @@ public class Field : MonoBehaviour
     public void UpdateCardsDraggable()
     {
         bool cond = CardsDraggable;
-        foreach (ShieldCardSlot slot in Slots)
+        foreach (FieldCardSlot slot in Slots)
         {
             if (!slot.IsEmpty && !slot.MainCard.DenideMove)
                 slot.MainCard.SetDraggable(cond);

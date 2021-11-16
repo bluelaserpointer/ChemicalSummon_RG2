@@ -7,7 +7,7 @@ using UnityEngine.Events;
 /// 格挡区卡槽
 /// </summary>
 [DisallowMultipleComponent]
-public class ShieldCardSlot : MonoBehaviour
+public class FieldCardSlot : MonoBehaviour
 {
     [SerializeField]
     CardSlot mainCardSlot, lapCardSlot;
@@ -169,7 +169,7 @@ public class ShieldCardSlot : MonoBehaviour
     /// </summary>
     /// <param name="slot"></param>
     /// <returns></returns>
-    public bool InSameField(ShieldCardSlot slot)
+    public bool InSameField(FieldCardSlot slot)
     {
         return field.Equals(slot.field);
     }

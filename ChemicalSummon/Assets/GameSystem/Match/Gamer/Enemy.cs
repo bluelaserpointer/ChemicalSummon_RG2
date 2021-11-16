@@ -45,7 +45,7 @@ public class Enemy : Gamer
     }
     public void DoBurn_FireFairy(int burnDamage)
     {
-        ShieldCardSlot slot = new List<ShieldCardSlot>(MatchManager.Player.Field.Slots).FindMostValuable(slot =>
+        FieldCardSlot slot = new List<FieldCardSlot>(MatchManager.Player.Field.Slots).FindMostValuable(slot =>
         {
             if (slot.IsEmpty)
                 return 0.1F;

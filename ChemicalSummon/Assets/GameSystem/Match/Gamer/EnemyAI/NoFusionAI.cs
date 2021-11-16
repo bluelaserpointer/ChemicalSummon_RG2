@@ -19,14 +19,14 @@ public class NoFusionAI : EnemyAI
         OnFusionTurnLoop(0);
     }
     protected readonly Queue<Substance> aboutToSummonSubstances = new Queue<Substance>();
-    protected readonly List<ShieldCardSlot> lestEmptySlots = new List<ShieldCardSlot>();
-    protected readonly List<ShieldCardSlot> attackedSlot = new List<ShieldCardSlot>();
+    protected readonly List<FieldCardSlot> lestEmptySlots = new List<FieldCardSlot>();
+    protected readonly List<FieldCardSlot> attackedSlot = new List<FieldCardSlot>();
     public virtual void TakeBackCardsAction(int step)
     {
-        ShieldCardSlot[] slots = Field.Slots;
+        FieldCardSlot[] slots = Field.Slots;
         Enemy.AddEnemyAction(() =>
         {
-            foreach (ShieldCardSlot slot in slots)
+            foreach (FieldCardSlot slot in slots)
             {
                 slot.TakeBackCard();
             }
@@ -55,7 +55,7 @@ public class NoFusionAI : EnemyAI
             return;
         }
         Substance aboutToSummonSubstance = aboutToSummonSubstances.Dequeue();
-        foreach (ShieldCardSlot eachSlot in lestEmptySlots)
+        foreach (FieldCardSlot eachSlot in lestEmptySlots)
         {
             if (!aboutToSummonSubstance.GetStateInTempreture(eachSlot.Tempreture).Equals(ThreeState.Solid))
                 continue;
@@ -97,8 +97,8 @@ public class NoFusionAI : EnemyAI
     }
     public virtual void AttackTurnLoop()
     {
-        ShieldCardSlot[] slots = Field.Slots;
-        foreach (ShieldCardSlot slot in slots)
+        FieldCardSlot[] slots = Field.Slots;
+        foreach (FieldCardSlot slot in slots)
         {
             slot.HideAttackButton();
             if (!slot.IsEmpty)
@@ -110,13 +110,13 @@ public class NoFusionAI : EnemyAI
         }
         Enemy.AddEnemyAction(() =>
         {
-            foreach (ShieldCardSlot slot in slots)
+            foreach (FieldCardSlot slot in slots)
             {
                 if (slot.IsEmpty || slot.MainCard.DenideAttack || attackedSlot.Contains(slot))
                     continue;
                 attackedSlot.Add(slot);
                 slot.ShowAttackButton();
-                foreach (ShieldCardSlot notAttackingSlot in slots)
+                foreach (FieldCardSlot notAttackingSlot in slots)
                 {
                     if (!notAttackingSlot.Equals(slot) && !notAttackingSlot.IsEmpty)
                         notAttackingSlot.MainCard.SetAlpha(0.5F);
