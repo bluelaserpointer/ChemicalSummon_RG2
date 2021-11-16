@@ -15,10 +15,13 @@ public class ResearchExpGauge : MonoBehaviour
     Text text;
     [SerializeField]
     CanvasGroup canvasGroup;
+    [SerializeField]
+    CanvasGroup levelUpEffect;
 
     int currentLevel;
     float currentExp;
-    float displayTime;
+    float expGaugeDisplayTime;
+    float levelUpEffectDisplayTime;
 
     public void Init()
     {
@@ -33,15 +36,22 @@ public class ResearchExpGauge : MonoBehaviour
             currentExp = Mathf.MoveTowards(currentExp, PlayerSave.ResearchExp, 20 * Time.deltaTime);
             UpdateUI();
             canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, 1, 1 * Time.deltaTime);
-            displayTime = 3;
+            expGaugeDisplayTime = 3;
         }
-        else if(displayTime > 0)
+        else if(expGaugeDisplayTime > 0)
         {
-            displayTime -= Time.deltaTime;
+            expGaugeDisplayTime -= Time.deltaTime;
             canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, 1, 1 * Time.deltaTime);
         }
         else
             canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, 0, 1 * Time.deltaTime);
+        if(levelUpEffectDisplayTime > 0)
+        {
+            levelUpEffectDisplayTime -= Time.deltaTime;
+            levelUpEffect.alpha = Mathf.MoveTowards(levelUpEffect.alpha, 1, 2 * Time.deltaTime);
+        }
+        else
+            levelUpEffect.alpha = Mathf.MoveTowards(levelUpEffect.alpha, 0, 2 * Time.deltaTime);
     }
     public void UpdateUI()
     {
@@ -50,8 +60,8 @@ public class ResearchExpGauge : MonoBehaviour
         slider.value = progressRatio;
         if (progressRatio >= 1)
         {
-            //TODO: Level up animation
-            ++currentLevel;
+            levelUpEffect.GetComponentInChildren<Text>().text = General.LoadSentence("Level") + "\r\n" + ++currentLevel;
+            levelUpEffectDisplayTime = 3;
         }
         text.text = General.LoadSentence("ResearchLevel") + " " + currentLevel + " (" + (int)currentExp + "/" + nextLvExp + ")";
     }
