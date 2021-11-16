@@ -20,6 +20,7 @@ public class ReactionScreen : MonoBehaviour
     [SerializeField]
     ReactionAnalyzer reactionAnalyzer;
 
+    public ReactionAnalyzer ReactionAnalyzer => reactionAnalyzer;
     private void Start()
     {
         Init();

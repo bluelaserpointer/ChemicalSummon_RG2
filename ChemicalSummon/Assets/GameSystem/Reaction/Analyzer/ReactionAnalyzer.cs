@@ -18,7 +18,7 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
     [SerializeField]
     Text reactionText, messageText, nearEqReactionAmountText;
     [SerializeField]
-    CardPoolDisplay playerStorage;
+    CardPoolDisplay discoveredSubstancePool;
     [SerializeField]
     Button fusionButton, researchButton;
     [SerializeField]
@@ -39,12 +39,16 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
     private void Init()
     {
         slots.ForEach(slot => slot.DestroyTop());
-        playerStorage.Clear();
-        foreach (var eachCard in PlayerSave.CardStorage)
-        {
-            playerStorage.AddCard(eachCard.type, eachCard.count);
-        }
+        UpdateDiscoveredSubstancePool();
         OnCardsChange();
+    }
+    public void UpdateDiscoveredSubstancePool()
+    {
+        discoveredSubstancePool.Clear();
+        foreach (CardHeader eachCardHeader in PlayerSave.DiscoveredCards)
+        {
+            discoveredSubstancePool.AddCard(eachCardHeader);
+        }
     }
     public void OnCardsChange()
     {
@@ -164,17 +168,22 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
                 CardSlot slot = slots.Find(each => card.Equals(each.TopCard));
                 if(slot != null)
                 {
-                    playerStorage.AddCard(card.Substance, 1);
                     card.RemoveAmount(1);
                     if(card.IsDisposing)
-                    {
                         slot.DisbandTop();
-                    }
+                    SubstanceCard animationCard = card.Substance.GenerateSubstanceCard();
+                    animationCard.SetDraggable(false);
+                    animationCard.transform.position = card.transform.position;
+                    animationCard.transform.SetParent(transform);
+                    animationCard.TracePosition(discoveredSubstancePool.transform.position, () =>
+                    {
+                        Destroy(animationCard.gameObject);
+                    });
                     OnCardsChange();
                     return;
                 }
                 CardPoolDisplay belongCardPool = card.transform.GetComponentInParent<CardPoolDisplay>();
-                if (playerStorage.Equals(belongCardPool))
+                if (discoveredSubstancePool.Equals(belongCardPool))
                 {
                     foreach (CardSlot eachSlot in slots)
                     {
@@ -185,7 +194,6 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
                             newCard.SetDraggable(false);
                             newCard.transform.position = card.transform.position;
                             eachSlot.SlotSet(newCard, OnCardsChange);
-                            playerStorage.RemoveOneCard(card);
                             return;
                         }
                         else if (slotCard.IsSameSubstance(card))
@@ -199,14 +207,12 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
                                 slotCard.TryUnion(newCard);
                                 OnCardsChange();
                             });
-                            playerStorage.RemoveOneCard(card);
                             return;
                         }
                     }
                 }
                 return;
             }
-            //CardInfoDisplay.gameObject.SetActive(false);
         }
     }
     public void ResearchReaction()

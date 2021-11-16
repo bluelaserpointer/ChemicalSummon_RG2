@@ -35,7 +35,7 @@ public class ReactionResearchWindow : MonoBehaviour
         foreach (var substanceStack in reaction.RightSubstances)
         {
             Substance substance = substanceStack.type;
-            if (!PlayerSave.DiscoveredSubstances.Contains(substance))
+            if (!PlayerSave.DiscoveredCards.Contains(substance))
             {
                 unknownSubstances.Add(substance);
                 GenerateStep(newSubstanceStepPrefab).substance = substance;
@@ -66,7 +66,6 @@ public class ReactionResearchWindow : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
-        reactionAnalyzer.OnCardsChange();
     }
     public void OnStepProceed(int stepIndex)
     {

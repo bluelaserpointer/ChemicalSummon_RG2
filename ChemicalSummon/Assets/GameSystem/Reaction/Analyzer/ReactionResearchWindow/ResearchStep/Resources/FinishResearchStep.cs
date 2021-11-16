@@ -21,12 +21,20 @@ public class FinishResearchStep : ResearchStep
         foreach (var substanceStack in Reaction.RightSubstances)
         {
             Substance substance = substanceStack.type;
-            if (PlayerSave.DiscoveredSubstances.Contains(substance))
+            if (PlayerSave.DiscoveredCards.Contains(substance))
                 continue;
             Instantiate(discoveredSubstancePreviewPrefab, discoveredSubstanceListTransform).Init(substance);
             hasNewSubstance = true;
-            PlayerSave.DiscoveredSubstances.Add(substance);
+            PlayerSave.DiscoveredCards.Add(substance);
         }
-        discoverNewSubstanceText.gameObject.SetActive(hasNewSubstance);
+        if(hasNewSubstance)
+        {
+            discoverNewSubstanceText.gameObject.SetActive(true);
+            WorldManager.ReactionScreen.ReactionAnalyzer.UpdateDiscoveredSubstancePool();
+        }
+        else
+        {
+            discoverNewSubstanceText.gameObject.SetActive(false);
+        }
     }
 }

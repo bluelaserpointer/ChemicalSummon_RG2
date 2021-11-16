@@ -50,7 +50,14 @@ public class FairySpot : StepInListener
     public void RootFairy()
     {
         PlayerSave.CardStorage.Add(cardHeader);
+        if(!PlayerSave.DiscoveredCards.Contains(cardHeader))
+        {
+            PlayerSave.DiscoveredCards.Add(cardHeader);
+            //TODO: new substance discover event
+        }
         IsRootable = false;
+        //debug exp
+        PlayerSave.AddResearchExp(40);
         generatedCard.GetComponent<CanvasGroup>().alpha = 0.2F;
         avaliableEffect.Stop();
         rootEffect.Play();

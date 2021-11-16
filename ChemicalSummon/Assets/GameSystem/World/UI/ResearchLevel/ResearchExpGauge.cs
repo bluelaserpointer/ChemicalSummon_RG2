@@ -17,6 +17,8 @@ public class ResearchExpGauge : MonoBehaviour
     CanvasGroup canvasGroup;
     [SerializeField]
     CanvasGroup levelUpEffect;
+    [SerializeField]
+    Text newLevelNumberText;
 
     int currentLevel;
     float currentExp;
@@ -57,12 +59,13 @@ public class ResearchExpGauge : MonoBehaviour
     {
         int nextLvExp = General.NextLevelExp(currentLevel);
         float progressRatio = 1 - (nextLvExp - currentExp) / (nextLvExp - General.PrevLevelExp(currentLevel));
-        slider.value = progressRatio;
         if (progressRatio >= 1)
         {
-            levelUpEffect.GetComponentInChildren<Text>().text = General.LoadSentence("Level") + "\r\n" + ++currentLevel;
+            newLevelNumberText.text = (++currentLevel).ToString();
             levelUpEffectDisplayTime = 3;
+            progressRatio -= 1;
         }
+        slider.value = progressRatio;
         text.text = General.LoadSentence("ResearchLevel") + " " + currentLevel + " (" + (int)currentExp + "/" + nextLvExp + ")";
     }
 }

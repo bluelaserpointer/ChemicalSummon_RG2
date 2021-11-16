@@ -111,7 +111,7 @@ public sealed class PlayerSave : MonoBehaviour
     /// <summary>
     /// 已发现的物质
     /// </summary>
-    public static List<CardHeader> DiscoveredSubstances => Instance.discoveredCards;
+    public static List<CardHeader> DiscoveredCards => Instance.discoveredCards;
     /// <summary>
     /// 选定的游戏者
     /// </summary>

@@ -71,15 +71,15 @@ public class FieldCardSlot : MonoBehaviour
     }
     /// <summary>
     /// 放置物质卡
-    /// 不检查放置条件
     /// </summary>
     /// <param name="substanceCard"></param>
-    public void SetMainCard(SubstanceCard substanceCard)
+    /// <returns>是否放置成功(已有其它种类的卡时不成功)</returns>
+    public bool SetMainCard(SubstanceCard substanceCard)
     {
         if (Equals(substanceCard.Slot)) //when card drag distance too short
         {
             MainCardSlot.DoAlignment(MainCard.transform);
-            return;
+            return true;
         }
         //check if need update fusion list
         bool needUpdateFusionList = true;
@@ -94,8 +94,10 @@ public class FieldCardSlot : MonoBehaviour
             }
         }
         //place card
+        bool placeSuccessful;
         if (MainCardSlot.IsEmpty)
         {
+            placeSuccessful = true;
             substanceCard.Disband();
             MainCardSlot.SlotSet(substanceCard, () =>
             {
@@ -106,10 +108,13 @@ public class FieldCardSlot : MonoBehaviour
             MainCard.SetDraggable(CardDraggable);
         }
         else
-            MainCard.TryUnion(substanceCard);
+        {
+            placeSuccessful = MainCard.TryUnion(substanceCard);
+        }
         if (needUpdateFusionList)
             MatchManager.OpenReactionListButton.UpdateFusionMethod();
         field.onCardsChanged.Invoke();
+        return placeSuccessful;
     }
     /// <summary>
     /// 添加覆盖卡
