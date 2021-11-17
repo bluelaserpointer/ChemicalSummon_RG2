@@ -34,7 +34,7 @@ public class SideMessageGenerator : MonoBehaviour
         if (cooldown < goNextCooldown)
         {
             cooldown += Time.deltaTime;
-            if (cooldown < topMessage.Tracer.timeLength)
+            if (topMessage != null && cooldown < topMessage.Tracer.timeLength)
             {
                 topMessage.transform.localScale = Vector3.Lerp(topMessage.transform.localScale, Vector3.one, cooldown / topMessage.Tracer.timeLength);
             }
