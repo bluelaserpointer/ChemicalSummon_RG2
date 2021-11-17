@@ -33,7 +33,7 @@ public class General : MonoBehaviour
     //data
     public static General Instance => PlayerSave.General;
     //static constants (version & path & func)
-    public static string Version => "alpha5.5.0pre";
+    public static string Version => "alpha6.0.0";
     public static class ResourcePath
     {
         public static string Absolute => "Assets/GameContents/Resources/";
