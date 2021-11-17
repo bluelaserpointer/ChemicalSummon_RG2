@@ -26,13 +26,7 @@ public class UnstableManaStone : Item
 
     public override void Use()
     {
-        TypeAndCountList<CardHeader> results = new TypeAndCountList<CardHeader>();
         for (int i = 0; i < lootAmount; ++i)
-        {
-            Substance loot = pool.GetRandomElement();
-            PlayerSave.CardStorage.AddAll(results);
-            results.Add(loot);
-        }
-        //TODO: do something with results
+            PlayerSave.AddCard(pool.GetRandomElement());
     }
 }

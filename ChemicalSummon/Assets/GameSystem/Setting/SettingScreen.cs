@@ -81,14 +81,14 @@ public class SettingScreen : AbstractManager
     public void UnlockAllReaction()
     {
         foreach (Reaction each in Reaction.GetAll())
-            PlayerSave.AddDiscoveredReaction(each);
+            PlayerSave.DiscoverReaction(each);
         WorldManager.ReactionScreen.Init();
     }
     public void AllSubstancePlusOne()
     {
         foreach (Substance each in Substance.GetAll())
         {
-            PlayerSave.CardStorage.Add(each);
+            PlayerSave.AddCard(each);
         }
         WorldManager.DeckScreen.Init();
     }

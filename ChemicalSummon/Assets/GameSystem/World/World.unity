@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4373559, g: 0.75442356, b: 1.028951, a: 1}
+  m_IndirectSpecularColor: {r: 0.43706313, g: 0.75432324, b: 1.0289398, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7109,6 +7109,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254551815}
   m_CullTransparentMesh: 1
+--- !u!1 &1265176219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5446291990028271323, guid: 67eed7ead8387a240a6246310d4dc422,
+    type: 3}
+  m_PrefabInstance: {fileID: 6765745980811634059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1265176223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265176219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b03c1e6606bb6418172a8fd99c1de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alwaysUpdate: 0
+  so_sentence: {fileID: 11400000, guid: 95eda67782390924d8c1d21afde01a9e, type: 2}
+  sentence:
+    defaultString: SubstanceEncyclopedia
+    languageAndSentences:
+    - language: 0
+      sentence: "\u7269\u8D28\u56FE\u9274"
+    - language: 2
+      sentence: "\u7269\u8CEA\u56F3\u9451"
 --- !u!1001 &1268449169
 PrefabInstance:
   m_ObjectHideFlags: 0

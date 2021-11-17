@@ -9,7 +9,7 @@ public class GetCard_EventNode : EventNode
 
     public override void Reach()
     {
-        PlayerSave.CardStorage.AddAll(cards);
+        PlayerSave.AddCard(cards);
         ProgressEvent();
     }
 }

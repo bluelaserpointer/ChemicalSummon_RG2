@@ -14,8 +14,7 @@ public class FinishResearchStep : ResearchStep
     public override void OnReach()
     {
         formulaText.text = Reaction.formula;
-        PlayerSave.AddDiscoveredReaction(Reaction);
-        PlayerSave.AddResearchExp(10);
+        PlayerSave.DiscoverReaction(Reaction);
         WorldManager.ReactionScreen.Init();
         bool hasNewSubstance = false;
         foreach (var substanceStack in Reaction.RightSubstances)
@@ -23,9 +22,9 @@ public class FinishResearchStep : ResearchStep
             Substance substance = substanceStack.type;
             if (PlayerSave.DiscoveredCards.Contains(substance))
                 continue;
-            Instantiate(discoveredSubstancePreviewPrefab, discoveredSubstanceListTransform).Init(substance);
             hasNewSubstance = true;
-            PlayerSave.DiscoveredCards.Add(substance);
+            Instantiate(discoveredSubstancePreviewPrefab, discoveredSubstanceListTransform).Init(substance);
+            PlayerSave.DiscoverCard(substance);
         }
         if(hasNewSubstance)
         {

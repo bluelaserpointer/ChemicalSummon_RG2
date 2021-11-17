@@ -10,6 +10,11 @@ using UnityEngine.SceneManagement;
 public class General : MonoBehaviour
 {
     //inspector
+    [Header("GameRule")]
+    [SerializeField]
+    int substanceDiscoverExp;
+    [SerializeField]
+    int reactionDiscoverExp;
     [Header("Card")]
     public SubstanceCard substanceCardPrefab;
     public MagicCard magicCardPrefab;
@@ -19,6 +24,11 @@ public class General : MonoBehaviour
     public GameObject FusionVigorousnessIcon;
     public GameObject FusionExplosionIcon;
     public GameObject FusionCounterIcon;
+    [Header("SideMessage")]
+    public SideMessageGenerator messageGenerator;
+    public DiscoverSubstanceMessage discoverSubstanceMessagePrefab;
+    [Header("Event")]
+    public Transform eventsParent;
 
     //data
     public static General Instance => PlayerSave.General;
@@ -36,6 +46,11 @@ public class General : MonoBehaviour
         public static string Item => "ItemHeader/";
         public static string Stage => "StageHeader/";
         public static string Character => "Character/";
+    }
+    public static class GameRule
+    {
+        public static int SubstanceDiscoverExp => Instance.substanceDiscoverExp;
+        public static int ReactionDiscoverExp => Instance.reactionDiscoverExp;
     }
     /// <summary>
     /// 每个研究等级所需的经验值总量

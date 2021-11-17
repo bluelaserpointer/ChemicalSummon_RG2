@@ -62,7 +62,7 @@ public class Match : MonoBehaviour
         foreach(Item item in loots)
         {
             PlayerSave.ItemStorage.Add(item);
-            unlockReactions.ForEach(each => PlayerSave.AddDiscoveredReaction(each));
+            unlockReactions.ForEach(each => PlayerSave.DiscoverReaction(each));
         }
     }
 }

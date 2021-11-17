@@ -222,7 +222,7 @@ public class ReactionAnalyzer : MonoBehaviour, IPointerDownHandler
     public void FusionReaction()
     {
         PlayerSave.CardStorage.RemoveAll(displayingReaction.LeftSubstances);
-        PlayerSave.CardStorage.AddAll(displayingReaction.RightSubstances);
+        PlayerSave.AddCard(displayingReaction.RightSubstances);
         Init();
     }
 }

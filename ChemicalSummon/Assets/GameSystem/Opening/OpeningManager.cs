@@ -12,7 +12,7 @@ public class OpeningManager : AbstractManager
     [SerializeField]
     float cardScale, cardUpSpeed, cardRotationSpeed;
     [SerializeField]
-    Transform generateLeftAnchor, generateRightAnchor;
+    Transform generateRoot, generateLeftAnchor, generateRightAnchor;
 
     //data
     List<Substance> substances;
@@ -31,7 +31,7 @@ public class OpeningManager : AbstractManager
         {
             waitedTime = 0;
             Card card = substances.GetRandomElement().GenerateCard();
-            card.transform.SetParent(transform);
+            card.transform.SetParent(generateRoot);
             card.transform.position = Vector3.Lerp(generateLeftAnchor.position, generateRightAnchor.position, Random.Range(0F, 1F));
             card.transform.localScale = cardScale * Vector3.one;
             KineticMove mover = card.gameObject.AddComponent<KineticMove>();

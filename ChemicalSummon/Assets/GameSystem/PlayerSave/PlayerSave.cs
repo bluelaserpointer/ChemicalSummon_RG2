@@ -90,7 +90,13 @@ public sealed class PlayerSave : MonoBehaviour
     public static bool hasLastWorldPositionSave;
     public static Vector3 lastWorldPlayerPosition;
     public static Quaternion lastWorldPlayerRotation;
+    /// <summary>
+    /// 持有道具
+    /// </summary>
     public static TypeAndCountList<Item> ItemStorage => Instance.itemStorage;
+    /// <summary>
+    /// 持有卡牌(要添加应使用AddCard方法)
+    /// </summary>
     public static TypeAndCountList<CardHeader> CardStorage => Instance.initialCardStorage;
     /// <summary>
     /// 可用的游戏者
@@ -99,7 +105,7 @@ public sealed class PlayerSave : MonoBehaviour
     public static List<Character> AllCharacters => Instance.allCharacters;
 
     /// <summary>
-    /// 发现的反应式
+    /// 发现的反应式(要添加应使用DiscoverReaction方法)
     /// </summary>
     public static List<Reaction> DiscoveredReactions => Instance.discoveredReactions;
     List<Reaction> newDiscoveredReactions = new List<Reaction>();
@@ -109,7 +115,7 @@ public sealed class PlayerSave : MonoBehaviour
     public static List<Reaction> NewDicoveredReactions => Instance.newDiscoveredReactions;
     List<CardHeader> discoveredCards = new List<CardHeader>();
     /// <summary>
-    /// 已发现的物质
+    /// 已发现的物质(要添加应使用DiscoverCard方法)
     /// </summary>
     public static List<CardHeader> DiscoveredCards => Instance.discoveredCards;
     /// <summary>
@@ -209,16 +215,49 @@ public sealed class PlayerSave : MonoBehaviour
             Debug.LogWarning("Don't add research exp when not in scene world.");
     }
     /// <summary>
-    /// 增加发现的反应式
+    /// 增加卡(使用该函数才能解锁图鉴或获得经验)
+    /// </summary>
+    /// <param name="cardHeader"></param>
+    public static void AddCard(CardHeader cardHeader, int amount = 1)
+    {
+        DiscoverCard(cardHeader);
+        CardStorage.Add(cardHeader, amount);
+    }
+    public static void AddCard<T>(TypeAndCountList<T> cardHeaders) where T : CardHeader
+    {
+        foreach(var pair in cardHeaders)
+            AddCard(pair.type, pair.count);
+    }
+    /// <summary>
+    /// 发现卡
+    /// </summary>
+    /// <param name="cardHeader"></param>
+    /// <returns></returns>
+    public static bool DiscoverCard(CardHeader cardHeader)
+    {
+        if (cardHeader.IsSubstance && !DiscoveredCards.Contains(cardHeader))
+        {
+            DiscoveredCards.Add(cardHeader);
+            AddResearchExp(General.GameRule.SubstanceDiscoverExp);
+            DiscoverSubstanceMessage discoverSubstanceMessage = Instantiate(General.Instance.discoverSubstanceMessagePrefab);
+            discoverSubstanceMessage.Set(cardHeader as Substance);
+            General.Instance.messageGenerator.AddMessage(discoverSubstanceMessage);
+            return true;
+        }
+        return false;
+    }
+    /// <summary>
+    /// 发现反应式
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public static bool AddDiscoveredReaction(Reaction reaction)
+    public static bool DiscoverReaction(Reaction reaction)
     {
         if (DiscoveredReactions.Contains(reaction))
             return false;
         DiscoveredReactions.Add(reaction);
         NewDicoveredReactions.Add(reaction);
+        AddResearchExp(General.GameRule.ReactionDiscoverExp);
         return true;
     }
     /// <summary>
@@ -257,7 +296,7 @@ public sealed class PlayerSave : MonoBehaviour
         SceneManager.LoadScene("Match");
     }
     public static Event StartEvent(Event eventPrefab) {
-        Event newEvent = Instantiate(eventPrefab, PermanentCanvas.transform);
+        Event newEvent = Instantiate(eventPrefab, General.eventsParent);
         Instance.aliveEvents.Add(newEvent);
         newEvent.Progress();
         return newEvent;
